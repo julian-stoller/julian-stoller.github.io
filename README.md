@@ -1,3 +1,18 @@
-# julian-stoller.github.io
+# Julian B. Stoller
+#### Mechanical Engineering Student at Cornell University
 
-### THIS IS MY PERSONAL WEBSITE, THERE ARE MANY LIKE IT BUT THIS ONE IS MINE
+## Experience:
+### Cornell Autonomous Bicycle:
+- Summary Of Internal Promotions
+  - Responsibilities as Mechanical Subteam Lead
+  - Responsibilities as Full Team Lead
+- Main Bike:
+- Mini-Bike:
+- Quadrupedal Robot:
+- Small Miscellaneous Projects:
+
+### Architectural Robotics Lab (ARL):
+- Contributions to S.O.R.T.
+
+## Ceritifications:
+
