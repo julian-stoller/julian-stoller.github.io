@@ -1,1 +1,3 @@
 # julian-stoller.github.io
+
+### THIS IS MY PERSONAL WEBSITE, THERE ARE MANY LIKE IT BUT THIS ONE IS MINE
