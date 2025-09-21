@@ -59,6 +59,10 @@
 - Currently revising our submission to meet the standards for several provisional patents (see, Personal Projects)
 
 ### Big Red Hacks 2025:
+- Finalist, one of five teams selected.
+  - Won the Hardware Track.
+- Solo project (one man team).
+- Won prizes totalling ~$200 in value.
 
 ## Ceritifications:
 - Six Sigma Green Belt (2025)
