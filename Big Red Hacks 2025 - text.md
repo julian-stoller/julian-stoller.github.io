@@ -1,5 +1,7 @@
 # Big Red Hacks 2025
 
+*this page is still being added to*
+
 In September of 2025 I decided to participate in Big Red Hacks, a hackathon taking place on campus from 09/19 to 09/21. Given that I'm a MechE and hackathons are more of a software developement thing, I didn't expect to perform well. I simply just wanted to participate in an in-person Hackathon before graduating.
 
 The theme was Entertainment, so I designed what I called in my presentation a 'Customized <a href="https://en.wikipedia.org/wiki/Kendama">Kendama</a> w/AM, Parametric CAD, and Interchangable Parts'. 
