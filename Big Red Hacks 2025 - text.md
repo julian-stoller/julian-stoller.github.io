@@ -6,17 +6,21 @@ The theme was Entertainment, so I designed what I called in my presentation a 'C
 My question was, how can I add value to a rather simple toy (a kendama) by strategically applying design principals that I hold in high regard? 
 
 - Interchangable Parts:
-  - A kendama with interchangable parts could grow with a user 
-  - 
-  -
+  - A kendama with interchangable parts could grow with a user as they go from a begineer to an expert.
+    - A beginner might want to replace the 'cup' of the kendama with larger ones to make the initial stages of learning to use the kendama easier.
+      - Similar things could be said about the kendama's string. 
+    - An expert might want to make using a kendama really hard, so they might find value in the ability to make the cups of an existing kendama small to the point of inconvenience in use. 
+      - All features of the kendama (handle length, weight distribution, cup diameter, cup shape, etc) can be altered in some way to make a kendama more unwieldly.
+    - This object having interchangable parts would make people able to customize their kendamas by replacing select parts with parts of a different color or with different branding if desired.
+
 
 - 3D Printed:
-  -
+  - 
   -
   -
 
 - Parametric CAD:
-  -
+  - 
   -
 
   -
