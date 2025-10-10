@@ -27,11 +27,11 @@ Having all of this in mind, I started work on a basic implementation of what I'v
 
 A kendama that 3D printable, designed with interchangable parts when relevant, and with relevant dimentions very easily customizable in software. 
 
+Once I got the CAD done I displayed and in a way pitched my project to the judges of the competitions:
 
-
-I entered as a one man team and won the hardware track acknowleding use of hardware and technical implementation, and was one of five finalist teams. 
-
-<img src="https://julian-stoller.github.io/Big%20Red%20Hacks%202025%20-%20visual%20assets/BRH-2025%20-%20Initial%20Presentation.JPG" alt="Initial Presentation">
+<div align = "center">
+  <img src="https://julian-stoller.github.io/Big%20Red%20Hacks%202025%20-%20visual%20assets/BRH-2025%20-%20Initial%20Presentation.JPG" alt="Initial Presentation" width = "500">
+</div>
 
 <img src="https://julian-stoller.github.io/Big%20Red%20Hacks%202025%20-%20visual%20assets/BRH-2025%20-%20Finalist%20Pitch.JPG" alt="Finalist Pitch">
 
