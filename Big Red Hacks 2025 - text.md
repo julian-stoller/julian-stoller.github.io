@@ -27,16 +27,32 @@ Having all of this in mind, I started work on a basic implementation of what I'v
 
 A kendama that 3D printable, designed with interchangable parts when relevant, and with relevant dimentions very easily customizable in software. 
 
-Once I got the CAD done I displayed and in a way pitched my project to the judges of the competitions:
 
+<div align = "center">
+  <p>Once I got the CAD done I displayed and in a way pitched my project to the judges of the competitions:</p>
+</div>
 <div align = "center">
   <img src="https://julian-stoller.github.io/Big%20Red%20Hacks%202025%20-%20visual%20assets/BRH-2025%20-%20Initial%20Presentation.JPG" alt="Initial Presentation" width = "500">
 </div>
 
-<img src="https://julian-stoller.github.io/Big%20Red%20Hacks%202025%20-%20visual%20assets/BRH-2025%20-%20Finalist%20Pitch.JPG" alt="Finalist Pitch">
+<div align = "center">
+  <p>Afterwards I was nominated as one of the five finalist teams, which meant I would be displaying my project to a larger audience:</p>
+</div>
+<div align = "center">
+  <img src="https://julian-stoller.github.io/Big%20Red%20Hacks%202025%20-%20visual%20assets/BRH-2025%20-%20Finalist%20Pitch.JPG" alt="Finalist Pitch" width = "500">
+</div>
 
-<img src="https://julian-stoller.github.io/Big%20Red%20Hacks%202025%20-%20visual%20assets/BRH-2025%20-%20Getting%20Monitors.JPG" alt="Getting Monitors">
+<div align = "center">
+  <p>I ended up winner the Hardware Track, recognizing hardware use and technical implementation, for which I was given 2 24" Sceptre Curved Monitors.</p>
+</div>
 
-<img src="https://julian-stoller.github.io/Big%20Red%20Hacks%202025%20-%20visual%20assets/BRH-2025%20-%20Group%20Photo.JPG" alt="Group Photo">
+<div align = "center">
+  <img src="https://julian-stoller.github.io/Big%20Red%20Hacks%202025%20-%20visual%20assets/BRH-2025%20-%20Getting%20Monitors.JPG" alt="Getting Monitors" width = "500">
+</div>
 
-
+<div align = "center">
+  <p>It was a great time and I met so many great people throughout the process.</p>
+</div>
+<div align = "center">
+  <img src="https://julian-stoller.github.io/Big%20Red%20Hacks%202025%20-%20visual%20assets/BRH-2025%20-%20Group%20Photo.JPG" alt="Group Photo" width = "500">
+</div>
