@@ -17,7 +17,7 @@ My question was, how can I add value to a rather simple toy (a kendama) by strat
 **3D Printed:**
   - Designing this kendama (or set of kendamas, meta-kendama?) would allow anyone with access to a 3D printer access to a kendama. 
   - <a href="https://en.wikipedia.org/wiki/Design_for_manufacturability">D.F.M.</a> with 3D printing is generally not difficult to do, that being said when it's done poorly the overall quality of your part/product plummits. By designing the individual parts of my project to be difficult to print wrong, my project's overall quality (and how well it mirror's the quality of a typical wooden kendama) would grow.
-  - Making a design 3D printable (and what often comes with that, which is open accessibility of part geometries on websites such as <a href="https://thingiverse.com"Thingiverse</a>) allows for the user-in-the-loop part revision, furthering the aforementioned goal of allowing a greater level of customization.
+  - Making a design 3D printable (and what often comes with that, which is open accessibility of part geometries on websites such as <a href="https://thingiverse.com">Thingiverse</a>) allows for the user-in-the-loop part revision, furthering the aforementioned goal of allowing a greater level of customization.
 
 **Parametric CAD:**
   - Implementing, and then making widely accessible, an easy to edit CAD file would allow for the aforementioned anticipated use cases to be more widely realized, specifically by an audience that might otherwise be put-off by the need to learn CAD in order to customize a part.
