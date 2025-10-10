@@ -58,7 +58,8 @@
   - Waived cost of admission to AM-related online courses offered by SME
 - Currently revising our submission to meet the standards for several provisional patents (see, Personal Projects)
 
-### Big Red Hacks 2025:
+### <a href="https://julian-stoller.github.io/Big%20Red%20Hacks%202025%20-%20text">Big Red Hacks 2025:</a>
+
 - Finalist, one of five teams selected.
   - Won the Hardware Track.
 - Solo project (one man team).
