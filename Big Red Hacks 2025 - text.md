@@ -5,7 +5,7 @@ In September of 2025 I decided to participate in Big Red Hacks, a hackathon taki
 The theme was Entertainment, so I designed what I called in my presentation a 'Customized <a href="https://en.wikipedia.org/wiki/Kendama">Kendama</a> w/AM, Parametric CAD, and Interchangable Parts'. 
 My question was, how can I add value to a rather simple toy (a kendama) by strategically applying design principals that I hold in high regard? 
 
-- Interchangable Parts:
+**Interchangable Parts:**
   - A kendama with interchangable parts could grow with a user as they go from a begineer to an expert.
     - A beginner might want to replace the 'cup' of the kendama with larger ones to make the initial stages of learning to use the kendama easier.
       - Similar things could be said about the kendama's string. 
@@ -14,13 +14,13 @@ My question was, how can I add value to a rather simple toy (a kendama) by strat
     - This object having interchangable parts would make people able to customize their kendamas by replacing select parts with parts of a different color or with different branding if desired.
 
 
-- 3D Printed:
-  - 
-  -
+**3D Printed:**
+  - Designing this kendama (or set of kendamas, meta-kendama?) would allow anyone with access to a 3D printer access to a kendama. 
+  - <a href="https://en.wikipedia.org/wiki/Design_for_manufacturability">D.F.M.</a> 
   -
 
-- Parametric CAD:
-  - 
+**Parametric CAD:**
+  - Implementing, and then making widely accessible, an easy to edit CAD file would allow for the aforementioned anticipated use cases to be 
   -
 
   -
