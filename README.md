@@ -1,7 +1,7 @@
 # Julian B. Stoller
 *this website is currently a work in progress but should be presentation worthy soon*
 ---
-*since my resume is limited to one page*
+*since my resume is limited to one page...*
 # Mechanical Engineering Student at Cornell University
 
 ## Experience: On Campus
