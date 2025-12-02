@@ -1,13 +1,48 @@
 julian-stoller.github.io/
-├── folder-structure.md
-├── README.md
-├── Website/
-│   ├── ARL/
-│   │   ├── Architectural Robotics Lab.md
-│   │   └── Images/
-│   ├── BRH 2025/
-│   │   ├── Big Red Hacks 2025 - text.md
-│   │   └── Images/
-│   ├── CU AutoBike/
-│   │   ├── Cornell Autonomous Bicycle.md
-│   │   └── Images/
+├── index.html                          # Professional homepage with highlights & featured projects
+├── README.md                            # Full resume and project descriptions
+├── folder-structure.txt                 # This file
+├── assets/
+│   └── css/
+│       └── style.css                   # Shared stylesheet for navbar, colors, responsive design
+├── projects/
+│   └── index.html                      # Projects listing page
+├── awards/
+│   └── index.html                      # Awards and certifications page
+└── Website/
+    ├── ARL/
+    │   ├── index.html                 # Architectural Robotics Lab project page
+    │   └── Images/
+    ├── BRH 2025/
+    │   ├── index.html                 # Big Red Hacks 2025 project page
+    │   ├── Big Red Hacks 2025 - text.md
+    │   └── Images/
+    │       ├── BRH-2025 - Initial Presentation.JPG
+    │       ├── BRH-2025 - Finalist Pitch.JPG
+    │       ├── BRH-2025 - Getting Monitors.JPG
+    │       └── BRH-2025 - Group Photo.JPG
+    ├── CU AutoBike/
+    │   ├── index.html                 # Cornell Autonomous Bicycle project page
+    │   └── Images/
+    ├── SME 2025/
+    │   ├── index.html                 # SME 2025 Digital Manufacturing Contest page
+    │   ├── SME - 2025.md
+    │   ├── Documents/
+    │   │   ├── MSbSpSdP.pdf          # Technical PDF (embedded in page)
+    │   │   └── Rensselaer Polytechnic Institute and Cornell University.pdf
+    │   └── Images/
+    │       └── Award Photo - On Stage.jpg
+    └── Small Misc CAD Projects/
+        ├── index.html                 # Small CAD Projects page
+        ├── Misc CAD.md
+        └── Images/
+            └── Screenshot 2025-11-06 182226.png
+
+KEY NOTES:
+- All HTML pages have consistent navbar linking to Home, Projects, Awards, Resume
+- Shared CSS (assets/css/style.css) provides professional styling across all pages
+- Project pages are located in Website/[ProjectName]/index.html
+- Homepage (index.html) at root features highlights and links to all projects
+- PDFs in SME 2025 are embedded directly in the page using iframes
+- Responsive design works on mobile, tablet, and desktop
+- Dark-themed footer on all pages with GitHub link
