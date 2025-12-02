@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Big Red Hacks 2025 - Julian B. Stoller</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        color: #222;
+        background: #f9f9f9;
+      }
+      
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+      
+      header {
+        margin-bottom: 40px;
+        text-align: center;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+        color: #1a1a1a;
+      }
+      
+      .subtitle {
+        font-size: 1rem;
+        color: #666;
+        font-style: italic;
+      }
+      
+      .intro {
+        background: white;
+        padding: 24px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        border-left: 4px solid #0366d6;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      }
+      
+      .intro p {
+        margin-bottom: 12px;
+      }
+      
+      .intro p:last-child {
+        margin-bottom: 0;
+      }
+      
+      section {
+        background: white;
+        padding: 24px;
+        margin-bottom: 24px;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      }
+      
+      section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 16px;
+        color: #0366d6;
+        border-bottom: 2px solid #e1e4e8;
+        padding-bottom: 12px;
+      }
+      
+      section ul {
+        margin-left: 20px;
+        margin-bottom: 16px;
+      }
+      
+      section li {
+        margin-bottom: 12px;
+        line-height: 1.7;
+      }
+      
+      section li strong {
+        color: #1a1a1a;
+      }
+      
+      section a {
+        color: #0366d6;
+        text-decoration: none;
+      }
+      
+      section a:hover {
+        text-decoration: underline;
+      }
+      
+      .gallery {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 32px;
+        margin-top: 32px;
+      }
+      
+      .gallery-item {
+        text-align: center;
+      }
+      
+      .gallery-item p {
+        color: #666;
+        margin-bottom: 16px;
+        font-size: 0.95rem;
+      }
+      
+      .gallery-item img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        transition: transform 0.2s;
+      }
+      
+      .gallery-item img:hover {
+        transform: scale(1.02);
+      }
+      
+      .result-highlight {
+        background: #f0f7ff;
+        padding: 20px;
+        border-radius: 6px;
+        margin: 20px 0;
+        border-left: 4px solid #28a745;
+      }
+      
+      .result-highlight strong {
+        color: #28a745;
+      }
+      
+      footer {
+        text-align: center;
+        padding: 20px;
+        color: #666;
+        font-size: 0.9rem;
+        margin-top: 40px;
+      }
+      
+      .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background: #f0f0f0;
+        border-radius: 4px;
+        text-decoration: none;
+        color: #0366d6;
+        font-size: 0.9rem;
+      }
+      
+      .back-link:hover {
+        background: #e0e0e0;
+      }
+      
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 1.6rem;
+        }
+        
+        section {
+          padding: 16px;
+        }
+        
+        .gallery-item img {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="/" class="back-link">← Back to home</a>
+      
+      <header>
+        <h1>Big Red Hacks 2025</h1>
+        <p class="subtitle">Customized Kendama with Additive Manufacturing, Parametric CAD, and Interchangeable Parts</p>
+      </header>
+
+      <div class="intro">
+        <p>In September 2025, I decided to participate in Big Red Hacks, a hackathon taking place on campus from 09/19 to 09/21. As a Mechanical Engineering student, I knew hackathons were more of a software development thing, but I wanted to participate in an in-person hackathon before graduating.</p>
+        
+        <p>The theme was <strong>Entertainment</strong>, and I designed what I called a "Customized Kendama with AM, Parametric CAD, and Interchangeable Parts." My central question was: <em>How can I add value to a rather simple toy by strategically applying design principles I hold in high regard?</em></p>
+      </div>
+
+      <section>
+        <h2>🔧 Interchangeable Parts</h2>
+        <p>A kendama with interchangeable parts could grow with a user as they progress from beginner to expert:</p>
+        <ul>
+          <li><strong>Beginners</strong> can replace the 'cup' with larger ones to make learning easier, and can swap out the string for different materials or lengths.</li>
+          <li><strong>Experts</strong> can make using a kendama harder by installing smaller cups or modifying other features (handle length, weight distribution, cup shape, etc.) to increase the challenge.</li>
+          <li><strong>Customization</strong>: Users can personalize their kendamas by swapping parts with different colors or custom branding.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>🖨️ 3D Printed Manufacturing</h2>
+        <p>Designing this kendama to be 3D printable opens accessibility to anyone with access to a printer:</p>
+        <ul>
+          <li><strong>Design for Manufacturability (DFM)</strong>: By designing parts to be difficult to print incorrectly, the overall quality matches that of traditional wooden kendamas, even for users without technical printing knowledge.</li>
+          <li><strong>Open Accessibility</strong>: Publishing geometries on sites like Thingiverse enables user-in-the-loop revisions and allows a greater level of customization.</li>
+          <li><strong>Barrier to Entry</strong>: 3D printing democratizes access to this toy, removing cost and manufacturing barriers.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>📐 Parametric CAD</h2>
+        <p>A parametric CAD approach lets anyone customize without needing to learn CAD software:</p>
+        <ul>
+          <li><strong>Easy Editing</strong>: Parameters like cup diameter, handle length, and weight distribution are immediately visible and simple to adjust.</li>
+          <li><strong>Lower Technical Barrier</strong>: Users don't need deep CAD knowledge to customize their kendama—just modify slider values or parameters in a spreadsheet.</li>
+          <li><strong>Scalability</strong>: The same base design can be adapted for a wide range of skill levels and preferences.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>🎯 The Project</h2>
+        <p>With all of this in mind, I designed a <strong>fully 3D-printable kendama</strong> with interchangeable parts where relevant and parametric dimensions easily customizable in CAD software.</p>
+        
+        <p>Here's how it went at the competition:</p>
+      </section>
+
+      <div class="gallery">
+        <div class="gallery-item">
+          <p><strong>Initial Presentation to Judges</strong></p>
+          <img src="Images/BRH-2025 - Initial Presentation.JPG" alt="Initial Presentation">
+        </div>
+
+        <div class="gallery-item">
+          <p><strong>Selected as Finalist</strong> — One of five teams chosen for the larger showcase</p>
+          <img src="Images/BRH-2025 - Finalist Pitch.JPG" alt="Finalist Pitch">
+        </div>
+
+        <div class="gallery-item">
+          <div class="result-highlight">
+            <p><strong>🏆 Hardware Track Winner</strong></p>
+            <p>Recognized for hardware use and technical implementation. Prize: Two 24" Sceptre Curved Monitors</p>
+          </div>
+          <img src="Images/BRH-2025 - Getting Monitors.JPG" alt="Getting Monitors">
+        </div>
+
+        <div class="gallery-item">
+          <p><strong>With the Amazing Community</strong> — Great people and great memories</p>
+          <img src="Images/BRH-2025 - Group Photo.JPG" alt="Group Photo">
+        </div>
+      </div>
+
+      <section style="margin-top: 40px; background: #f9fff0; border-left-color: #28a745;">
+        <p style="font-size: 1.1rem; color: #1a1a1a;">It was a fantastic experience, and I met so many great people throughout the process. Participating in Big Red Hacks reinforced my belief that hardware and mechanical design have a crucial role in engineering innovation, even in a software-first hackathon setting.</p>
+      </section>
+
+      <footer>
+        <p>Big Red Hacks 2025 | September 19-21, 2025 at Cornell University</p>
+      </footer>
+    </div>
+  </body>
+</html>
