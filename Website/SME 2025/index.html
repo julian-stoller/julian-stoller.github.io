@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SME 2025 Digital Manufacturing Contest - Julian B. Stoller</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        color: #222;
+        background: #f9f9f9;
+      }
+      
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+      
+      header {
+        margin-bottom: 40px;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+        color: #1a1a1a;
+      }
+      
+      .subtitle {
+        font-size: 1rem;
+        color: #666;
+        font-style: italic;
+      }
+      
+      section {
+        background: white;
+        padding: 24px;
+        margin-bottom: 24px;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      }
+      
+      section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 16px;
+        color: #0366d6;
+        border-bottom: 2px solid #e1e4e8;
+        padding-bottom: 12px;
+      }
+      
+      section h3 {
+        font-size: 1.1rem;
+        margin-top: 20px;
+        margin-bottom: 12px;
+        color: #333;
+      }
+      
+      section h3:first-child {
+        margin-top: 0;
+      }
+      
+      section ul {
+        margin-left: 20px;
+        margin-bottom: 16px;
+      }
+      
+      section li {
+        margin-bottom: 12px;
+        line-height: 1.7;
+      }
+      
+      section p {
+        margin-bottom: 14px;
+      }
+      
+      section a {
+        color: #0366d6;
+        text-decoration: none;
+      }
+      
+      section a:hover {
+        text-decoration: underline;
+      }
+      
+      .back-link {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 8px 16px;
+        background: #f0f0f0;
+        border-radius: 4px;
+        text-decoration: none;
+        color: #0366d6;
+        font-size: 0.9rem;
+      }
+      
+      .back-link:hover {
+        background: #e0e0e0;
+      }
+      
+      .award-highlight {
+        background: linear-gradient(135deg, #fff9e6 0%, #fff0cc 100%);
+        border-left: 4px solid #ffc107;
+        padding: 20px;
+        border-radius: 6px;
+        margin: 20px 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      
+      .award-highlight strong {
+        color: #b8860b;
+        font-size: 1.05rem;
+      }
+      
+      .award-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+      
+      .award-item::before {
+        content: "🏆";
+        margin-right: 12px;
+        font-size: 1.2rem;
+      }
+      
+      .gallery {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 32px;
+        margin-top: 32px;
+      }
+      
+      .gallery-item {
+        text-align: center;
+      }
+      
+      .gallery-item p {
+        color: #666;
+        margin-bottom: 16px;
+        font-size: 0.95rem;
+      }
+      
+      .gallery-item img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        transition: transform 0.2s;
+      }
+      
+      .gallery-item img:hover {
+        transform: scale(1.02);
+      }
+      
+      .design-box {
+        background: #f0f7ff;
+        border-left: 4px solid #0366d6;
+        padding: 20px;
+        border-radius: 6px;
+        margin: 20px 0;
+      }
+      
+      .design-box h3 {
+        margin-top: 0;
+        color: #0366d6;
+      }
+      
+      footer {
+        text-align: center;
+        padding: 20px;
+        color: #666;
+        font-size: 0.9rem;
+        margin-top: 40px;
+      }
+      
+      .specs-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin: 16px 0;
+      }
+      
+      .spec-item {
+        background: #f8f9fa;
+        padding: 12px;
+        border-radius: 4px;
+        border-left: 3px solid #0366d6;
+      }
+      
+      .spec-item strong {
+        color: #0366d6;
+        display: block;
+        margin-bottom: 4px;
+      }
+      
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 1.6rem;
+        }
+        
+        section {
+          padding: 16px;
+        }
+        
+        .specs-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="/" class="back-link">← Back to home</a>
+      
+      <header>
+        <h1>SME 2025 Digital Manufacturing Contest</h1>
+        <p class="subtitle">First Place Winner — Rapidly Deployable Concentrated Solar Power & Water Distillation System</p>
+      </header>
+
+      <div class="award-highlight">
+        <strong>🥇 First Place among 81 Entries</strong>
+        <p style="margin-top: 8px; margin-bottom: 0;">Recognized for innovative design and manufacturing approach in the Society of Manufacturing Engineers' 2025 Digital Manufacturing Contest.</p>
+      </div>
+
+      <section>
+        <h2>Project Overview</h2>
+        <p>This project presents a comprehensive solution for rapid deployment of solar power generation and water distillation in remote or disaster-relief scenarios. The design emphasizes additive manufacturing (AM) methods to enable fast, cost-effective production and assembly in field conditions.</p>
+        
+        <p>The system integrates a <strong>Concentrated Solar Power (CSP) plant</strong> with a <strong>water distillation plant</strong>, creating a dual-purpose platform that generates electricity while simultaneously producing fresh water from brackish or saline sources—critical capabilities for humanitarian and emergency response operations.</p>
+      </section>
+
+      <section>
+        <h2>Design Philosophy</h2>
+        
+        <div class="design-box">
+          <h3>Additive Manufacturing for Rapid Deployment</h3>
+          <p>The entire system was designed with additive manufacturing (3D printing, injection molding, etc.) as the primary manufacturing method. This approach enables:</p>
+          <ul>
+            <li><strong>Speed of Deployment:</strong> Components can be manufactured and deployed rapidly, enabling emergency response</li>
+            <li><strong>Accessibility:</strong> Decentralized manufacturing reduces logistics and supply chain complexity</li>
+            <li><strong>Customization:</strong> Designs can be adapted for local conditions and resources</li>
+            <li><strong>Cost Efficiency:</strong> Reduced material waste and simplified assembly compared to traditional manufacturing</li>
+            <li><strong>Sustainability:</strong> Modular design allows for repair and reuse rather than replacement</li>
+          </ul>
+        </div>
+
+        <p>By designing specifically for AM processes, the project achieves a balance between functionality, manufacturability, and practical deployment in resource-constrained environments.</p>
+      </section>
+
+      <section>
+        <h2>System Components</h2>
+        
+        <h3>Concentrated Solar Power (CSP) Plant</h3>
+        <p>Designed to harvest solar energy efficiently and convert it to electrical power using thermodynamic principles. Key considerations:</p>
+        <ul>
+          <li>Modular mirror/reflector arrays for scalable power output</li>
+          <li>Thermal collection and energy storage systems</li>
+          <li>Power conversion to electrical output</li>
+          <li>Compact, transportable configuration</li>
+        </ul>
+
+        <h3>Water Distillation Plant</h3>
+        <p>Leverages the waste heat from CSP operations to produce fresh water through thermal distillation. Features:</p>
+        <ul>
+          <li>High-efficiency heat transfer systems</li>
+          <li>Multi-stage distillation for purity and yield</li>
+          <li>Minimal chemical processing</li>
+          <li>Compatible with brackish, saline, and contaminated water sources</li>
+        </ul>
+
+        <h3>Integration & Control</h3>
+        <p>The dual-system design allows for simultaneous power generation and water production, optimizing the use of solar energy and minimizing waste. The modular design enables operation at various scales depending on deployment needs.</p>
+      </section>
+
+      <section>
+        <h2>Manufacturing Innovation</h2>
+        <p>The project demonstrates novel approaches to:</p>
+        <ul>
+          <li><strong>Design for Additive Manufacturing (DfAM):</strong> Optimizing geometries and structures specifically for 3D printing and other AM processes</li>
+          <li><strong>Part Consolidation:</strong> Combining multiple traditionally manufactured parts into single AM components, reducing assembly complexity</li>
+          <li><strong>Thermal Management:</strong> Using AM to create complex cooling passages and heat exchangers that would be difficult with traditional manufacturing</li>
+          <li><strong>Rapid Prototyping:</strong> Iterative design and testing enabled by fast AM production cycles</li>
+          <li><strong>Sustainability:</strong> Minimal material waste and the ability to recycle failed or obsolete prints</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Awards & Recognition</h2>
+        
+        <div class="specs-grid">
+          <div class="spec-item">
+            <strong>Contest Placement</strong>
+            First Place among 81 entries
+          </div>
+          <div class="spec-item">
+            <strong>Prize Amount</strong>
+            $1,000
+          </div>
+          <div class="spec-item">
+            <strong>Event Passes</strong>
+            Free admission to 2025 Rapid + TCT Additive Manufacturing Event in Detroit
+          </div>
+          <div class="spec-item">
+            <strong>Education Benefit</strong>
+            Waived cost of admission to AM-related online courses offered by SME
+          </div>
+        </div>
+
+        <div class="award-highlight">
+          <p><strong>Patent Development:</strong> The project is currently being revised to meet standards for several provisional patents. The innovations in solar thermal design and water distillation represent patentable advancements in the field of rapid-deployment renewable energy systems.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Impact & Future Directions</h2>
+        <p>This project demonstrates that additive manufacturing can play a critical role in humanitarian engineering and emergency response. The ability to rapidly produce and deploy integrated power and water systems could save lives in disaster situations, remote research stations, and developing regions with limited infrastructure.</p>
+
+        <p>Key future opportunities include:</p>
+        <ul>
+          <li>Field testing and validation in real-world deployment scenarios</li>
+          <li>Scaling production to commercial viability</li>
+          <li>Optimization for specific geographic and climate conditions</li>
+          <li>Integration with additional modules (battery storage, potable water treatment, etc.)</li>
+          <li>Partnership with humanitarian organizations and disaster relief agencies</li>
+        </ul>
+      </section>
+
+      <div class="gallery">
+        <div class="gallery-item">
+          <p><strong>Award Recognition — On Stage</strong></p>
+          <img src="Images/Award Photo - On Stage.jpg" alt="Award Photo - On Stage">
+        </div>
+      </div>
+
+      <section style="margin-top: 40px; background: #f9fff0; border-left-color: #28a745;">
+        <h2 style="color: #28a745; border-bottom-color: #28a745;">Documentation</h2>
+        <p>Detailed technical documentation, CAD files, and manufacturing specifications are available in the <strong>Documents</strong> folder associated with this project. These materials support the patent applications currently in progress.</p>
+        <ul>
+          <li>Technical design submissions</li>
+          <li>Manufacturing process documentation</li>
+          <li>Material and cost analysis</li>
+          <li>Performance testing data</li>
+        </ul>
+      </section>
+
+      <footer>
+        <p>SME 2025 Digital Manufacturing Contest | Society of Manufacturing Engineers</p>
+        <p>Project by Julian B. Stoller | Cornell University</p>
+      </footer>
+    </div>
+  </body>
+</html>
