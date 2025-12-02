@@ -3,57 +3,106 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Julian B. Stoller</title>
-    <style>
-      body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;max-width:900px;margin:36px auto;padding:0 18px;color:#111}
-      header{display:flex;align-items:center;justify-content:space-between}
-      h1{margin:0;font-size:1.6rem}
-      nav a{margin-left:12px;color:#0366d6;text-decoration:none}
-      .grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
-      .card{border:1px solid #e1e4e8;padding:14px;border-radius:8px}
-      footer{color:#666;font-size:0.9rem;margin-top:30px}
-    </style>
+    <title>Julian B. Stoller — Mechanical Engineer</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
   </head>
   <body>
-    <header>
-      <h1>Julian B. Stoller</h1>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-
-    <section id="about" class="grid">
-      <div class="card">
-        <h2>About / Resume</h2>
-        <p>This is a simple landing page to make the repository visible on GitHub Pages. The original text is in <code>README.md</code> and project pages live under the <code>Website/</code> folder.</p>
-        <p>Quick links to project pages are below.</p>
-      </div>
-    </section>
-
-    <section id="projects" class="grid">
-      <div class="card">
-        <h3>Website pages</h3>
-        <ul>
-          <li><a href="Website/ARL/index.html">Architectural Robotics Lab (ARL)</a></li>
-          <li><a href="Website/BRH 2025/index.html">Big Red Hacks 2025</a></li>
-          <li><a href="Website/CU AutoBike/index.html">Cornell Autonomous Bicycle</a></li>
-          <li><a href="Website/SME 2025/index.html">SME 2025 Digital Manufacturing Contest</a></li>
-          <li><a href="Website/Small Misc CAD Projects/index.html">Small Misc CAD Projects</a></li>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="/" class="nav-logo">Julian B. Stoller</a>
+        <ul class="nav-menu">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/projects/" class="nav-link">Projects</a></li>
+          <li><a href="/awards/" class="nav-link">Awards</a></li>
+          <li><a href="/resume/" class="nav-link">Resume</a></li>
         </ul>
       </div>
-    </section>
+    </nav>
 
-    <section id="contact" class="grid">
-      <div class="card">
-        <h3>Notes</h3>
-        <p>If you want a fully-formed personal website (with a navigation bar, styles, and page templates) I can scaffold a Jekyll, Hugo, or plain HTML site and convert these markdown pages to dedicated HTML pages. Tell me which you'd prefer and I'll proceed.</p>
+    <main class="page-content">
+      <div class="container">
+        <header class="hero">
+          <h1>Julian B. Stoller</h1>
+          <p class="subtitle">Mechanical Engineering Student at Cornell University</p>
+          <p class="tagline">Designing innovative solutions in robotics, additive manufacturing, and renewable energy</p>
+        </header>
+
+        <section class="highlights">
+          <h2>Highlights</h2>
+          <div class="card-grid">
+            <a href="Website/SME%202025/index.html" class="highlight-card">
+              <h3>🏆 SME 2025 Winner</h3>
+              <p>First place in Digital Manufacturing Contest among 81 entries for Concentrated Solar Power system</p>
+            </a>
+            <a href="Website/BRH%202025/index.html" class="highlight-card">
+              <h3>🥇 Big Red Hacks Finalist</h3>
+              <p>Hardware Track winner with customized Kendama design using parametric CAD</p>
+            </a>
+            <a href="Website/CU%20AutoBike/index.html" class="highlight-card">
+              <h3>🚴 Leadership Role</h3>
+              <p>Mechanical Subteam Lead and Full Team Lead for Cornell Autonomous Bicycle project</p>
+            </a>
+            <a href="/projects/" class="highlight-card">
+              <h3>📚 Diverse Portfolio</h3>
+              <p>Robotics, 3D design, additive manufacturing, and patent-pending innovations</p>
+            </a>
+          </div>
+        </section>
+
+        <section class="featured-projects">
+          <h2>Featured Projects</h2>
+          <div class="projects-list">
+            <article class="project-item">
+              <h3><a href="Website/SME%202025/index.html">Rapidly Deployable Concentrated Solar Power & Water Distillation Plant</a></h3>
+              <p>Award-winning system designed for additive manufacturing. Integrates CSP generation with water distillation for humanitarian and emergency response applications.</p>
+              <ul class="project-tags">
+                <li>Additive Manufacturing</li>
+                <li>Solar Energy</li>
+                <li>Water Systems</li>
+                <li>Patents Pending</li>
+              </ul>
+            </article>
+
+            <article class="project-item">
+              <h3><a href="Website/CU%20AutoBike/index.html">Cornell Autonomous Bicycle</a></h3>
+              <p>Multi-year project designing a self-balancing autonomous bicycle. Led mechanical team through multiple iterations, including main bike, mini-bike variant, and quadrupedal robot concepts.</p>
+              <ul class="project-tags">
+                <li>Leadership</li>
+                <li>Mechanical Design</li>
+                <li>FEA/Modal Analysis</li>
+                <li>Fabrication</li>
+              </ul>
+            </article>
+
+            <article class="project-item">
+              <h3><a href="Website/BRH%202025/index.html">Customized Kendama with Parametric CAD</a></h3>
+              <p>Hackathon project combining 3D printing, parametric design, and interchangeable parts. Won Hardware Track prize for technical implementation.</p>
+              <ul class="project-tags">
+                <li>Parametric CAD</li>
+                <li>3D Printing</li>
+                <li>Design for Manufacturability</li>
+                <li>Hackathon</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="cta">
+          <h2>Explore More</h2>
+          <p>Check out my full project portfolio, awards, and detailed resume below.</p>
+          <div class="button-group">
+            <a href="#projects" class="btn btn-primary">View All Projects</a>
+            <a href="README.md" class="btn btn-secondary">View Resume</a>
+          </div>
+        </section>
       </div>
-    </section>
+    </main>
 
-    <footer>
-      <p>Generated: simple index to expose pages for GitHub Pages. Ask me to convert into a themed site.</p>
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 Julian B. Stoller. Mechanical Engineering at Cornell University.</p>
+        <p><a href="https://github.com/julian-stoller">GitHub</a></p>
+      </div>
     </footer>
   </body>
 </html>
