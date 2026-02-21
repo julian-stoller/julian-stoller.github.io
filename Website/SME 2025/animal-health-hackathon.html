@@ -93,6 +93,31 @@
         margin: 24px 0;
       }
 
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .gallery figure {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        padding: 12px;
+      }
+
+      .gallery img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .gallery figcaption {
+        margin-top: 10px;
+        font-size: 0.9rem;
+        color: #64748b;
+      }
+
       .nav-link.nav-button {
         background: #f59e0b;
         color: #1a1a1a;
@@ -168,6 +193,29 @@
             <p><strong>Status:</strong> Concept visuals and workflow storyboard in progress</p>
           </div>
           <p>Replace this section with visuals, test results, and a short demo video once available.</p>
+        </section>
+
+        <section>
+          <h2>Cytology Results</h2>
+          <p>Selected cytology snapshots captured during early investigation.</p>
+          <div class="gallery">
+            <figure>
+              <img src="/misc%20cytology%20images/Screenshot%202026-02-21%20020120.png" alt="Cytology result screenshot 1">
+              <figcaption>Sample 1: preliminary cell morphology scan.</figcaption>
+            </figure>
+            <figure>
+              <img src="/misc%20cytology%20images/Screenshot%202026-02-21%20020129.png" alt="Cytology result screenshot 2">
+              <figcaption>Sample 2: staining contrast check.</figcaption>
+            </figure>
+            <figure>
+              <img src="/misc%20cytology%20images/Screenshot%202026-02-21%20020135.png" alt="Cytology result screenshot 3">
+              <figcaption>Sample 3: cellular density overview.</figcaption>
+            </figure>
+            <figure>
+              <img src="/misc%20cytology%20images/Screenshot%202026-02-21%20020141.png" alt="Cytology result screenshot 4">
+              <figcaption>Sample 4: field-of-view comparison.</figcaption>
+            </figure>
+          </div>
         </section>
 
         <section>
