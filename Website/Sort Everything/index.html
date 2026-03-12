@@ -34,15 +34,23 @@
 
     .header-inner {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: flex-start;
-      gap: 20px;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .header-text {
+      flex: 1;
     }
 
     .header-logo {
-      width: 110px;
-      height: auto;
+      width: 90px;
+      height: 90px;
       object-fit: contain;
+      flex-shrink: 0;
+      margin-top: 6px;
+      opacity: 0.85;
     }
 
     h1 {
@@ -242,8 +250,13 @@
       }
 
       .header-inner {
-        gap: 14px;
-        gap: 20px;
+        flex-direction: column-reverse;
+        gap: 16px;
+      }
+
+      .header-logo {
+        width: 64px;
+        height: 64px;
       }
 
       h1 {
@@ -294,9 +307,11 @@
 
       <header>
         <div class="header-inner">
+          <div class="header-text">
+            <h1>Sort Everything</h1>
+            <p class="subtitle">A Python desktop application for Digital Asset Management (DAM) — organizing and analyzing large media collections of images, videos, and documents — with XMP metadata, AI classifiers, face recognition, and more. Runs entirely locally.</p>
+          </div>
           <img src="/photos-from-sort-everything-project/logo-icon.png" alt="Sort Everything logo" class="header-logo">
-          <h1>Sort Everything</h1>
-          <p class="subtitle">A Python desktop application for organizing and analyzing large media collections — images, videos, and documents — with XMP metadata, AI classifiers, face recognition, and more. Runs entirely locally.</p>
         </div>
       </header>
 
@@ -382,6 +397,31 @@
 
         <h3>OCR & Video Playback</h3>
         <p>Background OCR extracts text from images and documents as a low-priority task, keeping the UI responsive. An in-app video player built on VLC handles playback directly within the application, with careful resource lifecycle management to prevent memory leaks across many files.</p>
+      </section>
+
+      <section>
+        <h2>Where This Goes Next</h2>
+        <p>Sort Everything was built around media files — photos, videos, documents. The next frontier is expanding it into a full Digital Asset Management platform for engineering work, where the same problems exist but the file types are far more complex.</p>
+
+        <div class="project-highlight">
+          <strong>Expanding to CAD & Engineering Files</strong>
+          <p>The core DAM concept maps directly onto engineering workflows: a large project generates SOLIDWORKS assemblies, part files, STL exports, FEA results, simulation outputs, PDFs, and renders — all loosely related, version-controlled haphazardly, and scattered across folders. Sort Everything's tagging, database, and file-tracking architecture can be extended to make sense of this.</p>
+        </div>
+
+        <h3>Vision: Local Version Control for Engineering Projects</h3>
+        <p>The goal is a tool that feels native to how engineers actually work — not a cloud sync service or a Git wrapper, but a local-first DAM that understands the relationships between files spanning multiple types:</p>
+        <ul>
+          <li>Visual diffs between CAD revisions — render thumbnails of each version and show what changed geometrically, not just in file metadata</li>
+          <li>Cross-file-type linking: associate a SLDPRT with its STL exports, FEA mesh, simulation results, and manufacturing drawings as a single logical asset</li>
+          <li>Tag-based filtering that works across file types — find everything tagged "final", "approved for fabrication", or "as-built" regardless of whether it's a CAD file, PDF, or photo</li>
+          <li>Milestone snapshots: capture the state of an entire project tree at a point in time, with visual thumbnails, without requiring Git or any version control setup</li>
+          <li>Runs entirely on the local machine — no cloud, no accounts, no internet dependency</li>
+        </ul>
+
+        <div class="feature-box">
+          <h3>Why this matters for engineering teams</h3>
+          <p>Large engineering projects routinely span hundreds of interrelated files across multiple tools — CAD, simulation, documentation, imagery. Current version control options (Git, PDM systems) either don't handle binary files well or require significant IT infrastructure. A lightweight, visual, local-first DAM designed for this use case doesn't really exist yet.</p>
+        </div>
       </section>
 
       <footer>

@@ -105,9 +105,61 @@
         border-radius: 4px;
         margin: 20px 0;
       }
-      
+
       .note strong {
         color: #856404;
+      }
+
+      .project-photo {
+        margin: 24px 0;
+      }
+
+      .project-photo img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+        border: 1px solid #e1e4e8;
+        display: block;
+      }
+
+      .project-photo figcaption {
+        margin-top: 8px;
+        font-size: 0.875rem;
+        color: #666;
+        line-height: 1.5;
+      }
+
+      .photo-pair {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin: 24px 0;
+      }
+
+      .photo-pair figure img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+        border: 1px solid #e1e4e8;
+        display: block;
+        object-fit: cover;
+        height: 220px;
+      }
+
+      .photo-pair figcaption {
+        margin-top: 8px;
+        font-size: 0.875rem;
+        color: #666;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 600px) {
+        .photo-pair {
+          grid-template-columns: 1fr;
+        }
+        .photo-pair figure img {
+          height: auto;
+        }
       }
       
       footer {
@@ -188,6 +240,11 @@
           <li><strong>Adjustable Camera Mount Design & Fabrication:</strong> Precision mount allowing flexible camera positioning for vision-based control systems</li>
           <li><strong>Vibrational Mode Analysis & Informed Redesign:</strong> FEA and modal analysis to eliminate resonances and improve structural integrity</li>
         </ul>
+
+        <figure class="project-photo">
+          <img src="/photos-from-autobike-project/Screenshot%202022-07-18%20132120.png" alt="CAD render of adjustable camera mount assembly">
+          <figcaption>CAD render of the adjustable camera mount assembly. The mount allows the camera to be repositioned along multiple axes to support different control configurations — a key piece of hardware for the bike's vision system.</figcaption>
+        </figure>
       </section>
 
       <section>
@@ -197,6 +254,11 @@
           <li><strong>Reverse Engineering Previous Projects:</strong> Documented and understood legacy designs for knowledge transfer</li>
           <li><strong>Potential Applications of a Finished Product:</strong> Explored commercialization and real-world use cases for an autonomous mini-bicycle</li>
         </ul>
+
+        <figure class="project-photo">
+          <img src="/photos-from-autobike-project/IMG_7721.jpg" alt="Mini-bike prototype in the lab with electronics and reaction wheel">
+          <figcaption>The mini-bike prototype on the lab floor. The front wheel is driven by a hub motor, a tray carries the electronics and control hardware, and a reaction wheel actuator is visible at the rear — the core mechanism for active balancing. The platform serves as a compact testbed for the autonomous balancing control algorithms.</figcaption>
+        </figure>
       </section>
 
       <section>
