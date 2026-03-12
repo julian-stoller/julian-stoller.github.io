@@ -34,15 +34,15 @@
 
     .header-inner {
       display: flex;
-      align-items: center;
-      gap: 28px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
     }
 
     .header-logo {
-      width: 96px;
-      height: 96px;
+      width: 110px;
+      height: auto;
       object-fit: contain;
-      flex-shrink: 0;
     }
 
     h1 {
@@ -242,8 +242,7 @@
       }
 
       .header-inner {
-        flex-direction: column;
-        align-items: flex-start;
+        gap: 14px;
         gap: 20px;
       }
 
@@ -295,11 +294,9 @@
 
       <header>
         <div class="header-inner">
-          <img src="/photos-from-sort-everything-project/unnamed.jpg" alt="Sort Everything logo" class="header-logo">
-          <div>
-            <h1>Sort Everything</h1>
-            <p class="subtitle">A Python desktop application for organizing and analyzing large media collections — images, videos, and documents — with XMP metadata, AI classifiers, face recognition, and more. Runs entirely locally.</p>
-          </div>
+          <img src="/photos-from-sort-everything-project/logo-icon.png" alt="Sort Everything logo" class="header-logo">
+          <h1>Sort Everything</h1>
+          <p class="subtitle">A Python desktop application for organizing and analyzing large media collections — images, videos, and documents — with XMP metadata, AI classifiers, face recognition, and more. Runs entirely locally.</p>
         </div>
       </header>
 
@@ -378,16 +375,13 @@
       </section>
 
       <section>
-        <h2>Virtual Collections, Database & Background Processing</h2>
-
-        <h3>Virtual Collections (PseudoFolders)</h3>
-        <p>A lightweight "smart playlist" system for grouping files without moving them. Each collection tracks multiple source folders with per-folder inclusion and exclusion rules, persisted as JSON with automatic schema migration across versions.</p>
+        <h2>Database, Duplicates & Background Processing</h2>
 
         <h3>SQLite & Perceptual Hashing</h3>
         <p>All file records, tags, and metadata are stored in SQLite. Perceptual hashing (pHash) is computed for images to support duplicate detection and similar-file grouping. Background monitoring watches tracked folders for new files and automatically runs similarity checks as new content arrives.</p>
 
-        <h3>Pose Estimation, OCR & Video Playback</h3>
-        <p>YOLOv8-based pose estimation runs on images to identify human poses. Background OCR extracts text from images and documents. Both run as low-priority background tasks to avoid blocking the UI. An in-app video player built on VLC handles playback directly within the application, with careful resource lifecycle management to prevent memory leaks across many files.</p>
+        <h3>OCR & Video Playback</h3>
+        <p>Background OCR extracts text from images and documents as a low-priority task, keeping the UI responsive. An in-app video player built on VLC handles playback directly within the application, with careful resource lifecycle management to prevent memory leaks across many files.</p>
       </section>
 
       <footer>
