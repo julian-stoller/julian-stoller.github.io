@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Laundry Caddy — Julian B. Stoller</title>
+  <title>Laundry Caddy (TumbleTote) — Julian B. Stoller</title>
   <link rel="stylesheet" href="/assets/css/style.css">
   <style>
     * {
@@ -124,6 +124,160 @@
       background: #1a1a1a;
     }
 
+    .project-highlight {
+      background: #f0f7ff;
+      border-left: 6px solid #3b82f6;
+      padding: 32px;
+      margin: 32px 0;
+    }
+
+    .project-highlight strong {
+      color: #1d4ed8;
+      font-size: 1.1rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .project-highlight p {
+      color: #374151;
+      margin-bottom: 0;
+    }
+
+    .feature-box {
+      background: #f5f5f3;
+      border-left: 6px solid #f59e0b;
+      padding: 28px 32px;
+      margin: 28px 0;
+    }
+
+    .feature-box h3 {
+      margin-top: 0;
+      color: #d97706;
+    }
+
+    .feature-box p {
+      color: #4a4a4a;
+      margin-bottom: 8px;
+    }
+
+    .feature-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .feature-box ul {
+      color: #4a4a4a;
+      margin-bottom: 0;
+    }
+
+    .screenshot {
+      margin: 32px 0;
+    }
+
+    .screenshot img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #e0e0e0;
+      display: block;
+      transition: border-color 0.2s;
+    }
+
+    .screenshot img:hover {
+      border-color: #3b82f6;
+    }
+
+    .screenshot figcaption {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #6a6a6a;
+      line-height: 1.5;
+    }
+
+    .screenshot-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 32px 0;
+    }
+
+    .screenshot-pair figure img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #e0e0e0;
+      display: block;
+      transition: border-color 0.2s;
+    }
+
+    .screenshot-pair figure img:hover {
+      border-color: #3b82f6;
+    }
+
+    .screenshot-pair figcaption {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #6a6a6a;
+      line-height: 1.5;
+    }
+
+    .screenshot-trio {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      margin: 32px 0;
+    }
+
+    .screenshot-trio figure img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #e0e0e0;
+      display: block;
+      transition: border-color 0.2s;
+    }
+
+    .screenshot-trio figure img:hover {
+      border-color: #3b82f6;
+    }
+
+    .screenshot-trio figcaption {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #6a6a6a;
+      line-height: 1.5;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .spec-card {
+      background: #f5f5f3;
+      padding: 20px 24px;
+      border-top: 3px solid #2a2a2a;
+    }
+
+    .spec-card .spec-label {
+      font-size: 0.85rem;
+      color: #6a6a6a;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .spec-card .spec-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .spec-card .spec-note {
+      font-size: 0.85rem;
+      color: #6a6a6a;
+      margin-top: 4px;
+    }
+
     footer {
       text-align: center;
       padding: 40px 20px;
@@ -159,6 +313,12 @@
       section h2 {
         font-size: 1.5rem;
       }
+
+      .screenshot-pair,
+      .screenshot-trio,
+      .specs-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -181,21 +341,254 @@
       <a href="/projects/" class="back-link">← Back to projects</a>
 
       <header>
-        <h1>Laundry Caddy</h1>
-        <p class="subtitle">Designed and fabricated a laundry caddy through the full product development process, from concept to physical prototype.</p>
+        <h1>TumbleTote — Laundry Caddy</h1>
+        <p class="subtitle">Designed, analyzed, and fabricated a portable laundry caddy through the full product development cycle — from empathy research and conjoint analysis to hand calculations, FEA, and a sewn nylon prototype.</p>
         <div class="meta-row">
           <span class="meta-tag">MAE 4341 — Innovative Product Design via Digital Manufacturing</span>
           <span class="meta-tag">Cornell University</span>
+          <span class="meta-tag">Group Project — Team Solvo</span>
         </div>
       </header>
 
+      <!-- OVERVIEW -->
       <section>
         <h2>Overview</h2>
-        <p>This project was completed as part of MAE 4341 — Innovative Product Design via Digital Manufacturing. More details coming soon.</p>
+        <p>University students who use shared laundry rooms face a recurring logistical problem: carrying a detergent bottle alongside dryer sheets, quarters, stain remover, and scent beads — often up stairs and through heavy doors — typically results in forgotten items and repeated trips. The TumbleTote is a weather-resistant nylon caddy that wraps around a standard detergent bottle via an elastic buckle strap, consolidating all laundry supplies into a single, one-handed carry.</p>
+
+        <div class="project-highlight">
+          <strong>Key Innovation</strong>
+          <p>The caddy's handle loops over the detergent bottle's cap and spout; elastic straps with a side-release buckle secure the base around the underside of the bottle handle. For pod users, the buckle releases and the caddy converts to a standalone bag. Magnetic closures on the outer pockets allow quick, one-handed access during a laundry run.</p>
+        </div>
+
+        <div class="screenshot-pair">
+          <figure>
+            <img src="images/page8_img1.png" alt="TumbleTote final prototype — front view with detergent bottle">
+            <figcaption>Final prototype — front view. Purple ripstop nylon body with mesh lower pocket, foam-reinforced panel, and trim-finished edges.</figcaption>
+          </figure>
+          <figure>
+            <img src="images/page8_img2.png" alt="TumbleTote final prototype — side view showing buckle strap">
+            <figcaption>Side view showing the 0.75" elastic strap and side-release buckle that secures the caddy to the detergent bottle handle.</figcaption>
+          </figure>
+        </div>
+
+        <div class="screenshot">
+          <figure>
+            <img src="images/page8_img3.png" alt="TumbleTote CAD renders in multiple colorways">
+            <figcaption>CAD renders showing the TumbleTote in multiple proposed colorways. The open-top configuration is visible, designed to accept standard detergent bottle handles.</figcaption>
+          </figure>
+        </div>
+
+        <div class="screenshot-pair">
+          <figure>
+            <img src="images/page8_img4.png" alt="TumbleTote standalone caddy 3D render">
+            <figcaption>3D render — standalone bag mode, showing the handle opening and quarter dispenser side pocket.</figcaption>
+          </figure>
+          <figure>
+            <img src="images/page8_img5.png" alt="TumbleTote 3D render attached to detergent bottle">
+            <figcaption>3D render — bottle-attached mode with detergent bottle seated inside the caddy frame.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- PRODUCT FEATURES -->
+      <section>
+        <h2>Product Features &amp; Requirements</h2>
+        <p>Customer requirements were derived from empathy fieldwork and an Analytic Hierarchy Process (AHP). The top-weighted requirements drove all major design decisions:</p>
+        <ul>
+          <li><strong>Machine washable</strong> — withstands regular wash cycles without loss of shape or function</li>
+          <li><strong>Durable</strong> — resists wear from repeated attachment and detachment cycles</li>
+          <li><strong>Stain resistant</strong> — ripstop nylon and foam construction sheds detergent and water</li>
+          <li><strong>Compatibility</strong> — elastic strap system accommodates a range of standard detergent bottle sizes</li>
+          <li><strong>Pocket access</strong> — magnetic closures allow one-handed retrieval of frequently used items</li>
+          <li><strong>Carrying comfort</strong> — caddy does not obstruct grip on the bottle handle</li>
+          <li><strong>Stability</strong> — items remain secured in pockets when the bottle is tilted for pouring</li>
+        </ul>
+
+        <div class="feature-box">
+          <h3>Quarter Dispenser</h3>
+          <p>A spring-loaded quarter dispenser is integrated into a dedicated side pocket, designed to hold up to 44 quarters (~$11). Spring selection was driven by hand calculation: the combined weight of 44 quarters is approximately 0.55 lbf. With a desired compressed length of 3 inches, the required spring constant is <em>k = F/x = 0.55 / 3 ≈ 0.183 lbf/in</em>, matched to a commercially available McMaster-Carr spring.</p>
+        </div>
+
+        <h3>Engineering Parameters</h3>
+        <div class="specs-grid">
+          <div class="spec-card">
+            <div class="spec-label">Weight Target</div>
+            <div class="spec-value">&lt; 0.85 kg</div>
+            <div class="spec-note">Baseline: 1 kg — reduces carry fatigue</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-label">Tipping Angle</div>
+            <div class="spec-value">&gt; 45°</div>
+            <div class="spec-note">Baseline: 30° — items stay secured when pouring</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-label">Stiffness</div>
+            <div class="spec-value">&gt; 100 N/mm</div>
+            <div class="spec-note">Baseline: 50 N/mm — stands unsupported</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-label">Footprint</div>
+            <div class="spec-value">&lt; 7 × 10 in</div>
+            <div class="spec-note">Baseline: 14 × 20 in — fits tight storage</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-label">Surface Roughness</div>
+            <div class="spec-value">&lt; 1.5 μm</div>
+            <div class="spec-note">Baseline: 3 μm — ease of cleaning</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-label">Operational Life</div>
+            <div class="spec-value">&gt; 5 years</div>
+            <div class="spec-note">Baseline: 3 years — reduces replacement cost</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESIGN METHODOLOGY -->
+      <section>
+        <h2>Design Methodology</h2>
+
+        <h3>House of Quality &amp; TRIZ</h3>
+        <p>The team built a House of Quality mapping seven customer requirements against the six engineering parameters above, identifying the highest-priority contradictions: weight vs. stiffness, size vs. stability, and material roughness vs. washability. These contradictions were addressed using TRIZ principles:</p>
+        <ul>
+          <li><strong>Segmentation</strong> — divided the body into distinct pockets so that each compartment is independently accessible without disrupting others</li>
+          <li><strong>Local quality</strong> — reinforced the base and strap attachment points with durable materials while keeping the main body lightweight</li>
+          <li><strong>Flexibility</strong> — adjustable elastic straps accommodate different bottle geometries; magnetic pocket closures adapt to different usage modes</li>
+          <li><strong>Combining</strong> — a single nylon/foam/rubber sandwich layer delivers water resistance, structural stiffness, and a smooth surface finish simultaneously</li>
+        </ul>
+
+        <h3>Conjoint Analysis</h3>
+        <p>A choice-based conjoint survey was distributed to Cornell students to validate design priorities. Key findings:</p>
+        <ul>
+          <li>Ease of carrying and secure attachment to the detergent bottle were the most valued attributes</li>
+          <li>An elastic buckle outperformed velcro and fixed straps in perceived security and adjustability</li>
+          <li>Liquid-resistant nylon scored highest on material preference due to washability and durability</li>
+          <li>Students preferred two medium pockets plus one small pocket over higher pocket counts</li>
+          <li>Magnetic and zipper closures scored nearly equally — magnetic was selected for its one-handed convenience</li>
+        </ul>
+        <p>These results directly validated the elastic buckle, multi-pocket layout, and nylon material selection before any physical material was purchased.</p>
+      </section>
+
+      <!-- PROTOTYPE EVOLUTION -->
+      <section>
+        <h2>Prototype Evolution</h2>
+
+        <h3>Prototype 1 — Duct Tape Form Study</h3>
+        <p>The first prototype was constructed entirely from duct tape to rapidly establish overall dimensions, pocket placement, and the bottle-attachment interaction. It featured five pockets and adjustable buckle straps, with a duct tape base strap supporting the bottle from underneath. The goal was ergonomics and interaction testing — not durability.</p>
+
+        <div class="screenshot-pair">
+          <figure>
+            <img src="images/page17_img1.png" alt="Prototype 1 duct tape caddy on detergent bottle">
+            <figcaption>Prototype 1 attached to a detergent bottle. Duct tape construction established pocket placement and strap routing.</figcaption>
+          </figure>
+          <figure>
+            <img src="images/page17_img2.png" alt="Prototype 1 duct tape caddy held by handle">
+            <figcaption>Prototype 1 carried by handle — confirmed that a loop handle above the bottle cap was ergonomically viable.</figcaption>
+          </figure>
+        </div>
+
+        <h3>Prototype 2 — Nylon &amp; Foam Construction</h3>
+        <p>After user feedback indicated too many pockets, the team reduced the pocket count and switched to a lunchbox-style nylon material with a thin inner foam layer. The foam sandwich increased stiffness while preserving flexibility, allowing the caddy to hold its shape as a standalone bag. This prototype tested pocket depth, pocket closure methods (zipper vs. magnetic), and standalone-bag usability — the two-mode operation that became the product's defining feature.</p>
+
+        <div class="screenshot-pair">
+          <figure>
+            <img src="images/page18_img1.png" alt="Prototype 2 nylon caddy attached to bottle">
+            <figcaption>Prototype 2 attached to a bottle — nylon/foam construction holds shape while conforming to the bottle geometry.</figcaption>
+          </figure>
+          <figure>
+            <img src="images/page18_img2.png" alt="Prototype 2 nylon caddy as standalone bag">
+            <figcaption>Standalone bag mode — the handle opening that receives the bottle cap doubles as a carry handle when used without a bottle.</figcaption>
+          </figure>
+        </div>
+
+        <h3>Final Prototype</h3>
+        <p>The final version replaced 3D-printed prototype buckles with commercial 0.75" side-release plastic buckles and elastic latex fabric straps. All seam edges received trim for structural integrity and appearance. The quarter dispenser was finalized with a commercially sourced spring (k ≈ 0.183 lbf/in), and the nylon body was confirmed to be machine washable.</p>
+      </section>
+
+      <!-- MECHANICAL ANALYSIS -->
+      <section>
+        <h2>Mechanical Analysis</h2>
+
+        <h3>Elastic Strap Hand Calculation</h3>
+        <p>The elastic band tension when stretched around a standard detergent bottle was calculated using the elastic modulus formula <em>F = EA·ΔL/L₀</em>, where:</p>
+        <ul>
+          <li>Original length L₀ = 3.8 in</li>
+          <li>Stretch ΔL = 2.5 in</li>
+          <li>Cross-sectional area A = 0.75 in × 0.04 in = 0.03 in²</li>
+          <li>Young's modulus E = 200 psi (elastic latex fabric)</li>
+        </ul>
+        <p>This gives <em>F = 200 × 0.03 / 3.8 × 2.5 = 3.95 lbf</em>, which was used as the applied load in the Ansys FEA for the bottle-attached load case.</p>
+
+        <h3>FEA — Load Case 1: Holding the Caddy</h3>
+        <p>The first FEA load case simulated a user carrying the caddy without a bottle — applicable to pod users or during the drying cycle. Conservative item weights were summed: 10 detergent pods (0.507 lbf) + 5 dryer balls (0.66 lbf) + stain remover (1.56 lbf) = 2.73 lbf, rounded up to 3 lbf for conservatism. An additional 0.6 lbf load was applied at the quarter dispenser pocket.</p>
+
+        <div class="screenshot-pair">
+          <figure>
+            <img src="images/page22_img1.png" alt="FEA von-Mises stress — holding load case">
+            <figcaption>Von-Mises stress — holding load case. Max stress 2,450 psi at the handle opening (least material). Yield strength of nylon 40D: 3,000 psi → factor of safety 1.22.</figcaption>
+          </figure>
+          <figure>
+            <img src="images/page22_img2.png" alt="FEA total deformation — holding load case">
+            <figcaption>Total deformation — holding load case. Max deflection 0.62 in at the base, driven by the weight of contents sitting in the bottom of the caddy.</figcaption>
+          </figure>
+        </div>
+
+        <h3>FEA — Load Case 2: Pouring Detergent</h3>
+        <p>The second load case modeled the caddy attached to the bottle while the user tilts it to pour. The 3.95 lbf elastic strap tension was applied along with a 0.6 lbf quarter dispenser load and an estimated 2 lbf from items in the front pockets shifting as the bottle tilts.</p>
+
+        <div class="screenshot">
+          <figure>
+            <img src="images/page22_img3.png" alt="FEA von-Mises stress — pouring detergent load case">
+            <figcaption>Von-Mises stress — pouring load case. Max stress 1,531 psi at the seam where the elastic band meets the main caddy body (expected stress concentration). Factor of safety: 3,000 / 1,531 = 1.96.</figcaption>
+          </figure>
+        </div>
+
+        <div class="feature-box">
+          <h3>Structural Summary</h3>
+          <p><strong>Load Case 1 (holding):</strong> Max stress 2,450 psi — factor of safety 1.22 vs. nylon 40D yield strength of 3,000 psi.</p>
+          <p><strong>Load Case 2 (pouring):</strong> Max stress 1,531 psi — factor of safety 1.96.</p>
+          <p>Both cases used conservative loads, so actual in-service safety margins are higher. The critical constraint is the handle opening in load case 1, which could be reinforced with additional trim material in future iterations.</p>
+        </div>
+      </section>
+
+      <!-- MARKET ANALYSIS -->
+      <section>
+        <h2>Market &amp; Business Case</h2>
+        <p>The primary target demographic is first-year college students and their parents purchasing quality-of-life items before move-in. The U.S. college freshman market represents approximately 2.4 million potential customers annually, concentrated in the August–September back-to-school window (confirmed via Google Trends data for "shower caddy" and "bathroom caddy for college" searches).</p>
+
+        <h3>Pricing &amp; Costs</h3>
+        <div class="specs-grid">
+          <div class="spec-card">
+            <div class="spec-label">Per-Unit Production Cost</div>
+            <div class="spec-value">$9.56</div>
+            <div class="spec-note">Materials, labor, COTS components</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-label">Retail Price</div>
+            <div class="spec-value">$14.99 – $19.99</div>
+            <div class="spec-note">In range with shower caddies</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-label">Target Market Capture</div>
+            <div class="spec-value">5%</div>
+            <div class="spec-note">Conservative: 120,000 units/year</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-label">Project NPV</div>
+            <div class="spec-value">$1.9M</div>
+            <div class="spec-note">At 5% freshman market capture</div>
+          </div>
+        </div>
+
+        <p>A Bass Model diffusion analysis (p = 0.012, q = 0.50) projected unit sales growing from ~38,000 in Year 1 to ~525,000 in Year 5. A parallel Amazon review-rate analysis of "bathroom caddy for college" listings estimated ~520,000 annual shower caddy sales on Amazon alone, supporting the Bass Model projections as reasonable.</p>
+
+        <h3>Manufacturing Plan</h3>
+        <p>The fabric body uses ripstop nylon, mesh, and foam cut by band-knife stack cutting and assembled on a progressive sewing line with QC checks between operations. The spring-loaded quarter dispenser body and cap are injection-molded for repeatable surface finish — critical for the bayonet-lock mechanism between the lid and barrel. Side-release buckles and elastic straps are purchased COTS and attached as the final assembly step.</p>
       </section>
 
       <footer>
-        <p>Laundry Caddy — MAE 4341 Project, Cornell University</p>
+        <p>TumbleTote — MAE 4341 Innovative Product Design via Digital Manufacturing, Cornell University</p>
+        <p>Team Solvo: Mae Sliwinski, Julian Stoller, Daniel Valderrama, Ella Yellin, Jeffrey Ruiz, Julia Deffner, Margaret Gates</p>
       </footer>
     </div>
   </main>
