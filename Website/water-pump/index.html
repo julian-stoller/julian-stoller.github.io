@@ -397,6 +397,14 @@
         <h3>CAD in Fusion 360</h3>
         <p>The full pump assembly was modeled in Fusion 360. This included the cylinder bores, end caps, piston geometry, threaded rod tie structure, and the port placements for inlet/outlet fittings. Tolerances were designed to allow the O-ring seals to function correctly while keeping the pistons free to travel without binding.</p>
 
+        <figure class="video-container">
+          <video controls preload="metadata">
+            <source src="/Website/water-pump/images/Pump_Prototype_Combined_CAD_2022-Mar-16_03-30-16AM-000_CustomizedView52761353010_mp4.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <figcaption>Fusion 360 animation of the full pump assembly in motion. Shows the reciprocating piston mechanism driven by the scotch yoke, with both cylinders cycling out of phase to produce near-continuous flow.</figcaption>
+        </figure>
+
         <h3>CFD Analysis</h3>
         <p>Computational fluid dynamics simulation in Fusion 360 was used to validate the flow path geometry through the end caps — checking that the port sizing and internal channel geometry would support the required flow rate without excessive pressure drop across the fittings.</p>
 
@@ -404,7 +412,7 @@
         <p>Finite element analysis was run on the high-stress components of the assembly. The scotch yoke — which receives rotational input from the drive shaft and converts it to linear reciprocating motion — was a primary focus. Von Mises stress analysis confirmed the yoke would remain well within the material's yield strength under operating loads, with a peak stress of 2.819 MPa.</p>
 
         <figure class="screenshot">
-          <img src="/photos-from-water-pump-project/scotch-yoke-fea.png" alt="FEA Von Mises stress analysis of the scotch yoke mechanism">
+          <img src="/Website/water-pump/images/Screenshot 2026-04-05 154004.png" alt="FEA Von Mises stress analysis of the scotch yoke mechanism">
           <figcaption>Von Mises stress analysis of the scotch yoke. Peak stress of 2.819 MPa occurs at the central slot where the drive pin engages — well within the yield strength of the aluminum. The stress concentrates at the pin interface and dissipates rapidly through the body, confirming the geometry is adequately sized for the operating loads.</figcaption>
         </figure>
       </section>
@@ -414,12 +422,12 @@
         <p>All aluminum components were machined in-house. The cylinder bores were turned on a lathe to achieve the tight tolerances required for the O-ring piston seals. End caps were milled and drilled for the bolt pattern and port fittings. Piston discs were turned to match the bore diameter with appropriate clearance for the O-ring grooves.</p>
 
         <figure class="screenshot">
-          <img src="/photos-from-water-pump-project/piston-head-drawing.png" alt="Engineering part drawing for the piston head, showing toleranced dimensions">
+          <img src="/Website/water-pump/images/Screenshot 2026-04-05 151359.png" alt="Engineering part drawing for the piston head, showing toleranced dimensions">
           <figcaption>Formal part drawing for the piston head, produced prior to machining. Outer diameter 1.750 ±.005 in., overall thickness .203 ±.005 in., with a raised lip (.375 ±.005 in. diameter, .094 ±.005 in. tall) and a central through-hole (Ø.201 ±.005 in.). Tolerances were set to achieve the correct O-ring compression in the bore. Drawn in Fusion 360 at 1:5 scale, drawn by Julian Stoller 3/23/2022.</figcaption>
         </figure>
 
         <figure class="screenshot">
-          <img src="/photos-from-water-pump-project/components-laid-out.jpg" alt="All machined pump components laid out before assembly">
+          <img src="/Website/water-pump/images/components-laid-out.jpg" alt="All machined pump components laid out before assembly">
           <figcaption>All components before final assembly: the two machined end caps with O-ring grooves and bolt patterns, aluminum cylinder tubes, flat piston discs, threaded tie rods, O-rings, and hardware. The labeling on the end caps ("ASTM B2") indicates the aluminum stock specification.</figcaption>
         </figure>
 
@@ -427,11 +435,11 @@
 
         <div class="screenshot-pair">
           <figure>
-            <img src="/photos-from-water-pump-project/assembled-pump.jpg" alt="Assembled pump being held, showing the full double-cylinder mechanism">
+            <img src="/Website/water-pump/images/assembled-pump.jpg" alt="Assembled pump being held, showing the full double-cylinder mechanism">
             <figcaption>The fully assembled pump. The two aluminum cylinders are tied together by the threaded rod frame, with the central actuator bracket visible between them. The machined finish on the cylinder bodies is visible — these were turned to close tolerance on the lathe.</figcaption>
           </figure>
           <figure>
-            <img src="/photos-from-water-pump-project/assembled-pump-wide.png" alt="Assembled pump on a bench, wider angle showing inlet/outlet fittings">
+            <img src="/Website/water-pump/images/assembled-pump-wide.png" alt="Assembled pump on a bench, wider angle showing inlet/outlet fittings">
             <figcaption>Wider view of the assembled pump showing the plastic inlet/outlet fittings installed in the end caps. The overall footprint is compact given the output requirements — the double-cylinder layout keeps the pump short while providing near-continuous flow.</figcaption>
           </figure>
         </div>
@@ -443,7 +451,7 @@
 
         <figure class="video-container">
           <video controls preload="metadata">
-            <source src="/photos-from-water-pump-project/pump-demo.mov" type="video/mp4">
+            <source src="/Website/water-pump/images/pump-demo.mov" type="video/mp4">
             Your browser does not support the video tag.
           </video>
           <figcaption>Pump operating under test conditions, demonstrating sustained water flow at the required head. The reciprocating action of the double-cylinder design produces relatively smooth output with minimal pulsation.</figcaption>
