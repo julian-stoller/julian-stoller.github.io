@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Water Pump — Julian B. Stoller</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.7;
+      color: #1a1a1a;
+      background: #fafaf8;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 30px;
+    }
+
+    header {
+      margin-bottom: 60px;
+      padding: 40px 0;
+      border-bottom: 3px solid #2a2a2a;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+      color: #1a1a1a;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: #4a4a4a;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .meta-row {
+      display: flex;
+      gap: 24px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .meta-tag {
+      font-size: 0.9rem;
+      color: #6a6a6a;
+      background: #f0f0ee;
+      padding: 4px 12px;
+      border-radius: 4px;
+    }
+
+    section {
+      padding: 48px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      color: #1a1a1a;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    section h3 {
+      font-size: 1.25rem;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      color: #2a2a2a;
+      font-weight: 600;
+    }
+
+    section h3:first-child {
+      margin-top: 0;
+    }
+
+    section ul {
+      margin-left: 24px;
+      margin-bottom: 20px;
+    }
+
+    section li {
+      margin-bottom: 14px;
+      line-height: 1.8;
+      color: #3a3a3a;
+    }
+
+    section p {
+      margin-bottom: 18px;
+      color: #3a3a3a;
+      font-size: 1.05rem;
+    }
+
+    section a {
+      color: #d97706;
+      text-decoration: none;
+      border-bottom: 2px solid #fbbf24;
+      transition: border-color 0.2s;
+    }
+
+    section a:hover {
+      border-bottom-color: #d97706;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 32px;
+      padding: 12px 20px;
+      background: #2a2a2a;
+      color: #fafaf8;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .back-link:hover {
+      background: #1a1a1a;
+    }
+
+    .project-highlight {
+      background: #f0f7ff;
+      border-left: 6px solid #3b82f6;
+      padding: 32px;
+      margin: 32px 0;
+    }
+
+    .project-highlight strong {
+      color: #1d4ed8;
+      font-size: 1.1rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .project-highlight p {
+      color: #374151;
+      margin-bottom: 0;
+    }
+
+    .feature-box {
+      background: #f5f5f3;
+      border-left: 6px solid #f59e0b;
+      padding: 28px 32px;
+      margin: 28px 0;
+    }
+
+    .feature-box h3 {
+      margin-top: 0;
+      color: #d97706;
+    }
+
+    .feature-box p {
+      color: #4a4a4a;
+      margin-bottom: 8px;
+    }
+
+    .feature-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .feature-box ul {
+      color: #4a4a4a;
+      margin-bottom: 0;
+    }
+
+    .screenshot {
+      margin: 32px 0;
+    }
+
+    .screenshot img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #e0e0e0;
+      display: block;
+      transition: border-color 0.2s;
+    }
+
+    .screenshot img:hover {
+      border-color: #3b82f6;
+    }
+
+    .screenshot figcaption {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #6a6a6a;
+      line-height: 1.5;
+    }
+
+    .screenshot-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 32px 0;
+    }
+
+    .screenshot-pair figure img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #e0e0e0;
+      display: block;
+      transition: border-color 0.2s;
+    }
+
+    .screenshot-pair figure img:hover {
+      border-color: #3b82f6;
+    }
+
+    .screenshot-pair figcaption {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #6a6a6a;
+      line-height: 1.5;
+    }
+
+    .video-container {
+      margin: 32px 0;
+    }
+
+    .video-container video {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border: 2px solid #e0e0e0;
+    }
+
+    .video-container figcaption {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #6a6a6a;
+      line-height: 1.5;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .spec-card {
+      background: #f5f5f3;
+      padding: 20px 24px;
+      border-top: 3px solid #2a2a2a;
+    }
+
+    .spec-card .spec-label {
+      font-size: 0.85rem;
+      color: #6a6a6a;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .spec-card .spec-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .spec-card .spec-note {
+      font-size: 0.85rem;
+      color: #6a6a6a;
+      margin-top: 4px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #6a6a6a;
+      font-size: 0.95rem;
+      margin-top: 60px;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    footer p {
+      margin-bottom: 8px;
+      color: #6a6a6a;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 40px 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      header {
+        padding: 30px 0;
+        margin-bottom: 40px;
+      }
+
+      section {
+        padding: 36px 0;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+      }
+
+      .screenshot-pair,
+      .specs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-highlight,
+      .feature-box {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">Julian B. Stoller</a>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/projects/" class="nav-link">Projects</a></li>
+        <li><a href="/awards/" class="nav-link">Awards</a></li>
+        <li><a href="/resume/" class="nav-link">Resume</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <div class="container">
+      <a href="/" class="back-link">← Back to home</a>
+
+      <header>
+        <h1>Water Pump</h1>
+        <p class="subtitle">Designed, analyzed, and machined a double-cylinder piston pump in aluminum as part of a team of six. Required to pump water 1 meter vertically at a minimum flow rate of 1 L/min.</p>
+        <div class="meta-row">
+          <span class="meta-tag">MAE 2250 — Mechanical Synthesis</span>
+          <span class="meta-tag">Team of 6</span>
+          <span class="meta-tag">Cornell University</span>
+        </div>
+      </header>
+
+      <section>
+        <h2>Project Requirements</h2>
+        <p>This was a structured design-build-test project from MAE 2250 (Mechanical Synthesis). The prompt was deliberately open-ended on implementation but firm on performance: the pump had to lift water 1 meter and sustain at least 1 L/min flow. Everything else — pump type, geometry, materials, sealing approach — was up to the team.</p>
+
+        <div class="specs-grid">
+          <div class="spec-card">
+            <div class="spec-label">Required Head</div>
+            <div class="spec-value">1 m</div>
+            <div class="spec-note">Vertical lift from inlet to outlet</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-label">Min Flow Rate</div>
+            <div class="spec-value">1 L/min</div>
+            <div class="spec-note">Sustained output at full head</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-label">Material</div>
+            <div class="spec-value">Aluminum</div>
+            <div class="spec-note">Primary structural material, machined in-house</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-label">Team Size</div>
+            <div class="spec-value">6</div>
+            <div class="spec-note">Cross-functional, one semester</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Design</h2>
+        <p>The team selected a double-cylinder reciprocating piston pump — two parallel aluminum cylinders with pistons driven by a shared threaded-rod actuator mechanism. The double-cylinder layout allows one cylinder to be on the intake stroke while the other is on the discharge stroke, producing more continuous flow than a single-cylinder design and reducing pulsation.</p>
+
+        <div class="project-highlight">
+          <strong>Double-cylinder reciprocating piston design</strong>
+          <p>Two machined aluminum cylinders are mounted in parallel and connected by a central actuator assembly. Flat aluminum pistons with O-ring seals displace water on each stroke. The end caps are machined aluminum plates with drilled and tapped ports for inlet and outlet fittings.</p>
+        </div>
+
+        <h3>CAD in Fusion 360</h3>
+        <p>The full pump assembly was modeled in Fusion 360. This included the cylinder bores, end caps, piston geometry, threaded rod tie structure, and the port placements for inlet/outlet fittings. Tolerances were designed to allow the O-ring seals to function correctly while keeping the pistons free to travel without binding.</p>
+
+        <h3>CFD Analysis</h3>
+        <p>Computational fluid dynamics simulation in Fusion 360 was used to validate the flow path geometry through the end caps — checking that the port sizing and internal channel geometry would support the required flow rate without excessive pressure drop across the fittings.</p>
+
+        <h3>FEA</h3>
+        <p>Finite element analysis was run on the high-stress components of the assembly. The scotch yoke — which receives rotational input from the drive shaft and converts it to linear reciprocating motion — was a primary focus. Von Mises stress analysis confirmed the yoke would remain well within the material's yield strength under operating loads, with a peak stress of 2.819 MPa.</p>
+
+        <figure class="screenshot">
+          <img src="/photos-from-water-pump-project/scotch-yoke-fea.png" alt="FEA Von Mises stress analysis of the scotch yoke mechanism">
+          <figcaption>Von Mises stress analysis of the scotch yoke. Peak stress of 2.819 MPa occurs at the central slot where the drive pin engages — well within the yield strength of the aluminum. The stress concentrates at the pin interface and dissipates rapidly through the body, confirming the geometry is adequately sized for the operating loads.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2>Machining & Assembly</h2>
+        <p>All aluminum components were machined in-house. The cylinder bores were turned on a lathe to achieve the tight tolerances required for the O-ring piston seals. End caps were milled and drilled for the bolt pattern and port fittings. Piston discs were turned to match the bore diameter with appropriate clearance for the O-ring grooves.</p>
+
+        <figure class="screenshot">
+          <img src="/photos-from-water-pump-project/piston-head-drawing.png" alt="Engineering part drawing for the piston head, showing toleranced dimensions">
+          <figcaption>Formal part drawing for the piston head, produced prior to machining. Outer diameter 1.750 ±.005 in., overall thickness .203 ±.005 in., with a raised lip (.375 ±.005 in. diameter, .094 ±.005 in. tall) and a central through-hole (Ø.201 ±.005 in.). Tolerances were set to achieve the correct O-ring compression in the bore. Drawn in Fusion 360 at 1:5 scale, drawn by Julian Stoller 3/23/2022.</figcaption>
+        </figure>
+
+        <figure class="screenshot">
+          <img src="/photos-from-water-pump-project/components-laid-out.jpg" alt="All machined pump components laid out before assembly">
+          <figcaption>All components before final assembly: the two machined end caps with O-ring grooves and bolt patterns, aluminum cylinder tubes, flat piston discs, threaded tie rods, O-rings, and hardware. The labeling on the end caps ("ASTM B2") indicates the aluminum stock specification.</figcaption>
+        </figure>
+
+        <p>Assembly required careful sequencing — O-rings seated into the piston grooves, pistons inserted into the cylinders, end caps bolted down with the threaded rod tie structure to compress the assembly. Getting the preload on the tie rods right was important to keep the cylinders sealed at the end caps without distorting the bore geometry.</p>
+
+        <div class="screenshot-pair">
+          <figure>
+            <img src="/photos-from-water-pump-project/assembled-pump.jpg" alt="Assembled pump being held, showing the full double-cylinder mechanism">
+            <figcaption>The fully assembled pump. The two aluminum cylinders are tied together by the threaded rod frame, with the central actuator bracket visible between them. The machined finish on the cylinder bodies is visible — these were turned to close tolerance on the lathe.</figcaption>
+          </figure>
+          <figure>
+            <img src="/photos-from-water-pump-project/assembled-pump-wide.png" alt="Assembled pump on a bench, wider angle showing inlet/outlet fittings">
+            <figcaption>Wider view of the assembled pump showing the plastic inlet/outlet fittings installed in the end caps. The overall footprint is compact given the output requirements — the double-cylinder layout keeps the pump short while providing near-continuous flow.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section>
+        <h2>Testing & Results</h2>
+        <p>The pump was tested against the project requirements — pumping water through a 1-meter vertical rise at the specified flow rate. The video below shows the pump operating under test conditions.</p>
+
+        <figure class="video-container">
+          <video controls preload="metadata">
+            <source src="/photos-from-water-pump-project/pump-demo.mov" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <figcaption>Pump operating under test conditions, demonstrating sustained water flow at the required head. The reciprocating action of the double-cylinder design produces relatively smooth output with minimal pulsation.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2>Project Management</h2>
+        <p>With a team of six and a hard deadline for the live test, project management was a real part of the work — not just a checkbox. The project included:</p>
+
+        <div class="feature-box">
+          <h3>Deliverables beyond the hardware</h3>
+          <ul>
+            <li><strong>Bill of Materials (BOM):</strong> Full BOM tracking all purchased and machined components, quantities, material specs, and costs</li>
+            <li><strong>Project Schedule:</strong> Gantt-style schedule breaking down design, analysis, machining, assembly, and testing phases with assigned owners and milestones</li>
+            <li><strong>Design Review Documentation:</strong> Written justification of design decisions, analysis results, and risk assessment ahead of committing to fabrication</li>
+            <li><strong>Test Plan & Results:</strong> Defined pass/fail criteria before testing; documented actual measured flow rate and head against requirements</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Skills & Tools</h2>
+        <ul>
+          <li><strong>CAD:</strong> Full assembly modeling in Fusion 360, including tolerance analysis for piston/bore fit</li>
+          <li><strong>CFD:</strong> Flow simulation in Fusion 360 to validate port geometry and minimize pressure losses</li>
+          <li><strong>FEA:</strong> Structural analysis of end caps and cylinder walls under operating pressure</li>
+          <li><strong>Machining:</strong> Lathe (turning bores, pistons, cylinder bodies) and mill (end caps, bolt patterns, ports)</li>
+          <li><strong>GD&T:</strong> Tolerancing for O-ring piston seals and cylinder bore fits</li>
+          <li><strong>Project Management:</strong> BOM, schedule, design reviews, and test documentation across a team of six</li>
+        </ul>
+      </section>
+
+      <footer>
+        <p>Water Pump — MAE 2250 Project, Cornell University</p>
+      </footer>
+    </div>
+  </main>
+</body>
+
+</html>
