@@ -122,7 +122,58 @@
         margin-top: 0;
         color: #0366d6;
       }
-      
+
+      .project-card figure {
+        margin: 16px 0 0;
+      }
+
+      .project-card figure img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #e1e4e8;
+        border-radius: 4px;
+        display: block;
+      }
+
+      .project-card figcaption {
+        margin-top: 6px;
+        font-size: 0.85rem;
+        color: #6a6a6a;
+        line-height: 1.5;
+      }
+
+      .image-pair {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin: 16px 0 0;
+      }
+
+      .image-pair figure {
+        margin: 0;
+      }
+
+      .image-pair figure img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #e1e4e8;
+        border-radius: 4px;
+        display: block;
+      }
+
+      .image-pair figcaption {
+        margin-top: 6px;
+        font-size: 0.85rem;
+        color: #6a6a6a;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 600px) {
+        .image-pair {
+          grid-template-columns: 1fr;
+        }
+      }
+
       footer {
         text-align: center;
         padding: 20px;
@@ -179,6 +230,16 @@
         <div class="project-card">
           <h3>Amazon Basics Electric Kettle (MAE 2250)</h3>
           <p>Reverse-engineered and recreated an Amazon Basics electric kettle in Fusion 360 as part of a MAE 2250 assignment to select a kitchen object and reproduce it in CAD software. The model captures the kettle's multi-material construction, including the brushed stainless steel body, plastic handle and lid, water level window, and rotating base.</p>
+          <div class="image-pair">
+            <figure>
+              <img src="/Website/small-misc-cad/images/Screenshot 2026-04-05 153227.png" alt="Real Amazon Basics electric kettle on a desk">
+              <figcaption>Reference object: the Amazon Basics 1L stainless steel electric kettle.</figcaption>
+            </figure>
+            <figure>
+              <img src="/Website/small-misc-cad/images/BIPITYBOPBOOPITYSCOOP.png" alt="Fusion 360 CAD model of the electric kettle">
+              <figcaption>Fusion 360 recreation, showing the multi-part assembly with brass body, plastic handle, and spout.</figcaption>
+            </figure>
+          </div>
         </div>
 
         <div class="project-card">
