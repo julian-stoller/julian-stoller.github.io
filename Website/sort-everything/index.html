@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sort Everything — Julian B. Stoller</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.7;
+      color: #1a1a1a;
+      background: #fafaf8;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 30px;
+    }
+
+    header {
+      margin-bottom: 60px;
+      padding: 40px 0;
+      border-bottom: 3px solid #2a2a2a;
+    }
+
+    .header-inner {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .header-text {
+      flex: 1;
+    }
+
+    .header-logo {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      flex-shrink: 0;
+      margin-top: 6px;
+      opacity: 0.85;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+      color: #1a1a1a;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: #4a4a4a;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    section {
+      padding: 48px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      color: #1a1a1a;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    section h3 {
+      font-size: 1.25rem;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      color: #2a2a2a;
+      font-weight: 600;
+    }
+
+    section h3:first-child {
+      margin-top: 0;
+    }
+
+    section ul {
+      margin-left: 24px;
+      margin-bottom: 20px;
+    }
+
+    section li {
+      margin-bottom: 14px;
+      line-height: 1.8;
+      color: #3a3a3a;
+    }
+
+    section p {
+      margin-bottom: 18px;
+      color: #3a3a3a;
+      font-size: 1.05rem;
+    }
+
+    section a {
+      color: #d97706;
+      text-decoration: none;
+      border-bottom: 2px solid #fbbf24;
+      transition: border-color 0.2s;
+    }
+
+    section a:hover {
+      border-bottom-color: #d97706;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 32px;
+      padding: 12px 20px;
+      background: #2a2a2a;
+      color: #fafaf8;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .back-link:hover {
+      background: #1a1a1a;
+    }
+
+    .project-highlight {
+      background: #f0f7ff;
+      border-left: 6px solid #3b82f6;
+      padding: 32px;
+      margin: 32px 0;
+    }
+
+    .project-highlight strong {
+      color: #1d4ed8;
+      font-size: 1.1rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .project-highlight p {
+      color: #374151;
+      margin-bottom: 0;
+    }
+
+    .feature-box {
+      background: #f5f5f3;
+      border-left: 6px solid #f59e0b;
+      padding: 28px 32px;
+      margin: 28px 0;
+    }
+
+    .feature-box h3 {
+      margin-top: 0;
+      color: #d97706;
+    }
+
+    .feature-box p {
+      color: #4a4a4a;
+    }
+
+    .feature-box ul {
+      color: #4a4a4a;
+      margin-bottom: 0;
+    }
+
+    .screenshot {
+      margin: 32px 0;
+    }
+
+    .screenshot img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #e0e0e0;
+      display: block;
+      transition: border-color 0.2s;
+    }
+
+    .screenshot img:hover {
+      border-color: #3b82f6;
+    }
+
+    .screenshot figcaption {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #6a6a6a;
+      line-height: 1.5;
+    }
+
+    .screenshot-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 32px 0;
+    }
+
+    .screenshot-pair figure img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #e0e0e0;
+      display: block;
+      transition: border-color 0.2s;
+    }
+
+    .screenshot-pair figure img:hover {
+      border-color: #3b82f6;
+    }
+
+    .screenshot-pair figcaption {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #6a6a6a;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #6a6a6a;
+      font-size: 0.95rem;
+      margin-top: 60px;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    footer p {
+      margin-bottom: 8px;
+      color: #6a6a6a;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 40px 20px;
+      }
+
+      .header-inner {
+        flex-direction: column-reverse;
+        gap: 16px;
+      }
+
+      .header-logo {
+        width: 64px;
+        height: 64px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      header {
+        padding: 30px 0;
+        margin-bottom: 40px;
+      }
+
+      section {
+        padding: 36px 0;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+      }
+
+      .screenshot-pair {
+        grid-template-columns: 1fr;
+      }
+
+      .project-highlight,
+      .feature-box {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">Julian B. Stoller</a>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/projects/" class="nav-link">Projects</a></li>
+        <li><a href="/awards/" class="nav-link">Awards</a></li>
+        <li><a href="/resume/" class="nav-link">Resume</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <div class="container">
+      <a href="/" class="back-link">← Back to home</a>
+
+      <header>
+        <div class="header-inner">
+          <div class="header-text">
+            <h1>Sort Everything</h1>
+            <p class="subtitle">A Python desktop application for Digital Asset Management (DAM) — organizing and analyzing large media collections of images, videos, and documents — with XMP metadata, AI classifiers, face recognition, and more. Runs entirely locally.</p>
+          </div>
+          <img src="/photos-from-sort-everything-project/logo-icon.png" alt="Sort Everything logo" class="header-logo">
+        </div>
+      </header>
+
+      <section>
+        <h2>Overview</h2>
+        <p>Sort Everything started as a personal tool for managing a large photo library and grew into something considerably more involved. The core idea is simple: tag files, filter by those tags, and keep everything organized. The implementation is not.</p>
+
+        <p>Under the hood it combines a SQLite database, XMP metadata written directly into file binaries, AI classifiers trained on user-tagged data, perceptual hashing for duplicate detection, face recognition via DeepFace, YOLOv8 pose estimation, background OCR, and a VLC-based in-app video player — all tied together in a Tkinter GUI and running entirely on the local machine.</p>
+
+        <div class="project-highlight">
+          <strong>Everything stays local</strong>
+          <p>All processing — inference, training, OCR, face detection — runs on the local machine. Tags are embedded directly into files using XMP metadata, so they travel with the files and remain readable by tools like Adobe Lightroom and Photoshop even outside the app.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Browsing & Tag Filtering</h2>
+        <p>The main view is a filterable file list. Filter expressions support arbitrary combinations of tags — AND, OR, exclusion — so drilling into any specific subset of a large collection is fast. Suggested tags appear based on what's already applied to the current filtered set.</p>
+
+        <figure class="screenshot">
+          <img src="/photos-from-sort-everything-project/Screenshot%202026-03-12%20021803.png" alt="Main tagging view showing files filtered by Painting tag with tag suggestions">
+          <figcaption>143 files filtered by the "Painting" tag. Suggested tags appear at the top based on the current result set. The tab bar exposes the full feature surface: OCR, AI Auto-Tag, Binary Sorting, Similar Photos, Pose Estimation, and more.</figcaption>
+        </figure>
+
+        <p>Compound filters work the same way — any number of inclusion and exclusion rules can be combined. The result count updates immediately, making it straightforward to explore a collection by multiple criteria at once.</p>
+
+        <figure class="screenshot">
+          <img src="/photos-from-sort-everything-project/Screenshot%202026-03-12%20022014.png" alt="File list filtered by Photograph and Historical tags showing 57 results">
+          <figcaption>57 files matching a compound filter: "Photograph" AND "Historical". Tag filtering is the primary way to navigate the collection.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2>File Detail & Face Recognition</h2>
+        <p>Clicking into any file opens a detail view with the full-size image, current tags, file metadata, and a perceptual hash. Tags can be added, removed, or applied in bulk from this view.</p>
+
+        <p>DeepFace integration handles face detection and embedding across the collection. Detected faces are surfaced in the detail view as cropped thumbnails alongside the detection result, and stored in the database for collection-wide browsing by face.</p>
+
+        <figure class="screenshot">
+          <img src="/photos-from-sort-everything-project/Screenshot%202026-03-12%20021834.png" alt="Single file detail view showing image with face detection result and current tags">
+          <figcaption>Detail view for a single file. Current tags are shown alongside the DeepFace detection result — in this case a single detected face with a cropped thumbnail. File size, view count, perceptual hash, and bitrate are tracked in the database.</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2>AI Image Classification</h2>
+        <p>Custom binary and multi-class image classifiers are trained directly from tagged files in the collection. The more a collection gets tagged, the more useful the classifiers become — without any external API calls or GPU requirements beyond what's available locally.</p>
+
+        <div class="feature-box">
+          <h3>Training pipeline</h3>
+          <ul>
+            <li>A priority-based training queue manages multiple classifier jobs</li>
+            <li>Auto-retrain triggers fire when a model becomes stale relative to new tagged data</li>
+            <li>Data gap and class imbalance tracking surfaces when a classifier needs more examples</li>
+            <li>Training metrics are plotted live as epochs complete</li>
+          </ul>
+        </div>
+
+        <p>The training charts below show two separate classifiers in progress — one multi-class model and one binary classifier, both trained entirely from locally tagged images.</p>
+
+        <div class="screenshot-pair">
+          <figure>
+            <img src="/photos-from-sort-everything-project/Screenshot%202026-03-10%20130432.png" alt="AI classifier training metrics showing training accuracy and validation AUC over 26 epochs">
+            <figcaption>Multi-class classifier training over 26 epochs. Validation AUC converges around 0.80.</figcaption>
+          </figure>
+          <figure>
+            <img src="/photos-from-sort-everything-project/Screenshot%202026-03-10%20203900.png" alt="Binary classifier training metrics reaching ~87% validation accuracy and ~95% AUC over 31 epochs">
+            <figcaption>Binary classifier over 31 epochs, reaching ~87% validation accuracy and ~95% validation AUC.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section>
+        <h2>XMP Metadata & File Portability</h2>
+        <p>Tags are embedded directly into files as XMP metadata, not stored only in the database. For images (JPEG, PNG, TIFF, WebP, HEIC), this is done through pure Python binary manipulation of the file structure. For video (MP4, MOV), it uses ExifTool. Tags survive moves, renames, and copies, and remain accessible to any XMP-aware application.</p>
+      </section>
+
+      <section>
+        <h2>Database, Duplicates & Background Processing</h2>
+
+        <h3>SQLite & Perceptual Hashing</h3>
+        <p>All file records, tags, and metadata are stored in SQLite. Perceptual hashing (pHash) is computed for images to support duplicate detection and similar-file grouping. Background monitoring watches tracked folders for new files and automatically runs similarity checks as new content arrives.</p>
+
+        <h3>OCR & Video Playback</h3>
+        <p>Background OCR extracts text from images and documents as a low-priority task, keeping the UI responsive. An in-app video player built on VLC handles playback directly within the application, with careful resource lifecycle management to prevent memory leaks across many files.</p>
+      </section>
+
+      <section>
+        <h2>Where This Goes Next</h2>
+        <p>Sort Everything was built around media files — photos, videos, documents. The next frontier is expanding it into a full Digital Asset Management platform for engineering work, where the same problems exist but the file types are far more complex.</p>
+
+        <div class="project-highlight">
+          <strong>Expanding to CAD & Engineering Files</strong>
+          <p>The core DAM concept maps directly onto engineering workflows: a large project generates SOLIDWORKS assemblies, part files, STL exports, FEA results, simulation outputs, PDFs, and renders — all loosely related, version-controlled haphazardly, and scattered across folders. Sort Everything's tagging, database, and file-tracking architecture can be extended to make sense of this.</p>
+        </div>
+
+        <h3>Vision: Local Version Control for Engineering Projects</h3>
+        <p>The goal is a tool that feels native to how engineers actually work — not a cloud sync service or a Git wrapper, but a local-first DAM that understands the relationships between files spanning multiple types:</p>
+        <ul>
+          <li>Visual diffs between CAD revisions — render thumbnails of each version and show what changed geometrically, not just in file metadata</li>
+          <li>Cross-file-type linking: associate a SLDPRT with its STL exports, FEA mesh, simulation results, and manufacturing drawings as a single logical asset</li>
+          <li>Tag-based filtering that works across file types — find everything tagged "final", "approved for fabrication", or "as-built" regardless of whether it's a CAD file, PDF, or photo</li>
+          <li>Milestone snapshots: capture the state of an entire project tree at a point in time, with visual thumbnails, without requiring Git or any version control setup</li>
+          <li>Runs entirely on the local machine — no cloud, no accounts, no internet dependency</li>
+        </ul>
+
+        <div class="feature-box">
+          <h3>Why this matters for engineering teams</h3>
+          <p>Large engineering projects routinely span hundreds of interrelated files across multiple tools — CAD, simulation, documentation, imagery. Current version control options (Git, PDM systems) either don't handle binary files well or require significant IT infrastructure. A lightweight, visual, local-first DAM designed for this use case doesn't really exist yet.</p>
+        </div>
+      </section>
+
+      <footer>
+        <p>Sort Everything — Personal Project by Julian B. Stoller</p>
+      </footer>
+    </div>
+  </main>
+</body>
+
+</html>
