@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sustainable Materials Report — Julian B. Stoller</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.7;
+      color: #1a1a1a;
+      background: #fafaf8;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 30px;
+    }
+
+    header {
+      margin-bottom: 60px;
+      padding: 40px 0;
+      border-bottom: 3px solid #2a2a2a;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+      color: #1a1a1a;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: #4a4a4a;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .meta-row {
+      display: flex;
+      gap: 24px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .meta-tag {
+      font-size: 0.9rem;
+      color: #6a6a6a;
+      background: #f0f0ee;
+      padding: 4px 12px;
+      border-radius: 4px;
+    }
+
+    section {
+      padding: 48px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      color: #1a1a1a;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    section p {
+      margin-bottom: 18px;
+      color: #3a3a3a;
+      font-size: 1.05rem;
+    }
+
+    section a {
+      color: #d97706;
+      text-decoration: none;
+      border-bottom: 2px solid #fbbf24;
+      transition: border-color 0.2s;
+    }
+
+    section a:hover {
+      border-bottom-color: #d97706;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 32px;
+      padding: 12px 20px;
+      background: #2a2a2a;
+      color: #fafaf8;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .back-link:hover {
+      background: #1a1a1a;
+    }
+
+    .pdf-embed {
+      width: 100%;
+      height: 900px;
+      border: 2px solid #e0e0e0;
+      display: block;
+    }
+
+    .pdf-fallback {
+      margin-top: 16px;
+      font-size: 0.95rem;
+      color: #6a6a6a;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #6a6a6a;
+      font-size: 0.95rem;
+      margin-top: 60px;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    footer p {
+      margin-bottom: 8px;
+      color: #6a6a6a;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 40px 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      header {
+        padding: 30px 0;
+        margin-bottom: 40px;
+      }
+
+      section {
+        padding: 36px 0;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+      }
+
+      .pdf-embed {
+        height: 600px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">Julian B. Stoller</a>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/projects/" class="nav-link">Projects</a></li>
+        <li><a href="/awards/" class="nav-link">Awards</a></li>
+        <li><a href="/resume/" class="nav-link">Resume</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <div class="container">
+      <a href="/projects/" class="back-link">← Back to projects</a>
+
+      <header>
+        <h1>Sustainable Materials Report</h1>
+        <div class="meta-row">
+          <span class="meta-tag">DEA 3030</span>
+          <span class="meta-tag">Cornell University</span>
+        </div>
+      </header>
+
+      <section>
+        <h2>Report</h2>
+        <iframe
+          class="pdf-embed"
+          src="/Website/dea-3030/DEA3030-Final-Report.pdf"
+          title="Sustainable Materials Report — DEA 3030">
+        </iframe>
+        <p class="pdf-fallback">
+          If the PDF does not load, <a href="/Website/dea-3030/DEA3030-Final-Report.pdf">download it here</a>.
+        </p>
+      </section>
+
+      <footer>
+        <p>Sustainable Materials Report — DEA 3030, Cornell University</p>
+      </footer>
+    </div>
+  </main>
+</body>
+
+</html>
