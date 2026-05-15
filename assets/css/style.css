@@ -173,8 +173,12 @@ body {
 
 .featured-projects h2 {
   font-size: 2rem;
-  margin-bottom: 30px;
+  margin-bottom: 16px;
   color: var(--text-color);
+}
+
+.featured-projects .projects-list + h2 {
+  margin-top: 48px;
 }
 
 .projects-list {
