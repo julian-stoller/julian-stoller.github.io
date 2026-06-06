@@ -177,7 +177,19 @@
           <video controls style="width:100%; max-width:560px; border-radius:6px; background:#000;">
             <source src="SORT_Dual_Cylinder_Long_Step_Simulation.mp4" type="video/mp4">
           </video>
-          <p style="margin-top:8px; font-size:0.9rem; color:#555;">A top-down 2D MATLAB animation of a simplified dual-suction-cup wall-climbing robot completing a waypoint mission. Each suction cup and the linkage between them is represented as a graph node/edge. The robot locomotes by alternately anchoring one cup while the other pivots about it — releasing, rotating, and re-adhering in sequence to step along the surface.</p>
+          <p style="margin-top:8px; font-size:0.9rem; color:#555;">A top-down 2D MATLAB animation of a simplified dual-suction-cup wall-climbing robot completing a waypoint mission. Each suction cup and the linkage between them is represented as a graph node/edge. The robot locomotes by alternately anchoring one cup while the other pivots about it, releasing, rotating, and re-adhering in sequence to step along the surface.</p>
+          <div style="margin-top:20px;">
+            <p style="font-weight:600; margin-bottom:8px;">Potential Applications in Further Development</p>
+            <p style="font-size:0.9rem; color:#555; margin-bottom:10px;">This simulation framework and the underlying code have a range of applications for future work on the robot:</p>
+            <ul style="margin-left:20px; font-size:0.9rem; color:#555;">
+              <li style="margin-bottom:8px;"><strong>Energy-efficient locomotion:</strong> Modeling step geometry makes it possible to compare gait strategies, such as varying rotation angle, step frequency, or the duration of dual-contact phases, to find approaches that minimize energy per unit of travel.</li>
+              <li style="margin-bottom:8px;"><strong>Actuator sizing:</strong> The torques implied by the linkage kinematics at each step directly inform selection and sizing of the motors driving the pivot joints.</li>
+              <li style="margin-bottom:8px;"><strong>Gait optimization:</strong> The waypoint-following framework can be extended to search over stride lengths or pivot angles to minimize step count, travel time, or energy to a target.</li>
+              <li style="margin-bottom:8px;"><strong>Path planning:</strong> Integrating a path planner lets the simulation evaluate different navigation strategies and test whether the robot can reach arbitrary goals on a surface before any hardware is built.</li>
+              <li style="margin-bottom:8px;"><strong>Kinematic feasibility checks:</strong> The model can verify that the free cup's landing position is always within reachable range for a given set of waypoints, catching infeasible motions early in the design process.</li>
+              <li style="margin-bottom:8px;"><strong>Control logic prototyping:</strong> The attach/detach state sequence can be tested across many waypoint sets to stress-test control logic before it is implemented in hardware.</li>
+            </ul>
+          </div>
         </div>
       </section>
 
