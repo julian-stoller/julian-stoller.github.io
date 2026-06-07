@@ -192,6 +192,39 @@
               </div>
             </div>
 
+            <!-- Helix Base Collar: helix only -->
+            <div class="sr-section" id="sr-section-helixbase" data-show-for="helix" style="display:none">
+              <div class="sr-section-header" data-target="sec-helixbase">
+                Base Collar <span class="sr-arrow" id="arrow-helixbase">&#x25B2;</span>
+              </div>
+              <div class="sr-section-body" id="sec-helixbase">
+                <div class="sr-param">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Outer Diameter</span>
+                    <span class="sr-param-value" id="val-helixBaseOD">50.00</span>
+                  </div>
+                  <p class="sr-param-desc">Outer diameter of the base collar.</p>
+                  <input type="range" class="sr-slider" id="sl-helixBaseOD" min="10" max="120" step="1" value="50">
+                </div>
+                <div class="sr-param">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Inner Diameter</span>
+                    <span class="sr-param-value" id="val-helixBaseID">10.00</span>
+                  </div>
+                  <p class="sr-param-desc">Diameter of the cable passage through the base.</p>
+                  <input type="range" class="sr-slider" id="sl-helixBaseID" min="1" max="80" step="0.5" value="10">
+                </div>
+                <div class="sr-param">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Base Height</span>
+                    <span class="sr-param-value" id="val-helixBaseH">8.00</span>
+                  </div>
+                  <p class="sr-param-desc">Thickness of the base collar.</p>
+                  <input type="range" class="sr-slider" id="sl-helixBaseH" min="1" max="30" step="0.5" value="8">
+                </div>
+              </div>
+            </div>
+
             <!-- Flared Body / Coil Settings -->
             <div class="sr-section">
               <div class="sr-section-header" data-target="sec-body">
@@ -321,6 +354,9 @@
       turns:        5,
       helixBottomD: 40,
       helixTopD:    20,
+      helixBaseOD:  50,
+      helixBaseID:  10,
+      helixBaseH:   8,
     };
 
     const unitScale = { mm: 1, cm: 0.1, in: 1/25.4 };
@@ -504,14 +540,17 @@
 
     function computeVolume(p) {
       if (p.profile === 'helix') {
-        const tubeR = Math.max(0.5, p.cordD/2);
-        const Rbot  = Math.max(tubeR+1, p.helixBottomD/2 - tubeR);
-        const Rtop  = Math.max(tubeR+1, p.helixTopD/2   - tubeR);
-        const Rmid  = (Rbot + Rtop) / 2;
-        const turns = Math.max(2, Math.min(Math.round(p.turns||5), 30));
-        const bH    = Math.max(5, p.bodyH);
+        const tubeR  = Math.max(0.5, p.cordD/2);
+        const Rbot   = Math.max(tubeR+1, p.helixBottomD/2 - tubeR);
+        const Rtop   = Math.max(tubeR+1, p.helixTopD/2   - tubeR);
+        const Rmid   = (Rbot + Rtop) / 2;
+        const turns  = Math.max(2, Math.min(Math.round(p.turns||5), 30));
+        const bH     = Math.max(5, p.bodyH);
+        const baseH  = Math.max(1, p.helixBaseH);
+        const baseOR = Math.max(p.helixBottomD/2+1, p.helixBaseOD/2);
+        const baseIR = Math.max(0.5, Math.min(p.helixBaseID/2, baseOR-1));
         const L = Math.sqrt(Math.pow(2*Math.PI*Rmid*turns,2) + bH*bH);
-        return Math.PI * tubeR*tubeR * L;
+        return Math.PI * tubeR*tubeR * L + Math.PI * baseH * (baseOR*baseOR - baseIR*baseIR);
       }
       const {foR,fiR,fH,bH,cR,wall} = clampParams(p);
       const boBot=fiR, biBot=fiR-wall, boTop=cR+wall, biTop=cR;
@@ -532,13 +571,20 @@
       const SEG = 64;
 
       if (p.profile === 'helix') {
-        const tubeR = Math.max(0.5, p.cordD/2);
-        const Rbot  = Math.max(tubeR+1, p.helixBottomD/2 - tubeR);
-        const Rtop  = Math.max(tubeR+1, p.helixTopD/2   - tubeR);
-        const turns = Math.max(2, Math.min(Math.round(p.turns||5), 30));
-        const bH    = Math.max(5, p.bodyH);
-        const pts   = turns*32;
-        return new THREE.TubeGeometry(new HelixCurve(Rbot,Rtop,bH,turns), pts, tubeR, 16, false).toNonIndexed();
+        const tubeR  = Math.max(0.5, p.cordD/2);
+        const Rbot   = Math.max(tubeR+1, p.helixBottomD/2 - tubeR);
+        const Rtop   = Math.max(tubeR+1, p.helixTopD/2   - tubeR);
+        const turns  = Math.max(2, Math.min(Math.round(p.turns||5), 30));
+        const bH     = Math.max(5, p.bodyH);
+        const baseH  = Math.max(1, p.helixBaseH);
+        const baseOR = Math.max(p.helixBottomD/2+1, p.helixBaseOD/2);
+        const baseIR = Math.max(0.5, Math.min(p.helixBaseID/2, baseOR-1));
+        const pts    = turns*32;
+        const helixGeo = new THREE.TubeGeometry(new HelixCurve(Rbot,Rtop,bH,turns), pts, tubeR, 16, false).toNonIndexed();
+        helixGeo.translate(0, baseH, 0);
+        const baseGeo = makeHollowFrustum(baseIR, baseOR, baseIR, baseOR, baseH, SEG);
+        baseGeo.translate(0, baseH/2, 0);
+        return mergeGeos([baseGeo, helixGeo]);
       }
 
       const {foR,fiR,fH,bH,cR,wall} = clampParams(p);
@@ -620,7 +666,7 @@
       const geo = buildGeometry(state);
       modelMesh.geometry.dispose();
       modelMesh.geometry = geo;
-      const camH = state.profile==='helix' ? state.bodyH : state.flangeH+state.bodyH;
+      const camH = state.profile==='helix' ? state.bodyH+state.helixBaseH : state.flangeH+state.bodyH;
       controls.target.set(0, camH/2, 0);
       updateUI();
     }
@@ -628,7 +674,7 @@
     function updateUI() {
       const u = state.unit;
       const L = LABELS[state.profile];
-      const totalH = state.profile==='helix' ? state.bodyH : state.flangeH+state.bodyH;
+      const totalH = state.profile==='helix' ? state.bodyH+state.helixBaseH : state.flangeH+state.bodyH;
 
       // Dynamic labels
       document.getElementById('stat-label-0').textContent   = L.stat0;
@@ -672,6 +718,9 @@
       document.getElementById('val-turns').textContent          = String(Math.round(state.turns||5));
       document.getElementById('val-helixBottomD').textContent   = fmt(state.helixBottomD);
       document.getElementById('val-helixTopD').textContent      = fmt(state.helixTopD);
+      document.getElementById('val-helixBaseOD').textContent    = fmt(state.helixBaseOD);
+      document.getElementById('val-helixBaseID').textContent    = fmt(state.helixBaseID);
+      document.getElementById('val-helixBaseH').textContent     = fmt(state.helixBaseH);
 
       // Volume
       const volMm3 = computeVolume(state);
@@ -703,7 +752,8 @@
       [['sl-flangeOuter',state.flangeOuterD],['sl-flangeInner',state.flangeInnerD],
        ['sl-flangeH',state.flangeH],['sl-bodyH',state.bodyH],
        ['sl-cordD',state.cordD],['sl-wallT',state.wallT],['sl-turns',state.turns||5],
-       ['sl-helixBottomD',state.helixBottomD],['sl-helixTopD',state.helixTopD]]
+       ['sl-helixBottomD',state.helixBottomD],['sl-helixTopD',state.helixTopD],
+       ['sl-helixBaseOD',state.helixBaseOD],['sl-helixBaseID',state.helixBaseID],['sl-helixBaseH',state.helixBaseH]]
         .forEach(([id,val]) => { const el=document.getElementById(id); if(el) setSliderFill(el,val); });
 
       applyProfileVisibility();
@@ -755,6 +805,9 @@
     wire('sl-turns','turns');
     wire('sl-helixBottomD','helixBottomD');
     wire('sl-helixTopD','helixTopD');
+    wire('sl-helixBaseOD','helixBaseOD');
+    wire('sl-helixBaseID','helixBaseID');
+    wire('sl-helixBaseH','helixBaseH');
 
     document.querySelectorAll('.sr-unit').forEach(btn=>
       btn.addEventListener('click',()=>{
