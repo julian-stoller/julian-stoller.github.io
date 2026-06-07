@@ -223,6 +223,24 @@
                   <p class="sr-param-desc">Thickness of the cone wall. Thinner = more flexible grip.</p>
                   <input type="range" class="sr-slider" id="sl-wallT" min="0.5" max="10" step="0.25" value="2.5">
                 </div>
+                <!-- Bottom coil diameter: helix only -->
+                <div class="sr-param" id="param-helixBottomD" data-show-for="helix" style="display:none">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Bottom Coil Diameter</span>
+                    <span class="sr-param-value" id="val-helixBottomD">40.00</span>
+                  </div>
+                  <p class="sr-param-desc">Outer diameter of the coil at the bottom (cable entry end).</p>
+                  <input type="range" class="sr-slider" id="sl-helixBottomD" min="10" max="100" step="1" value="40">
+                </div>
+                <!-- Top coil diameter: helix only -->
+                <div class="sr-param" id="param-helixTopD" data-show-for="helix" style="display:none">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Top Coil Diameter</span>
+                    <span class="sr-param-value" id="val-helixTopD">20.00</span>
+                  </div>
+                  <p class="sr-param-desc">Outer diameter of the coil at the top (cable exit end).</p>
+                  <input type="range" class="sr-slider" id="sl-helixTopD" min="10" max="100" step="1" value="20">
+                </div>
                 <!-- Turns: helix only -->
                 <div class="sr-param" id="param-turns" data-show-for="helix" style="display:none">
                   <div class="sr-param-header">
@@ -301,6 +319,8 @@
       cordD:        8,
       wallT:        2.5,
       turns:        5,
+      helixBottomD: 40,
+      helixTopD:    20,
     };
 
     const unitScale = { mm: 1, cm: 0.1, in: 1/25.4 };
@@ -447,12 +467,13 @@
       return geo;
     }
 
-    // Helix curve for TubeGeometry
+    // Helix curve for TubeGeometry — radius tapers linearly from Rbot to Rtop
     class HelixCurve extends THREE.Curve {
-      constructor(R, H, turns) { super(); this._R=R; this._H=H; this._N=turns; }
+      constructor(Rbot, Rtop, H, turns) { super(); this._Rb=Rbot; this._Rt=Rtop; this._H=H; this._N=turns; }
       getPoint(t, out) {
         const a = t * this._N * Math.PI * 2;
-        return (out||new THREE.Vector3()).set(this._R*Math.cos(a), t*this._H, this._R*Math.sin(a));
+        const R = this._Rb + (this._Rt - this._Rb) * t;
+        return (out||new THREE.Vector3()).set(R*Math.cos(a), t*this._H, R*Math.sin(a));
       }
     }
 
@@ -483,12 +504,13 @@
 
     function computeVolume(p) {
       if (p.profile === 'helix') {
-        const coilD = Math.max(10, p.flangeOuterD);
-        const tubeR = Math.max(0.5, Math.min(p.cordD/2, coilD/4));
-        const R     = Math.max(tubeR+0.5, coilD/2 - tubeR);
+        const tubeR = Math.max(0.5, p.cordD/2);
+        const Rbot  = Math.max(tubeR+1, p.helixBottomD/2 - tubeR);
+        const Rtop  = Math.max(tubeR+1, p.helixTopD/2   - tubeR);
+        const Rmid  = (Rbot + Rtop) / 2;
         const turns = Math.max(2, Math.min(Math.round(p.turns||5), 30));
         const bH    = Math.max(5, p.bodyH);
-        const L = Math.sqrt(Math.pow(2*Math.PI*R*turns,2) + bH*bH);
+        const L = Math.sqrt(Math.pow(2*Math.PI*Rmid*turns,2) + bH*bH);
         return Math.PI * tubeR*tubeR * L;
       }
       const {foR,fiR,fH,bH,cR,wall} = clampParams(p);
@@ -510,13 +532,13 @@
       const SEG = 64;
 
       if (p.profile === 'helix') {
-        const coilD = Math.max(10, p.flangeOuterD);
-        const tubeR = Math.max(0.5, Math.min(p.cordD/2, coilD/4));
-        const R     = Math.max(tubeR+0.5, coilD/2-tubeR);
+        const tubeR = Math.max(0.5, p.cordD/2);
+        const Rbot  = Math.max(tubeR+1, p.helixBottomD/2 - tubeR);
+        const Rtop  = Math.max(tubeR+1, p.helixTopD/2   - tubeR);
         const turns = Math.max(2, Math.min(Math.round(p.turns||5), 30));
         const bH    = Math.max(5, p.bodyH);
         const pts   = turns*32;
-        return new THREE.TubeGeometry(new HelixCurve(R,bH,turns), pts, tubeR, 16, false).toNonIndexed();
+        return new THREE.TubeGeometry(new HelixCurve(Rbot,Rtop,bH,turns), pts, tubeR, 16, false).toNonIndexed();
       }
 
       const {foR,fiR,fH,bH,cR,wall} = clampParams(p);
@@ -580,8 +602,8 @@
         bodySec:'Flared Body',
       },
       helix: {
-        stat0:'Coil Diameter', stat1:'Tube Diameter', stat3:'Turns',
-        flangeOuter:'Coil Diameter', flangeInner:'',
+        stat0:'Bottom Coil D', stat1:'Top Coil D', stat3:'Turns',
+        flangeOuter:'', flangeInner:'',
         cordD:'Tube Diameter', descCordD:'Diameter of each coil tube.',
         bodyH:'Total Length', descBodyH:'Overall length of the helical section.',
         bodySec:'Coil Settings',
@@ -627,8 +649,10 @@
       document.getElementById('su2').textContent = ' '+u;
 
       if (state.profile === 'helix') {
-        document.getElementById('stat-flangeInner').textContent = fmt(state.cordD);
+        document.getElementById('stat-flangeOuter').textContent = fmt(state.helixBottomD);
+        document.getElementById('stat-flangeInner').textContent = fmt(state.helixTopD);
         document.getElementById('stat-cordD').textContent       = String(Math.round(state.turns||5));
+        document.getElementById('su0').textContent = ' '+u;
         document.getElementById('su1').textContent = ' '+u;
         document.getElementById('su3').textContent = '';
       } else {
@@ -639,13 +663,15 @@
       }
 
       // Slider value labels
-      document.getElementById('val-flangeOuter').textContent = fmt(state.flangeOuterD);
-      document.getElementById('val-flangeInner').textContent = fmt(state.flangeInnerD);
-      document.getElementById('val-flangeH').textContent     = fmt(state.flangeH);
-      document.getElementById('val-bodyH').textContent       = fmt(state.bodyH);
-      document.getElementById('val-cordD').textContent       = fmt(state.cordD);
-      document.getElementById('val-wallT').textContent       = fmt(state.wallT);
-      document.getElementById('val-turns').textContent       = String(Math.round(state.turns||5));
+      document.getElementById('val-flangeOuter').textContent    = fmt(state.flangeOuterD);
+      document.getElementById('val-flangeInner').textContent    = fmt(state.flangeInnerD);
+      document.getElementById('val-flangeH').textContent        = fmt(state.flangeH);
+      document.getElementById('val-bodyH').textContent          = fmt(state.bodyH);
+      document.getElementById('val-cordD').textContent          = fmt(state.cordD);
+      document.getElementById('val-wallT').textContent          = fmt(state.wallT);
+      document.getElementById('val-turns').textContent          = String(Math.round(state.turns||5));
+      document.getElementById('val-helixBottomD').textContent   = fmt(state.helixBottomD);
+      document.getElementById('val-helixTopD').textContent      = fmt(state.helixTopD);
 
       // Volume
       const volMm3 = computeVolume(state);
@@ -658,7 +684,8 @@
       const sb = document.getElementById('sr-status-bar');
       if (state.profile === 'helix') {
         sb.innerHTML =
-          `<span>Coil <b>${state.flangeOuterD.toFixed(2)}</b>mm</span>` +
+          `<span>Bot <b>${state.helixBottomD.toFixed(2)}</b>mm</span>` +
+          `<span>Top <b>${state.helixTopD.toFixed(2)}</b>mm</span>` +
           `<span>Tube <b>${state.cordD.toFixed(2)}</b>mm</span>` +
           `<span>H <b>${state.bodyH.toFixed(2)}</b>mm</span>` +
           `<span>Turns <b>${Math.round(state.turns||5)}</b></span>`;
@@ -675,7 +702,8 @@
       // Slider gradient fills
       [['sl-flangeOuter',state.flangeOuterD],['sl-flangeInner',state.flangeInnerD],
        ['sl-flangeH',state.flangeH],['sl-bodyH',state.bodyH],
-       ['sl-cordD',state.cordD],['sl-wallT',state.wallT],['sl-turns',state.turns||5]]
+       ['sl-cordD',state.cordD],['sl-wallT',state.wallT],['sl-turns',state.turns||5],
+       ['sl-helixBottomD',state.helixBottomD],['sl-helixTopD',state.helixTopD]]
         .forEach(([id,val]) => { const el=document.getElementById(id); if(el) setSliderFill(el,val); });
 
       applyProfileVisibility();
@@ -725,6 +753,8 @@
     wire('sl-cordD','cordD');
     wire('sl-wallT','wallT');
     wire('sl-turns','turns');
+    wire('sl-helixBottomD','helixBottomD');
+    wire('sl-helixTopD','helixTopD');
 
     document.querySelectorAll('.sr-unit').forEach(btn=>
       btn.addEventListener('click',()=>{
