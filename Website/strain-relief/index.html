@@ -1,0 +1,1068 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Parametric Strain Relief - Julian B. Stoller</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #222;
+      background: #f9f9f9;
+    }
+
+    .page-container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 8px 16px;
+      background: #f0f0f0;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #0366d6;
+      font-size: 0.9rem;
+    }
+    .back-link:hover { background: #e0e0e0; }
+
+    .page-header { margin-bottom: 32px; }
+    .page-header h1 { font-size: 2rem; margin-bottom: 8px; color: #1a1a1a; }
+    .page-header .subtitle { color: #666; font-style: italic; }
+
+    .prose-section {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 28px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      font-size: 0.97rem;
+      line-height: 1.7;
+      color: #333;
+    }
+    .prose-section p + p { margin-top: 12px; }
+
+    /* ── Widget shell ───────────────────────────────── */
+    .sr-widget {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.14);
+      margin-bottom: 32px;
+      background: #f2ede4;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* top bar */
+    .sr-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      height: 54px;
+      background: #f2ede4;
+      border-bottom: 1px solid #ddd8ce;
+    }
+    .sr-topbar-left { display: flex; align-items: center; gap: 14px; }
+    .sr-title { font-size: 1.15rem; font-weight: 700; color: #1a1a1a; letter-spacing: -0.01em; }
+    .sr-title span { font-weight: 400; color: #888; }
+    .sr-topbar-right { display: flex; align-items: center; gap: 10px; }
+
+    .sr-btn {
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 7px 16px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+    .sr-btn:hover { background: #333; }
+
+    .sr-units {
+      display: flex;
+      border: 1.5px solid #ccc;
+      border-radius: 999px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .sr-unit {
+      background: none;
+      border: none;
+      padding: 5px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #888;
+      cursor: pointer;
+      transition: background 0.1s, color 0.1s;
+    }
+    .sr-unit.active {
+      background: #b8b0e8;
+      color: #1a1a1a;
+    }
+
+    /* main layout */
+    .sr-main {
+      display: flex;
+      height: 600px;
+    }
+
+    /* left control panel */
+    .sr-panel {
+      width: 300px;
+      min-width: 300px;
+      background: #fff;
+      border-right: 1px solid #e8e4dc;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sr-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-bottom: 1px solid #eee;
+      padding: 14px 16px;
+      background: #fafaf8;
+    }
+    .sr-stat { padding: 2px 0; }
+    .sr-stat-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #999;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .sr-stat-value {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1.2;
+    }
+    .sr-stat-value small {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: #888;
+      margin-left: 2px;
+    }
+
+    /* sections */
+    .sr-section { border-bottom: 1px solid #eeebe4; }
+
+    .sr-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #333;
+    }
+    .sr-section-header:hover { background: #faf8f4; }
+    .sr-section-header .sr-arrow { font-size: 0.7rem; color: #4a9a4a; }
+    .sr-section-header .sr-badge {
+      font-size: 0.62rem;
+      font-weight: 700;
+      background: #e8f5e9;
+      color: #388e3c;
+      border: 1px solid #c8e6c9;
+      border-radius: 4px;
+      padding: 1px 5px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .sr-section-body {
+      padding: 6px 16px 14px;
+    }
+    .sr-section-body.hidden { display: none; }
+
+    .sr-desc {
+      font-size: 0.8rem;
+      color: #888;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    /* mount type toggle */
+    .sr-mount-toggle {
+      display: flex;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #f5f5f5;
+      margin-top: 4px;
+    }
+    .sr-mount-btn {
+      flex: 1;
+      background: none;
+      border: none;
+      padding: 9px 0;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #888;
+      cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+    }
+    .sr-mount-btn.active {
+      background: #1a1a1a;
+      color: #fff;
+    }
+
+    /* slider params */
+    .sr-param { margin-bottom: 14px; }
+    .sr-param:last-child { margin-bottom: 0; }
+    .sr-param-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+    .sr-param-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #444;
+    }
+    .sr-param-value {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #4a9a4a;
+    }
+    .sr-param-desc {
+      font-size: 0.73rem;
+      color: #aaa;
+      margin-bottom: 5px;
+      line-height: 1.4;
+    }
+
+    .sr-slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(to right, #5aaa5a var(--pct, 50%), #ddd var(--pct, 50%));
+      outline: none;
+      cursor: pointer;
+    }
+    .sr-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid #999;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .sr-slider::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid #999;
+      cursor: pointer;
+    }
+
+    /* right viewport */
+    .sr-viewport {
+      flex: 1;
+      position: relative;
+      background: #e8e4dc;
+      overflow: hidden;
+    }
+
+    #sr-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .sr-view-buttons {
+      position: absolute;
+      right: 14px;
+      bottom: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sr-view-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.85);
+      border: 1.5px solid #ccc;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #444;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.1s;
+    }
+    .sr-view-btn:hover { background: #fff; }
+
+    .sr-status-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 38px;
+      background: rgba(245,241,234,0.92);
+      border-top: 1px solid #ddd8ce;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 0 16px;
+      font-size: 0.78rem;
+      color: #555;
+    }
+    .sr-status-bar span { white-space: nowrap; }
+    .sr-status-bar b { color: #1a1a1a; }
+
+    /* viewport label */
+    .sr-viewport-label {
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      font-size: 0.78rem;
+      color: #aaa;
+      pointer-events: none;
+    }
+
+    /* technical notes below widget */
+    .tech-section {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .tech-section h2 {
+      font-size: 1.3rem;
+      color: #0366d6;
+      border-bottom: 2px solid #e1e4e8;
+      padding-bottom: 10px;
+      margin-bottom: 16px;
+    }
+    .tech-section h3 { font-size: 1rem; margin: 16px 0 8px; color: #333; }
+    .tech-section p { font-size: 0.93rem; color: #444; line-height: 1.7; margin-bottom: 10px; }
+    .tech-section ul { margin-left: 20px; }
+    .tech-section li { font-size: 0.93rem; color: #444; margin-bottom: 6px; line-height: 1.6; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #888;
+      font-size: 0.85rem;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 680px) {
+      .sr-main { flex-direction: column; height: auto; }
+      .sr-panel { width: 100%; min-width: unset; height: auto; border-right: none; border-bottom: 1px solid #e8e4dc; }
+      .sr-viewport { height: 380px; }
+      .sr-topbar { flex-wrap: wrap; height: auto; padding: 10px 14px; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">Julian B. Stoller</a>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/projects/" class="nav-link">Projects</a></li>
+        <li><a href="/awards/" class="nav-link">Awards</a></li>
+        <li><a href="/resume/" class="nav-link">Resume</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <div class="page-container">
+      <a href="/Website/small-misc-cad/" class="back-link">← Back to Misc CAD Projects</a>
+
+      <div class="page-header">
+        <h1>Parametric Strain Relief</h1>
+        <p class="subtitle">3D Printable Cable Grommet · Fully Customizable</p>
+      </div>
+
+      <div class="prose-section">
+        <p>A parametric strain relief (also called a cable grommet) is a simple but surprisingly useful part: it grips a cable where it passes through a panel or enclosure, preventing tension from reaching a solder joint or connector inside. This design is fully parametric — drag the sliders to size it for any cable and panel thickness, then download a print-ready STL.</p>
+        <p>Two mounting styles are supported. <strong>Panel-Mount</strong> adds a wide flange that rests on the outer face of the panel; the body passes through a drilled hole. <strong>Inline</strong> removes the flange for use as a pure grip sleeve or where the hole edges provide retention. Longitudinal fins around the body improve hand-grip when installing and increase radial friction against the hole wall.</p>
+      </div>
+
+      <!-- ═══════════════════════════════════════════ WIDGET ═══════ -->
+      <div class="sr-widget">
+
+        <div class="sr-topbar">
+          <div class="sr-topbar-left">
+            <div class="sr-title">StrainRelief <span>· Parametric</span></div>
+          </div>
+          <div class="sr-topbar-right">
+            <button class="sr-btn" id="btn-download">⬇ Download STL</button>
+            <div class="sr-units">
+              <button class="sr-unit active" data-unit="mm">mm</button>
+              <button class="sr-unit" data-unit="cm">cm</button>
+              <button class="sr-unit" data-unit="in">in</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="sr-main">
+
+          <!-- ── Left panel ─────────────────────────────── -->
+          <div class="sr-panel">
+
+            <!-- Stats -->
+            <div class="sr-stats">
+              <div class="sr-stat">
+                <div class="sr-stat-label">Hole Dia</div>
+                <div class="sr-stat-value"><span id="stat-hole">6.00</span><small id="stat-unit-0"> mm</small></div>
+              </div>
+              <div class="sr-stat">
+                <div class="sr-stat-label">Body Dia</div>
+                <div class="sr-stat-value"><span id="stat-body">18.00</span><small id="stat-unit-1"> mm</small></div>
+              </div>
+              <div class="sr-stat">
+                <div class="sr-stat-label">Length</div>
+                <div class="sr-stat-value"><span id="stat-length">40.00</span><small id="stat-unit-2"> mm</small></div>
+              </div>
+              <div class="sr-stat" id="stat-flange-group">
+                <div class="sr-stat-label">Flange Dia</div>
+                <div class="sr-stat-value"><span id="stat-flange">28.00</span><small id="stat-unit-3"> mm</small></div>
+              </div>
+            </div>
+
+            <!-- Mount Type -->
+            <div class="sr-section">
+              <div class="sr-section-header" data-target="sec-mount">
+                Mount Type <span class="sr-arrow" id="arrow-mount">▲</span>
+              </div>
+              <div class="sr-section-body" id="sec-mount">
+                <p class="sr-desc">Panel-Mount adds a flange that rests on the enclosure face. Inline is a grip sleeve with no flange.</p>
+                <div class="sr-mount-toggle">
+                  <button class="sr-mount-btn active" data-mount="panel">Panel-Mount</button>
+                  <button class="sr-mount-btn" data-mount="inline">Inline</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Body Shape -->
+            <div class="sr-section">
+              <div class="sr-section-header" data-target="sec-body">
+                Body Shape <span class="sr-arrow" id="arrow-body">▲</span>
+              </div>
+              <div class="sr-section-body" id="sec-body">
+
+                <div class="sr-param">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Cable Hole Diameter</span>
+                    <span class="sr-param-value" id="val-hole">6.00</span>
+                  </div>
+                  <p class="sr-param-desc">Inner through-hole — size to your cable's outer diameter.</p>
+                  <input type="range" class="sr-slider" id="sl-hole" min="1" max="30" step="0.5" value="6">
+                </div>
+
+                <div class="sr-param">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Body Outer Diameter</span>
+                    <span class="sr-param-value" id="val-body">18.00</span>
+                  </div>
+                  <p class="sr-param-desc">Outer diameter of the main body cylinder.</p>
+                  <input type="range" class="sr-slider" id="sl-body" min="6" max="60" step="0.5" value="18">
+                </div>
+
+                <div class="sr-param">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Body Length</span>
+                    <span class="sr-param-value" id="val-length">40.00</span>
+                  </div>
+                  <p class="sr-param-desc">Total axial length of the grip body.</p>
+                  <input type="range" class="sr-slider" id="sl-length" min="8" max="100" step="1" value="40">
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Fins -->
+            <div class="sr-section">
+              <div class="sr-section-header" data-target="sec-fins">
+                Fins <span class="sr-arrow" id="arrow-fins">▲</span>
+              </div>
+              <div class="sr-section-body" id="sec-fins">
+
+                <div class="sr-param">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Number of Fins</span>
+                    <span class="sr-param-value" id="val-numfins">6</span>
+                  </div>
+                  <p class="sr-param-desc">Longitudinal fins running along the body for grip and retention.</p>
+                  <input type="range" class="sr-slider" id="sl-numfins" min="0" max="12" step="1" value="6">
+                </div>
+
+                <div class="sr-param">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Fin Height</span>
+                    <span class="sr-param-value" id="val-finh">3.00</span>
+                  </div>
+                  <p class="sr-param-desc">How far each fin protrudes radially from the body surface.</p>
+                  <input type="range" class="sr-slider" id="sl-finh" min="0" max="10" step="0.5" value="3">
+                </div>
+
+                <div class="sr-param">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Fin Width</span>
+                    <span class="sr-param-value" id="val-finw">3.00</span>
+                  </div>
+                  <p class="sr-param-desc">Tangential thickness of each fin.</p>
+                  <input type="range" class="sr-slider" id="sl-finw" min="1" max="8" step="0.5" value="3">
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Flange (panel mode only) -->
+            <div class="sr-section" id="sec-flange-container">
+              <div class="sr-section-header" data-target="sec-flange">
+                Flange <span class="sr-badge">PANEL ONLY</span> <span class="sr-arrow" id="arrow-flange">▲</span>
+              </div>
+              <div class="sr-section-body" id="sec-flange">
+
+                <div class="sr-param">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Flange Diameter</span>
+                    <span class="sr-param-value" id="val-flanged">28.00</span>
+                  </div>
+                  <p class="sr-param-desc">Outer diameter of the retaining flange.</p>
+                  <input type="range" class="sr-slider" id="sl-flanged" min="10" max="80" step="0.5" value="28">
+                </div>
+
+                <div class="sr-param">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Flange Thickness</span>
+                    <span class="sr-param-value" id="val-flanget">4.00</span>
+                  </div>
+                  <p class="sr-param-desc">Axial height of the flange disk.</p>
+                  <input type="range" class="sr-slider" id="sl-flanget" min="1" max="12" step="0.5" value="4">
+                </div>
+
+              </div>
+            </div>
+
+          </div><!-- /.sr-panel -->
+
+          <!-- ── Right viewport ─────────────────────────── -->
+          <div class="sr-viewport">
+            <canvas id="sr-canvas"></canvas>
+            <div class="sr-viewport-label">StrainRelief · Parametric</div>
+
+            <div class="sr-view-buttons">
+              <button class="sr-view-btn" data-view="top" title="Top view">T</button>
+              <button class="sr-view-btn" data-view="front" title="Front view">F</button>
+              <button class="sr-view-btn" data-view="iso" title="Isometric view">I</button>
+              <button class="sr-view-btn" data-view="side" title="Side view">S</button>
+            </div>
+
+            <div class="sr-status-bar">
+              <span>Hole Ø <b id="sb-hole">6.00</b>mm</span>
+              <span>Body Ø <b id="sb-body">18.00</b>mm</span>
+              <span>L <b id="sb-length">40.00</b>mm</span>
+              <span id="sb-flange-group">Flange Ø <b id="sb-flange">28.00</b>mm</span>
+            </div>
+          </div>
+
+        </div><!-- /.sr-main -->
+      </div><!-- /.sr-widget -->
+      <!-- ══════════════════════════════════════════════════════════ -->
+
+      <div class="tech-section">
+        <h2>Design Notes</h2>
+
+        <h3>Print Settings</h3>
+        <p>Print with 3–4 perimeters and 30–40% infill in PETG or ABS for good flex-resistance. The flange face benefits from a brim to prevent warping on heated-bed printers. No supports are needed for most orientations — print with the flat flange face down.</p>
+
+        <h3>Sizing Guide</h3>
+        <ul>
+          <li><strong>Hole diameter:</strong> match to your cable OD, or add 0.3–0.5 mm for a press fit, or add 1–1.5 mm for a slip fit you can tighten with a zip tie.</li>
+          <li><strong>Body diameter:</strong> should be 2–4 mm larger than the panel hole for the fins to bite. Scale fins down if clearance is tight.</li>
+          <li><strong>Flange diameter:</strong> at least 4 mm larger than the panel hole on each side so the flange catches cleanly.</li>
+          <li><strong>Body length:</strong> should exceed panel thickness by at least 10 mm to provide enough grip length for the cable.</li>
+        </ul>
+
+        <h3>Parametric Design Approach</h3>
+        <p>The geometry is generated live in the browser using Three.js BufferGeometry. Each slider update rebuilds the mesh from scratch using analytic geometry — no CSG library is needed because the hollow-cylinder and fin shapes are generated directly as indexed triangle meshes. The STL export writes a binary STL file entirely in JavaScript without any server round-trip.</p>
+      </div>
+
+      <footer>
+        <p>Parametric Strain Relief · Julian B. Stoller</p>
+      </footer>
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════ THREE.JS WIDGET SCRIPT ══ -->
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+    import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+    import { mergeGeometries } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/utils/BufferGeometryUtils.js';
+
+    // ── State ─────────────────────────────────────────────────────────
+    const state = {
+      unit: 'mm',
+      mountType: 'panel',
+      holeD:   6,
+      bodyD:   18,
+      bodyL:   40,
+      numFins: 6,
+      finH:    3,
+      finW:    3,
+      flangeD: 28,
+      flangeT: 4,
+    };
+
+    const unitScale = { mm: 1, cm: 0.1, in: 1/25.4 };
+    const unitPrec  = { mm: 2, cm: 3, in: 3 };
+
+    function displayVal(mmVal) {
+      const s = unitScale[state.unit];
+      const p = unitPrec[state.unit];
+      return (mmVal * s).toFixed(p);
+    }
+
+    // ── Three.js scene setup ──────────────────────────────────────────
+    const canvas     = document.getElementById('sr-canvas');
+    const viewport   = canvas.parentElement;
+    const renderer   = new THREE.WebGLRenderer({ canvas, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type    = THREE.PCFSoftShadowMap;
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xe8e4dc);
+
+    const camera = new THREE.PerspectiveCamera(42, 1, 0.5, 2000);
+    camera.position.set(90, 70, 90);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping  = true;
+    controls.dampingFactor  = 0.06;
+    controls.minDistance    = 20;
+    controls.maxDistance    = 500;
+    controls.target.set(0, 20, 0);
+    controls.update();
+
+    // Lighting
+    const ambient = new THREE.AmbientLight(0xfff8f0, 0.55);
+    scene.add(ambient);
+
+    const sun = new THREE.DirectionalLight(0xffffff, 1.3);
+    sun.position.set(60, 120, 80);
+    sun.castShadow = true;
+    sun.shadow.mapSize.set(1024, 1024);
+    sun.shadow.camera.near = 1;
+    sun.shadow.camera.far  = 400;
+    sun.shadow.camera.left = sun.shadow.camera.bottom = -80;
+    sun.shadow.camera.right = sun.shadow.camera.top   =  80;
+    scene.add(sun);
+
+    const fill = new THREE.DirectionalLight(0xfff4e0, 0.4);
+    fill.position.set(-40, 20, -60);
+    scene.add(fill);
+
+    const rim = new THREE.DirectionalLight(0xe8f4ff, 0.25);
+    rim.position.set(0, -30, 80);
+    scene.add(rim);
+
+    // Grid
+    const grid = new THREE.GridHelper(300, 30, 0xc8c4bc, 0xd4d0c8);
+    grid.receiveShadow = true;
+    scene.add(grid);
+
+    // Shadow plane
+    const shadowPlane = new THREE.Mesh(
+      new THREE.PlaneGeometry(300, 300),
+      new THREE.ShadowMaterial({ opacity: 0.08 })
+    );
+    shadowPlane.rotation.x = -Math.PI / 2;
+    shadowPlane.receiveShadow = true;
+    scene.add(shadowPlane);
+
+    // Model mesh
+    const modelMat = new THREE.MeshPhongMaterial({
+      color: 0xc8814a,
+      specular: 0x553322,
+      shininess: 28,
+    });
+    let modelMesh = new THREE.Mesh(new THREE.BufferGeometry(), modelMat);
+    modelMesh.castShadow = true;
+    scene.add(modelMesh);
+
+    // ── Geometry builders ─────────────────────────────────────────────
+
+    // Hollow cylinder, axis along Y, centered at origin
+    function makeHollowCylinder(innerR, outerR, height, segments) {
+      const verts = [], norms = [];
+      const hh = height / 2;
+
+      for (let i = 0; i < segments; i++) {
+        const a0 = (i       / segments) * Math.PI * 2;
+        const a1 = ((i + 1) / segments) * Math.PI * 2;
+        const c0 = Math.cos(a0), s0 = Math.sin(a0);
+        const c1 = Math.cos(a1), s1 = Math.sin(a1);
+        const mc = Math.cos((a0 + a1) / 2), ms = Math.sin((a0 + a1) / 2);
+
+        // Outer wall — normal points outward (+XZ)
+        verts.push(
+          outerR*c0, -hh, outerR*s0,   outerR*c0, +hh, outerR*s0,   outerR*c1, +hh, outerR*s1,
+          outerR*c0, -hh, outerR*s0,   outerR*c1, +hh, outerR*s1,   outerR*c1, -hh, outerR*s1
+        );
+        for (let k = 0; k < 6; k++) norms.push(mc, 0, ms);
+
+        // Inner wall — normal points inward (-XZ), reversed winding
+        verts.push(
+          innerR*c1, -hh, innerR*s1,   innerR*c1, +hh, innerR*s1,   innerR*c0, +hh, innerR*s0,
+          innerR*c1, -hh, innerR*s1,   innerR*c0, +hh, innerR*s0,   innerR*c0, -hh, innerR*s0
+        );
+        for (let k = 0; k < 6; k++) norms.push(-mc, 0, -ms);
+
+        // Top cap (y = +hh, normal = +Y)
+        verts.push(
+          innerR*c0, +hh, innerR*s0,   outerR*c0, +hh, outerR*s0,   outerR*c1, +hh, outerR*s1,
+          innerR*c0, +hh, innerR*s0,   outerR*c1, +hh, outerR*s1,   innerR*c1, +hh, innerR*s1
+        );
+        for (let k = 0; k < 6; k++) norms.push(0, 1, 0);
+
+        // Bottom cap (y = -hh, normal = -Y)
+        verts.push(
+          outerR*c0, -hh, outerR*s0,   innerR*c0, -hh, innerR*s0,   innerR*c1, -hh, innerR*s1,
+          outerR*c0, -hh, outerR*s0,   innerR*c1, -hh, innerR*s1,   outerR*c1, -hh, outerR*s1
+        );
+        for (let k = 0; k < 6; k++) norms.push(0, -1, 0);
+      }
+
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.Float32BufferAttribute(verts, 3));
+      geo.setAttribute('normal',   new THREE.Float32BufferAttribute(norms, 3));
+      return geo;
+    }
+
+    // Solid cylinder cap (for fin tops, etc.) — axis along Y
+    function makeSolidCylinder(r, height, segments) {
+      return makeHollowCylinder(0.001, r, height, segments);
+    }
+
+    // Single fin geometry positioned at angle `angle` around body of radius `bodyR`
+    function makeFinGeo(bodyR, finH, finW, finDepth, angle) {
+      // Box: X = radial (finH), Y = axial (finDepth), Z = tangential (finW)
+      const geo = new THREE.BoxGeometry(finH, finDepth, finW);
+      // Center the box so its inner face aligns with bodyR:
+      // inner face is at x = -finH/2 from center, outer at +finH/2
+      // We want inner face at bodyR, so center at bodyR + finH/2
+      const T = new THREE.Matrix4().makeTranslation(bodyR + finH / 2, 0, 0);
+      const R = new THREE.Matrix4().makeRotationY(angle);
+      geo.applyMatrix4(R.multiply(T));
+      return geo;
+    }
+
+    function buildGeometry(p) {
+      const innerR  = Math.max(0.5, p.holeD  / 2);
+      const outerR  = Math.max(innerR + 1, p.bodyD  / 2);
+      const flangeR = Math.max(outerR + 1, p.flangeD / 2);
+      const SEG     = 48;
+
+      const geos = [];
+
+      // Main hollow body
+      geos.push(makeHollowCylinder(innerR, outerR, p.bodyL, SEG));
+
+      // Fins
+      if (p.numFins > 0 && p.finH > 0.1 && p.finW > 0.1) {
+        const finDepth = p.bodyL * 0.85;
+        for (let i = 0; i < p.numFins; i++) {
+          const angle = (i / p.numFins) * Math.PI * 2;
+          geos.push(makeFinGeo(outerR, p.finH, p.finW, finDepth, angle));
+        }
+      }
+
+      // Flange (panel-mount mode)
+      if (p.mountType === 'panel') {
+        const flangeGeo = makeHollowCylinder(innerR, flangeR, p.flangeT, SEG);
+        // Place directly below the body
+        flangeGeo.translate(0, -(p.bodyL / 2 + p.flangeT / 2), 0);
+        geos.push(flangeGeo);
+      }
+
+      const merged = mergeGeometries(geos);
+
+      // Shift so bottom sits on y = 0
+      merged.computeBoundingBox();
+      const minY = merged.boundingBox.min.y;
+      merged.translate(0, -minY, 0);
+
+      return merged;
+    }
+
+    // ── STL export ────────────────────────────────────────────────────
+    function geometryToBinarySTL(geo) {
+      const pos   = geo.getAttribute('position');
+      const count = pos.count / 3; // triangles
+
+      const buf  = new ArrayBuffer(80 + 4 + count * 50);
+      const view = new DataView(buf);
+
+      // 80-byte header (ascii label)
+      const header = 'StrainRelief-Parametric by Julian B. Stoller';
+      for (let i = 0; i < Math.min(header.length, 80); i++) {
+        view.setUint8(i, header.charCodeAt(i));
+      }
+      view.setUint32(80, count, true);
+
+      const norm = geo.getAttribute('normal');
+
+      for (let t = 0; t < count; t++) {
+        const base = 84 + t * 50;
+        const vi   = t * 3;
+
+        // Normal (from first vertex of triangle)
+        view.setFloat32(base +  0, norm.getX(vi), true);
+        view.setFloat32(base +  4, norm.getY(vi), true);
+        view.setFloat32(base +  8, norm.getZ(vi), true);
+
+        // 3 vertices
+        for (let j = 0; j < 3; j++) {
+          const idx = vi + j;
+          view.setFloat32(base + 12 + j * 12 + 0, pos.getX(idx), true);
+          view.setFloat32(base + 12 + j * 12 + 4, pos.getY(idx), true);
+          view.setFloat32(base + 12 + j * 12 + 8, pos.getZ(idx), true);
+        }
+
+        view.setUint16(base + 48, 0, true); // attribute byte count
+      }
+
+      return buf;
+    }
+
+    // ── UI update ─────────────────────────────────────────────────────
+    function clampState() {
+      // Enforce logical constraints
+      state.holeD   = Math.max(1,  state.holeD);
+      state.bodyD   = Math.max(state.holeD + 2, state.bodyD);
+      state.flangeD = Math.max(state.bodyD + 4,  state.flangeD);
+    }
+
+    function rebuildModel() {
+      clampState();
+
+      const geo = buildGeometry(state);
+      modelMesh.geometry.dispose();
+      modelMesh.geometry = geo;
+
+      // Keep camera target centred on model height
+      geo.computeBoundingBox();
+      const cy = (geo.boundingBox.min.y + geo.boundingBox.max.y) / 2;
+      controls.target.set(0, cy, 0);
+
+      updateUI();
+    }
+
+    function updateUI() {
+      const u = state.unit;
+      const s = unitScale[u];
+      const p = unitPrec[u];
+      const fmt = v => (v * s).toFixed(p);
+
+      // Stats
+      document.getElementById('stat-hole').textContent   = fmt(state.holeD);
+      document.getElementById('stat-body').textContent   = fmt(state.bodyD);
+      document.getElementById('stat-length').textContent = fmt(state.bodyL);
+      document.getElementById('stat-flange').textContent = fmt(state.flangeD);
+
+      // Param value labels
+      document.getElementById('val-hole').textContent    = fmt(state.holeD);
+      document.getElementById('val-body').textContent    = fmt(state.bodyD);
+      document.getElementById('val-length').textContent  = fmt(state.bodyL);
+      document.getElementById('val-numfins').textContent = state.numFins;
+      document.getElementById('val-finh').textContent    = fmt(state.finH);
+      document.getElementById('val-finw').textContent    = fmt(state.finW);
+      document.getElementById('val-flanged').textContent = fmt(state.flangeD);
+      document.getElementById('val-flanget').textContent = fmt(state.flangeT);
+
+      // Unit labels in stats
+      ['stat-unit-0','stat-unit-1','stat-unit-2','stat-unit-3'].forEach(id => {
+        document.getElementById(id).textContent = ' ' + u;
+      });
+
+      // Status bar (always mm for the raw numbers)
+      document.getElementById('sb-hole').textContent   = state.holeD.toFixed(2);
+      document.getElementById('sb-body').textContent   = state.bodyD.toFixed(2);
+      document.getElementById('sb-length').textContent = state.bodyL.toFixed(2);
+      document.getElementById('sb-flange').textContent = state.flangeD.toFixed(2);
+
+      // Show/hide flange section
+      const showFlange = state.mountType === 'panel';
+      document.getElementById('sec-flange-container').style.display = showFlange ? '' : 'none';
+      document.getElementById('stat-flange-group').style.display    = showFlange ? '' : 'none';
+      document.getElementById('sb-flange-group').style.display      = showFlange ? '' : 'none';
+
+      // Update slider gradient fills
+      updateSliderFill(document.getElementById('sl-hole'),    state.holeD);
+      updateSliderFill(document.getElementById('sl-body'),    state.bodyD);
+      updateSliderFill(document.getElementById('sl-length'),  state.bodyL);
+      updateSliderFill(document.getElementById('sl-numfins'), state.numFins);
+      updateSliderFill(document.getElementById('sl-finh'),    state.finH);
+      updateSliderFill(document.getElementById('sl-finw'),    state.finW);
+      updateSliderFill(document.getElementById('sl-flanged'), state.flangeD);
+      updateSliderFill(document.getElementById('sl-flanget'), state.flangeT);
+    }
+
+    function updateSliderFill(el, val) {
+      const pct = ((val - el.min) / (el.max - el.min)) * 100;
+      el.style.setProperty('--pct', pct + '%');
+    }
+
+    // ── Camera presets ────────────────────────────────────────────────
+    const CAM_DIST = 110;
+
+    function animateCameraTo(target) {
+      geo_computedH(); // ensure controls.target is up-to-date
+      const tgt = controls.target.clone();
+      const endPos = {
+        top:   new THREE.Vector3(0,        CAM_DIST * 1.5, 0.001),
+        front: new THREE.Vector3(0,        tgt.y,          CAM_DIST),
+        iso:   new THREE.Vector3(CAM_DIST * 0.8,  CAM_DIST * 0.7, CAM_DIST * 0.8),
+        side:  new THREE.Vector3(CAM_DIST, tgt.y,          0),
+      }[target] || new THREE.Vector3(CAM_DIST * 0.8, CAM_DIST * 0.7, CAM_DIST * 0.8);
+
+      const startPos = camera.position.clone();
+      let t = 0;
+      function tick() {
+        t += 0.06;
+        if (t >= 1) {
+          camera.position.copy(endPos);
+          controls.update();
+          return;
+        }
+        camera.position.lerpVectors(startPos, endPos, easeInOut(t));
+        controls.update();
+        requestAnimationFrame(tick);
+      }
+      tick();
+    }
+
+    function easeInOut(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+    function geo_computedH() {
+      // No-op — controls.target already updated in rebuildModel
+    }
+
+    // ── Resize ────────────────────────────────────────────────────────
+    function onResize() {
+      const w = viewport.clientWidth;
+      const h = viewport.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    }
+    new ResizeObserver(onResize).observe(viewport);
+    onResize();
+
+    // ── Render loop ───────────────────────────────────────────────────
+    (function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    })();
+
+    // ── Wire up controls ──────────────────────────────────────────────
+
+    // Slider helpers
+    function wireSlider(id, key, parse = parseFloat) {
+      const el = document.getElementById(id);
+      el.addEventListener('input', () => {
+        state[key] = parse(el.value);
+        rebuildModel();
+      });
+    }
+
+    wireSlider('sl-hole',    'holeD');
+    wireSlider('sl-body',    'bodyD');
+    wireSlider('sl-length',  'bodyL');
+    wireSlider('sl-numfins', 'numFins', parseInt);
+    wireSlider('sl-finh',    'finH');
+    wireSlider('sl-finw',    'finW');
+    wireSlider('sl-flanged', 'flangeD');
+    wireSlider('sl-flanget', 'flangeT');
+
+    // Mount type
+    document.querySelectorAll('.sr-mount-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.sr-mount-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.mountType = btn.dataset.mount;
+        rebuildModel();
+      });
+    });
+
+    // Unit toggle
+    document.querySelectorAll('.sr-unit').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.sr-unit').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.unit = btn.dataset.unit;
+        updateUI();
+      });
+    });
+
+    // Section collapse
+    document.querySelectorAll('.sr-section-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const target = header.dataset.target;
+        const body   = document.getElementById(target);
+        const arrow  = header.querySelector('.sr-arrow');
+        if (!body) return;
+        const collapsed = body.classList.toggle('hidden');
+        if (arrow) arrow.textContent = collapsed ? '▼' : '▲';
+      });
+    });
+
+    // View buttons
+    document.querySelectorAll('.sr-view-btn').forEach(btn => {
+      btn.addEventListener('click', () => animateCameraTo(btn.dataset.view));
+    });
+
+    // Download STL
+    document.getElementById('btn-download').addEventListener('click', () => {
+      const geo = modelMesh.geometry;
+      if (!geo) return;
+      const buf  = geometryToBinarySTL(geo);
+      const blob = new Blob([buf], { type: 'application/octet-stream' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href     = url;
+      const dims = `hole${state.holeD}mm_body${state.bodyD}mm_L${state.bodyL}mm`;
+      a.download = `strain-relief_${dims}.stl`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // ── Init ──────────────────────────────────────────────────────────
+    rebuildModel();
+  </script>
+</body>
+</html>
