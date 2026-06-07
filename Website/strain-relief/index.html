@@ -330,7 +330,7 @@
           <li><strong>Wall thickness:</strong> 2-3 mm is typical. Go thinner for cables under 6 mm OD; thicker for cables over 15 mm OD or rough installation environments.</li>
         </ul>
         <h3>How the Geometry Is Generated</h3>
-        <p>Circular and square profiles are analytic triangle meshes built directly in Three.js without CSG or mesh booleans. Each face's outward normals are derived analytically from the frustum's slant angle, giving correct shading on tapered surfaces. The helical profile sweeps a tube along a parametric helix curve using Three.js's TubeGeometry. All three profiles export as binary STL written directly from the geometry buffer in JavaScript, with no server round-trip.</p>
+        <p>Circular and square profiles are analytic triangle meshes built directly in Three.js without CSG or mesh booleans. Each face's outward normals are derived analytically from the frustum's slant angle, giving correct shading on tapered surfaces. The helical profile sweeps a rectangular cross-section along a parametric helix curve using a stable radial/vertical frame (no Frenet twist). All three profiles export as binary STL written directly from the geometry buffer in JavaScript, with no server round-trip.</p>
       </div>
 
       <footer><p>Parametric Strain Relief · Julian B. Stoller</p></footer>
@@ -513,7 +513,7 @@
       return geo;
     }
 
-    // Helix curve for TubeGeometry — radius tapers linearly from Rbot to Rtop
+    // Helix curve — radius tapers linearly from Rbot to Rtop
     class HelixCurve extends THREE.Curve {
       constructor(Rbot, Rtop, H, turns) { super(); this._Rb=Rbot; this._Rt=Rtop; this._H=H; this._N=turns; }
       getPoint(t, out) {
@@ -523,57 +523,60 @@
       }
     }
 
-    // Sweep a rectangle along a curve using Frenet frames.
-    // halfW = half-width along the normal (radial), halfH = half-height along the binormal (axial).
-    // Corner order: 0=BL, 1=BR, 2=TR, 3=TL in the N-B plane.
-    // Windings verified analytically so outward normals are correct with THREE.FrontSide.
+    // Sweep a rectangle along a helix using a STABLE frame to avoid Frenet twist:
+    //   N = radial-outward from the Y axis   (width direction)
+    //   B = (0,1,0) vertical                 (height direction)
+    // Corner order: 0=BL(inner-bot), 1=BR(outer-bot), 2=TR(outer-top), 3=TL(inner-top)
+    // All four side windings and both cap windings verified analytically.
     function buildHelixRectTube(curve, segments, halfW, halfH) {
-      const { normals, binormals, tangents } = curve.computeFrenetFrames(segments, false);
+      const pos = [], nrm = [];
 
-      const corners = [];
+      const corners = [], radials = [];
       for (let i = 0; i <= segments; i++) {
         const p = curve.getPoint(i / segments);
-        const N = normals[i], B = binormals[i];
+        const rl = Math.sqrt(p.x*p.x + p.z*p.z) || 1;
+        const Nx = p.x/rl, Nz = p.z/rl;
+        radials.push([Nx, Nz]);
         corners.push([
-          new THREE.Vector3(p.x-halfW*N.x-halfH*B.x, p.y-halfW*N.y-halfH*B.y, p.z-halfW*N.z-halfH*B.z),
-          new THREE.Vector3(p.x+halfW*N.x-halfH*B.x, p.y+halfW*N.y-halfH*B.y, p.z+halfW*N.z-halfH*B.z),
-          new THREE.Vector3(p.x+halfW*N.x+halfH*B.x, p.y+halfW*N.y+halfH*B.y, p.z+halfW*N.z+halfH*B.z),
-          new THREE.Vector3(p.x-halfW*N.x+halfH*B.x, p.y-halfW*N.y+halfH*B.y, p.z-halfW*N.z+halfH*B.z),
+          new THREE.Vector3(p.x - halfW*Nx, p.y - halfH, p.z - halfW*Nz), // BL inner-bot
+          new THREE.Vector3(p.x + halfW*Nx, p.y - halfH, p.z + halfW*Nz), // BR outer-bot
+          new THREE.Vector3(p.x + halfW*Nx, p.y + halfH, p.z + halfW*Nz), // TR outer-top
+          new THREE.Vector3(p.x - halfW*Nx, p.y + halfH, p.z - halfW*Nz), // TL inner-top
         ]);
       }
 
-      const pos = [], nrm = [];
       function addTri(v0,v1,v2,nx,ny,nz) {
-        pos.push(v0.x,v0.y,v0.z,v1.x,v1.y,v1.z,v2.x,v2.y,v2.z);
-        nrm.push(nx,ny,nz,nx,ny,nz,nx,ny,nz);
+        pos.push(v0.x,v0.y,v0.z, v1.x,v1.y,v1.z, v2.x,v2.y,v2.z);
+        nrm.push(nx,ny,nz, nx,ny,nz, nx,ny,nz);
       }
-
-      // (a,b) pairs give CCW winding from outside; outward normal derived analytically
-      const sides = [
-        { a:0,b:1, nf:(N,B)=>[-B.x,-B.y,-B.z] },
-        { a:1,b:2, nf:(N,B)=>[ N.x, N.y, N.z] },
-        { a:2,b:3, nf:(N,B)=>[ B.x, B.y, B.z] },
-        { a:3,b:0, nf:(N,B)=>[-N.x,-N.y,-N.z] },
-      ];
 
       for (let i = 0; i < segments; i++) {
         const c0=corners[i], c1=corners[i+1];
-        const N0=normals[i],B0=binormals[i],N1=normals[i+1],B1=binormals[i+1];
-        for (const {a,b,nf} of sides) {
-          const [nx0,ny0,nz0]=nf(N0,B0), [nx1,ny1,nz1]=nf(N1,B1);
-          let nx=(nx0+nx1)/2,ny=(ny0+ny1)/2,nz=(nz0+nz1)/2;
-          const l=Math.sqrt(nx*nx+ny*ny+nz*nz)||1; nx/=l;ny/=l;nz/=l;
-          addTri(c0[a],c0[b],c1[b],nx,ny,nz);
-          addTri(c0[a],c1[b],c1[a],nx,ny,nz);
-        }
+        let Rmx=(radials[i][0]+radials[i+1][0])/2, Rmz=(radials[i][1]+radials[i+1][1])/2;
+        const rl=Math.sqrt(Rmx*Rmx+Rmz*Rmz)||1; Rmx/=rl; Rmz/=rl;
+        // Bottom  (0->1->next1->next0): normal (0,-1,0)
+        addTri(c0[0],c0[1],c1[1], 0,-1,0); addTri(c0[0],c1[1],c1[0], 0,-1,0);
+        // Outer   (1->2->next2->next1): normal +radial
+        addTri(c0[1],c0[2],c1[2], Rmx,0,Rmz); addTri(c0[1],c1[2],c1[1], Rmx,0,Rmz);
+        // Top     (2->3->next3->next2): normal (0,+1,0)
+        addTri(c0[2],c0[3],c1[3], 0,1,0); addTri(c0[2],c1[3],c1[2], 0,1,0);
+        // Inner   (3->0->next0->next3): normal -radial
+        addTri(c0[3],c0[0],c1[0], -Rmx,0,-Rmz); addTri(c0[3],c1[0],c1[3], -Rmx,0,-Rmz);
       }
 
-      // Start cap: outward normal = -T
-      { const [BL,BR,TR,TL]=corners[0]; const T=tangents[0];
-        addTri(BL,TL,TR,-T.x,-T.y,-T.z); addTri(BL,TR,BR,-T.x,-T.y,-T.z); }
-      // End cap: outward normal = +T
-      { const [BL,BR,TR,TL]=corners[segments]; const T=tangents[segments];
-        addTri(BL,BR,TR,T.x,T.y,T.z); addTri(BL,TR,TL,T.x,T.y,T.z); }
+      // End caps via finite-difference tangent
+      function getTangent(t) {
+        const e=1e-4, a=curve.getPoint(Math.max(0,t-e)), b=curve.getPoint(Math.min(1,t+e));
+        const dx=b.x-a.x,dy=b.y-a.y,dz=b.z-a.z,l=Math.sqrt(dx*dx+dy*dy+dz*dz)||1;
+        return [dx/l,dy/l,dz/l];
+      }
+      const [tsx,tsy,tsz]=getTangent(0), [tex,tey,tez]=getTangent(1);
+      // Start cap: normal = -T  (BL,TL,TR + BL,TR,BR)
+      { const [BL,BR,TR,TL]=corners[0];
+        addTri(BL,TL,TR,-tsx,-tsy,-tsz); addTri(BL,TR,BR,-tsx,-tsy,-tsz); }
+      // End cap:   normal = +T  (BL,BR,TR + BL,TR,TL)
+      { const [BL,BR,TR,TL]=corners[segments];
+        addTri(BL,BR,TR,tex,tey,tez); addTri(BL,TR,TL,tex,tey,tez); }
 
       const geo = new THREE.BufferGeometry();
       geo.setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(pos),3));
