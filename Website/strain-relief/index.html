@@ -7,273 +7,72 @@
   <link rel="stylesheet" href="/assets/css/style.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.6;
-      color: #222;
-      background: #f9f9f9;
-    }
-
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #222; background: #f9f9f9; }
     .page-container { max-width: 960px; margin: 0 auto; padding: 40px 20px 60px; }
-
-    .back-link {
-      display: inline-block;
-      margin-bottom: 20px;
-      padding: 8px 16px;
-      background: #f0f0f0;
-      border-radius: 4px;
-      text-decoration: none;
-      color: #0366d6;
-      font-size: 0.9rem;
-    }
+    .back-link { display: inline-block; margin-bottom: 20px; padding: 8px 16px; background: #f0f0f0; border-radius: 4px; text-decoration: none; color: #0366d6; font-size: 0.9rem; }
     .back-link:hover { background: #e0e0e0; }
-
     .page-header { margin-bottom: 32px; }
     .page-header h1 { font-size: 2rem; margin-bottom: 8px; color: #1a1a1a; }
     .page-header .subtitle { color: #666; font-style: italic; }
-
-    .prose-section {
-      background: white;
-      border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 28px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-      font-size: 0.97rem;
-      line-height: 1.7;
-      color: #333;
-    }
+    .prose-section { background: white; border-radius: 8px; padding: 24px; margin-bottom: 28px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); font-size: 0.97rem; line-height: 1.7; color: #333; }
     .prose-section p + p { margin-top: 12px; }
 
-    /* ── Widget ─────────────────────────────────────────────────── */
-    .sr-widget {
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.14);
-      margin-bottom: 32px;
-      background: #f2ede4;
-    }
-
-    .sr-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      height: 54px;
-      background: #f2ede4;
-      border-bottom: 1px solid #ddd8ce;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+    .sr-widget { border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.14); margin-bottom: 32px; background: #f2ede4; }
+    .sr-topbar { display: flex; align-items: center; justify-content: space-between; padding: 0 20px; height: 54px; background: #f2ede4; border-bottom: 1px solid #ddd8ce; flex-wrap: wrap; gap: 8px; }
     .sr-title { font-size: 1.15rem; font-weight: 700; color: #1a1a1a; letter-spacing: -0.01em; }
     .sr-title span { font-weight: 400; color: #888; }
     .sr-topbar-right { display: flex; align-items: center; gap: 10px; }
-
-    .sr-btn {
-      background: #1a1a1a;
-      color: #fff;
-      border: none;
-      border-radius: 999px;
-      padding: 7px 16px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      white-space: nowrap;
-      transition: background 0.15s;
-    }
+    .sr-btn { background: #1a1a1a; color: #fff; border: none; border-radius: 999px; padding: 7px 16px; font-size: 0.82rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; white-space: nowrap; transition: background 0.15s; }
     .sr-btn:hover { background: #333; }
-
-    .sr-units {
-      display: flex;
-      border: 1.5px solid #ccc;
-      border-radius: 999px;
-      overflow: hidden;
-      background: #fff;
-    }
-    .sr-unit {
-      background: none;
-      border: none;
-      padding: 5px 12px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #888;
-      cursor: pointer;
-      transition: background 0.1s, color 0.1s;
-    }
+    .sr-units { display: flex; border: 1.5px solid #ccc; border-radius: 999px; overflow: hidden; background: #fff; }
+    .sr-unit { background: none; border: none; padding: 5px 12px; font-size: 0.8rem; font-weight: 600; color: #888; cursor: pointer; transition: background 0.1s, color 0.1s; }
     .sr-unit.active { background: #b8b0e8; color: #1a1a1a; }
-
     .sr-main { display: flex; height: 600px; }
 
-    /* Left panel */
-    .sr-panel {
-      width: 290px;
-      min-width: 290px;
-      background: #fff;
-      border-right: 1px solid #e8e4dc;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .sr-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-bottom: 1px solid #eee;
-      padding: 14px 16px;
-      background: #fafaf8;
-      gap: 8px 0;
-    }
-    .sr-stat-label {
-      font-size: 0.65rem;
-      font-weight: 700;
-      color: #999;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-    .sr-stat-value {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #1a1a1a;
-      line-height: 1.2;
-    }
+    .sr-panel { width: 290px; min-width: 290px; background: #fff; border-right: 1px solid #e8e4dc; overflow-y: auto; display: flex; flex-direction: column; }
+    .sr-stats { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #eee; padding: 14px 16px; background: #fafaf8; gap: 8px 0; }
+    .sr-stat-label { font-size: 0.65rem; font-weight: 700; color: #999; letter-spacing: 0.06em; text-transform: uppercase; }
+    .sr-stat-value { font-size: 1.05rem; font-weight: 700; color: #1a1a1a; line-height: 1.2; }
     .sr-stat-value small { font-size: 0.72rem; font-weight: 500; color: #888; margin-left: 2px; }
 
+    .sr-profile-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid #eeebe4; background: #fafaf8; }
+    .sr-profile-lbl { font-size: 0.72rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
+    .sr-profile-toggle { display: flex; border: 1.5px solid #ccc; border-radius: 999px; overflow: hidden; background: #f0f0f0; }
+    .sr-profile-btn { background: none; border: none; padding: 5px 11px; font-size: 0.78rem; font-weight: 600; color: #888; cursor: pointer; transition: background 0.12s, color 0.12s; }
+    .sr-profile-btn.active { background: #1a1a1a; color: #fff; }
+
     .sr-section { border-bottom: 1px solid #eeebe4; }
-    .sr-section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px;
-      cursor: pointer;
-      user-select: none;
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: #333;
-    }
+    .sr-section-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; cursor: pointer; user-select: none; font-size: 0.88rem; font-weight: 700; color: #333; }
     .sr-section-header:hover { background: #faf8f4; }
     .sr-arrow { font-size: 0.7rem; color: #4a9a4a; }
-
     .sr-section-body { padding: 6px 16px 14px; }
     .sr-section-body.hidden { display: none; }
 
     .sr-param { margin-bottom: 14px; }
     .sr-param:last-child { margin-bottom: 0; }
-    .sr-param-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 2px;
-    }
+    .sr-param-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px; }
     .sr-param-label { font-size: 0.8rem; font-weight: 600; color: #444; }
     .sr-param-value { font-size: 0.85rem; font-weight: 700; color: #4a9a4a; }
     .sr-param-desc { font-size: 0.73rem; color: #aaa; margin-bottom: 5px; line-height: 1.4; }
+    .sr-slider { -webkit-appearance: none; width: 100%; height: 4px; border-radius: 2px; background: linear-gradient(to right, #5aaa5a var(--pct, 50%), #ddd var(--pct, 50%)); outline: none; cursor: pointer; }
+    .sr-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 2px solid #999; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+    .sr-slider::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 2px solid #999; cursor: pointer; }
 
-    .sr-slider {
-      -webkit-appearance: none;
-      width: 100%;
-      height: 4px;
-      border-radius: 2px;
-      background: linear-gradient(to right, #5aaa5a var(--pct, 50%), #ddd var(--pct, 50%));
-      outline: none;
-      cursor: pointer;
-    }
-    .sr-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: #fff;
-      border: 2px solid #999;
-      cursor: pointer;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    }
-    .sr-slider::-moz-range-thumb {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: #fff;
-      border: 2px solid #999;
-      cursor: pointer;
-    }
-
-    /* Right viewport */
     .sr-viewport { flex: 1; position: relative; background: #3a3d5c; overflow: hidden; }
     #sr-canvas { display: block; width: 100%; height: 100%; }
-
-    .sr-view-buttons {
-      position: absolute;
-      right: 14px;
-      bottom: 50px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .sr-view-btn {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.18);
-      border: 1.5px solid rgba(255,255,255,0.35);
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: #fff;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.1s;
-    }
+    .sr-view-buttons { position: absolute; right: 14px; bottom: 50px; display: flex; flex-direction: column; gap: 6px; }
+    .sr-view-btn { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.18); border: 1.5px solid rgba(255,255,255,0.35); font-size: 0.75rem; font-weight: 700; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.1s; }
     .sr-view-btn:hover { background: rgba(255,255,255,0.3); }
-
-    .sr-viewport-label {
-      position: absolute;
-      top: 12px;
-      left: 16px;
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.4);
-      pointer-events: none;
-    }
-
-    .sr-status-bar {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 38px;
-      background: rgba(30,32,50,0.85);
-      border-top: 1px solid rgba(255,255,255,0.1);
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      padding: 0 16px;
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.55);
-    }
+    .sr-viewport-label { position: absolute; top: 12px; left: 16px; font-size: 0.78rem; color: rgba(255,255,255,0.4); pointer-events: none; }
+    .sr-status-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 38px; background: rgba(30,32,50,0.85); border-top: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 18px; padding: 0 16px; font-size: 0.78rem; color: rgba(255,255,255,0.55); }
     .sr-status-bar b { color: rgba(255,255,255,0.9); }
 
-    /* Notes section */
-    .tech-section {
-      background: white;
-      border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 24px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    }
-    .tech-section h2 {
-      font-size: 1.3rem;
-      color: #0366d6;
-      border-bottom: 2px solid #e1e4e8;
-      padding-bottom: 10px;
-      margin-bottom: 16px;
-    }
+    .tech-section { background: white; border-radius: 8px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .tech-section h2 { font-size: 1.3rem; color: #0366d6; border-bottom: 2px solid #e1e4e8; padding-bottom: 10px; margin-bottom: 16px; }
     .tech-section h3 { font-size: 1rem; margin: 16px 0 8px; color: #333; }
     .tech-section p { font-size: 0.93rem; color: #444; line-height: 1.7; margin-bottom: 10px; }
     .tech-section ul { margin-left: 20px; }
     .tech-section li { font-size: 0.93rem; color: #444; margin-bottom: 6px; line-height: 1.6; }
-
     footer { text-align: center; padding: 20px; color: #888; font-size: 0.85rem; margin-top: 20px; }
 
     @media (max-width: 680px) {
@@ -298,7 +97,7 @@
 
   <main class="page-content">
     <div class="page-container">
-      <a href="/Website/small-misc-cad/" class="back-link">← Back to Misc CAD Projects</a>
+      <a href="/Website/small-misc-cad/" class="back-link">Back to Misc CAD Projects</a>
 
       <div class="page-header">
         <h1>Parametric Strain Relief</h1>
@@ -306,17 +105,15 @@
       </div>
 
       <div class="prose-section">
-        <p>A parametric strain relief (cable grommet) sized to any cable and panel. It consists of a flat base ring that sits on the outer face of an enclosure, and a flared conical body that passes through the panel hole and grips the cable with a tight cord opening at the tip. Tune every dimension with the sliders and download a print-ready STL.</p>
-        <p>Size the <strong>cord hole</strong> to your cable's outer diameter for a firm grip, or add 0.5 mm for a softer press fit. The <strong>base inner diameter</strong> should match your panel hole. <strong>Wall thickness</strong> controls stiffness — thinner walls flex more and grip better; thicker walls are more rigid and durable.</p>
+        <p>A parametric strain relief (cable grommet) sized to any cable and panel. It consists of a flat base ring that sits on the outer face of an enclosure, and a flared body that passes through the panel hole and grips the cable at the tip. Switch between circular, square, and helical profiles using the toggle in the panel. Tune every dimension with the sliders and download a print-ready STL.</p>
+        <p>Size the <strong>cord hole</strong> to your cable's outer diameter for a firm grip, or add 0.5 mm for a softer press fit. The <strong>base inner diameter</strong> should match your panel hole. <strong>Wall thickness</strong> controls stiffness: thinner walls flex more and grip better; thicker walls are more rigid and durable.</p>
       </div>
 
-      <!-- ══════════════════════════ WIDGET ══════════════════════════ -->
       <div class="sr-widget">
-
         <div class="sr-topbar">
           <div class="sr-title">StrainRelief <span>· Parametric</span></div>
           <div class="sr-topbar-right">
-            <button class="sr-btn" id="btn-download">⬇ Download STL</button>
+            <button class="sr-btn" id="btn-download">&#x2B07; Download STL</button>
             <div class="sr-units">
               <button class="sr-unit active" data-unit="mm">mm</button>
               <button class="sr-unit" data-unit="cm">cm</button>
@@ -326,17 +123,15 @@
         </div>
 
         <div class="sr-main">
-
-          <!-- Left panel -->
           <div class="sr-panel">
 
             <div class="sr-stats">
               <div class="sr-stat">
-                <div class="sr-stat-label">Base Outer Ø</div>
+                <div class="sr-stat-label" id="stat-label-0">Base Outer O</div>
                 <div class="sr-stat-value"><span id="stat-flangeOuter">40.00</span><small id="su0"> mm</small></div>
               </div>
               <div class="sr-stat">
-                <div class="sr-stat-label">Base Inner Ø</div>
+                <div class="sr-stat-label" id="stat-label-1">Base Inner O</div>
                 <div class="sr-stat-value"><span id="stat-flangeInner">24.00</span><small id="su1"> mm</small></div>
               </div>
               <div class="sr-stat">
@@ -344,41 +139,48 @@
                 <div class="sr-stat-value"><span id="stat-totalH">39.00</span><small id="su2"> mm</small></div>
               </div>
               <div class="sr-stat">
-                <div class="sr-stat-label">Cord Hole Ø</div>
+                <div class="sr-stat-label" id="stat-label-3">Cord Hole O</div>
                 <div class="sr-stat-value"><span id="stat-cordD">8.00</span><small id="su3"> mm</small></div>
               </div>
             </div>
-            <div style="padding:10px 16px 11px; border-bottom:1px solid #eee; background:#f7f9f4; display:flex; align-items:baseline; gap:8px;">
+
+            <div style="padding:10px 16px 11px;border-bottom:1px solid #eee;background:#f7f9f4;display:flex;align-items:baseline;gap:8px;">
               <span style="font-size:0.65rem;font-weight:700;color:#999;letter-spacing:0.06em;text-transform:uppercase;">Volume</span>
-              <span id="stat-vol" style="font-size:1.1rem;font-weight:700;color:#3a7a3a;">—</span>
-              <span style="font-size:0.72rem;color:#888;">≈ <span id="stat-vol-g">—</span> g PLA</span>
+              <span id="stat-vol" style="font-size:1.1rem;font-weight:700;color:#3a7a3a;">--</span>
+              <span style="font-size:0.72rem;color:#888;">approx. <span id="stat-vol-g">--</span> g PLA</span>
             </div>
 
-            <!-- Base -->
-            <div class="sr-section">
+            <div class="sr-profile-row">
+              <span class="sr-profile-lbl">Profile</span>
+              <div class="sr-profile-toggle">
+                <button class="sr-profile-btn active" data-profile="round">Round</button>
+                <button class="sr-profile-btn" data-profile="square">Square</button>
+                <button class="sr-profile-btn" data-profile="helix">Helix</button>
+              </div>
+            </div>
+
+            <!-- Base Ring: hidden in helix mode -->
+            <div class="sr-section" id="sr-section-base" data-show-for="round square">
               <div class="sr-section-header" data-target="sec-base">
-                Base Ring <span class="sr-arrow" id="arrow-base">▲</span>
+                Base Ring <span class="sr-arrow" id="arrow-base">&#x25B2;</span>
               </div>
               <div class="sr-section-body" id="sec-base">
-
                 <div class="sr-param">
                   <div class="sr-param-header">
-                    <span class="sr-param-label">Outer Diameter</span>
+                    <span class="sr-param-label" id="label-flangeOuter">Outer Diameter</span>
                     <span class="sr-param-value" id="val-flangeOuter">40.00</span>
                   </div>
                   <p class="sr-param-desc">Overall width of the flat base flange.</p>
                   <input type="range" class="sr-slider" id="sl-flangeOuter" min="10" max="80" step="0.5" value="40">
                 </div>
-
                 <div class="sr-param">
                   <div class="sr-param-header">
-                    <span class="sr-param-label">Inner Diameter</span>
+                    <span class="sr-param-label" id="label-flangeInner">Inner Diameter</span>
                     <span class="sr-param-value" id="val-flangeInner">24.00</span>
                   </div>
-                  <p class="sr-param-desc">Hole in the base — match to your panel hole diameter.</p>
+                  <p class="sr-param-desc">Hole in the base, match to your panel hole diameter.</p>
                   <input type="range" class="sr-slider" id="sl-flangeInner" min="4" max="70" step="0.5" value="24">
                 </div>
-
                 <div class="sr-param">
                   <div class="sr-param-header">
                     <span class="sr-param-label">Base Height</span>
@@ -387,36 +189,33 @@
                   <p class="sr-param-desc">Thickness of the flat base ring.</p>
                   <input type="range" class="sr-slider" id="sl-flangeH" min="1" max="15" step="0.5" value="4">
                 </div>
-
               </div>
             </div>
 
-            <!-- Flared body -->
+            <!-- Flared Body / Coil Settings -->
             <div class="sr-section">
               <div class="sr-section-header" data-target="sec-body">
-                Flared Body <span class="sr-arrow" id="arrow-body">▲</span>
+                <span id="sec-body-title">Flared Body</span> <span class="sr-arrow" id="arrow-body">&#x25B2;</span>
               </div>
               <div class="sr-section-body" id="sec-body">
-
                 <div class="sr-param">
                   <div class="sr-param-header">
-                    <span class="sr-param-label">Body Height</span>
+                    <span class="sr-param-label" id="label-bodyH">Body Height</span>
                     <span class="sr-param-value" id="val-bodyH">35.00</span>
                   </div>
-                  <p class="sr-param-desc">Height of the tapered conical section.</p>
-                  <input type="range" class="sr-slider" id="sl-bodyH" min="5" max="100" step="1" value="35">
+                  <p class="sr-param-desc" id="desc-bodyH">Height of the tapered body section.</p>
+                  <input type="range" class="sr-slider" id="sl-bodyH" min="5" max="150" step="1" value="35">
                 </div>
-
                 <div class="sr-param">
                   <div class="sr-param-header">
-                    <span class="sr-param-label">Cord Hole Diameter</span>
+                    <span class="sr-param-label" id="label-cordD">Cord Hole Diameter</span>
                     <span class="sr-param-value" id="val-cordD">8.00</span>
                   </div>
-                  <p class="sr-param-desc">Opening at the tip of the cone — size to your cable.</p>
+                  <p class="sr-param-desc" id="desc-cordD">Opening at the tip of the cone, size to your cable.</p>
                   <input type="range" class="sr-slider" id="sl-cordD" min="1" max="40" step="0.5" value="8">
                 </div>
-
-                <div class="sr-param">
+                <!-- Wall Thickness: hidden in helix mode -->
+                <div class="sr-param" id="param-wallT" data-show-for="round square">
                   <div class="sr-param-header">
                     <span class="sr-param-label">Wall Thickness</span>
                     <span class="sr-param-value" id="val-wallT">2.50</span>
@@ -424,60 +223,61 @@
                   <p class="sr-param-desc">Thickness of the cone wall. Thinner = more flexible grip.</p>
                   <input type="range" class="sr-slider" id="sl-wallT" min="0.5" max="10" step="0.25" value="2.5">
                 </div>
-
+                <!-- Turns: helix only -->
+                <div class="sr-param" id="param-turns" data-show-for="helix" style="display:none">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Turns</span>
+                    <span class="sr-param-value" id="val-turns">5</span>
+                  </div>
+                  <p class="sr-param-desc">Number of coils in the helical section.</p>
+                  <input type="range" class="sr-slider" id="sl-turns" min="2" max="25" step="1" value="5">
+                </div>
               </div>
             </div>
 
           </div><!-- /.sr-panel -->
 
-          <!-- Right viewport -->
           <div class="sr-viewport">
             <canvas id="sr-canvas"></canvas>
             <div class="sr-viewport-label">StrainRelief · Parametric</div>
-
             <div class="sr-view-buttons">
               <button class="sr-view-btn" data-view="top"   title="Top view">T</button>
               <button class="sr-view-btn" data-view="front" title="Front view">F</button>
               <button class="sr-view-btn" data-view="iso"   title="Isometric view">I</button>
               <button class="sr-view-btn" data-view="side"  title="Side view">S</button>
             </div>
-
-            <div class="sr-status-bar">
-              <span>Base Ø <b id="sb-flangeOuter">40.00</b>mm</span>
-              <span>Inner Ø <b id="sb-flangeInner">24.00</b>mm</span>
-              <span>H <b id="sb-totalH">39.00</b>mm</span>
-              <span>Cord Ø <b id="sb-cordD">8.00</b>mm</span>
-              <span>Wall <b id="sb-wallT">2.50</b>mm</span>
+            <div class="sr-status-bar" id="sr-status-bar">
+              <span>Base O <b id="sb-0">40.00</b>mm</span>
+              <span>Inner O <b id="sb-1">24.00</b>mm</span>
+              <span>H <b id="sb-2">39.00</b>mm</span>
+              <span>Cord O <b id="sb-3">8.00</b>mm</span>
+              <span>Wall <b id="sb-4">2.50</b>mm</span>
             </div>
           </div>
 
         </div><!-- /.sr-main -->
       </div><!-- /.sr-widget -->
-      <!-- ════════════════════════════════════════════════════════════ -->
 
       <div class="tech-section">
         <h2>Design Notes</h2>
-
         <h3>Print Settings</h3>
-        <p>Print with the flat base face down, no supports needed. Use 3–4 perimeters and 20–40% infill. PETG is ideal — it has enough flex to grip the cable without cracking. ABS works for heat-exposed installations. PLA is fine for light-duty indoor use.</p>
-
+        <p>Print with the flat base face down (circular and square profiles), no supports needed. Use 3-4 perimeters and 20-40% infill. PETG is ideal, as it has enough flex to grip the cable without cracking. ABS works for heat-exposed installations. PLA is fine for light-duty indoor use.</p>
         <h3>Sizing Guide</h3>
         <ul>
-          <li><strong>Cord hole:</strong> match to your cable OD for a firm grip, or add 0.5 mm for a press fit, or add 1–2 mm if you plan to seal with a zip tie or silicone.</li>
+          <li><strong>Cord hole:</strong> match to your cable OD for a firm grip, or add 0.5 mm for a press fit, or add 1-2 mm if you plan to seal with a zip tie or silicone.</li>
           <li><strong>Base inner diameter:</strong> should equal your panel hole diameter exactly (or +0.2 mm for a slip fit).</li>
-          <li><strong>Base outer diameter:</strong> needs to be large enough to catch the panel face — at least 5 mm larger than the panel hole on each side.</li>
-          <li><strong>Wall thickness:</strong> 2–3 mm is typical. Go thinner for cables under 6 mm OD; thicker for cables over 15 mm OD or rough installation environments.</li>
+          <li><strong>Base outer diameter:</strong> needs to be large enough to catch the panel face, at least 5 mm larger than the panel hole on each side.</li>
+          <li><strong>Wall thickness:</strong> 2-3 mm is typical. Go thinner for cables under 6 mm OD; thicker for cables over 15 mm OD or rough installation environments.</li>
         </ul>
-
         <h3>How the Geometry Is Generated</h3>
-        <p>The shape is a hollow frustum (truncated cone) sitting on a flat ring, both generated as analytic triangle meshes directly in Three.js — no CSG, no mesh booleans. Each face's outward normals are computed from the frustum's slant angle, giving correct shading on the tapered surface. The binary STL download writes directly from the GPU-ready buffer without any conversion step.</p>
+        <p>Circular and square profiles are analytic triangle meshes built directly in Three.js without CSG or mesh booleans. Each face's outward normals are derived analytically from the frustum's slant angle, giving correct shading on tapered surfaces. The helical profile sweeps a tube along a parametric helix curve using Three.js's TubeGeometry. All three profiles export as binary STL written directly from the geometry buffer in JavaScript, with no server round-trip.</p>
       </div>
 
       <footer><p>Parametric Strain Relief · Julian B. Stoller</p></footer>
     </div>
   </main>
 
-  <!-- importmap: lets the browser resolve bare 'three' specifiers inside OrbitControls -->
+  <!-- importmap: resolves bare 'three' specifier inside OrbitControls -->
   <script type="importmap">
   {
     "imports": {
@@ -491,25 +291,25 @@
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-    // ── State ────────────────────────────────────────────────────────
     const state = {
       unit:         'mm',
+      profile:      'round',
       flangeOuterD: 40,
       flangeInnerD: 24,
       flangeH:      4,
       bodyH:        35,
       cordD:        8,
       wallT:        2.5,
+      turns:        5,
     };
 
-    const unitScale = { mm: 1, cm: 0.1, in: 1 / 25.4 };
+    const unitScale = { mm: 1, cm: 0.1, in: 1/25.4 };
     const unitPrec  = { mm: 2, cm: 3,   in: 3 };
     const fmt = v => (v * unitScale[state.unit]).toFixed(unitPrec[state.unit]);
 
-    // ── Three.js setup ───────────────────────────────────────────────
+    // Three.js setup
     const canvas   = document.getElementById('sr-canvas');
     const viewport = canvas.parentElement;
-
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
@@ -529,9 +329,7 @@
     controls.target.set(0, 20, 0);
     controls.update();
 
-    // Lighting — warm key + soft fill + subtle rim
     scene.add(new THREE.AmbientLight(0xd0d8ff, 0.45));
-
     const key = new THREE.DirectionalLight(0xfff4e0, 1.4);
     key.position.set(50, 100, 70);
     key.castShadow = true;
@@ -541,16 +339,11 @@
     [-60, 60].forEach(v => { key.shadow.camera.left = key.shadow.camera.bottom = v; });
     key.shadow.camera.right = key.shadow.camera.top = 60;
     scene.add(key);
-
     const fill = new THREE.DirectionalLight(0xb0c8ff, 0.5);
     fill.position.set(-40, 20, -50);
     scene.add(fill);
 
-    // Grid
-    const grid = new THREE.GridHelper(200, 20, 0x555870, 0x484b66);
-    scene.add(grid);
-
-    // Shadow catcher
+    scene.add(new THREE.GridHelper(200, 20, 0x555870, 0x484b66));
     const shadowPlane = new THREE.Mesh(
       new THREE.PlaneGeometry(200, 200),
       new THREE.ShadowMaterial({ opacity: 0.25 })
@@ -559,75 +352,57 @@
     shadowPlane.receiveShadow = true;
     scene.add(shadowPlane);
 
-    // Model
     const modelMat = new THREE.MeshPhongMaterial({
-      color:     0xb0b4c8,
-      specular:  0x404060,
-      shininess: 55,
-      side: THREE.FrontSide,
+      color: 0xb0b4c8, specular: 0x404060, shininess: 55, side: THREE.FrontSide,
     });
     let modelMesh = new THREE.Mesh(new THREE.BufferGeometry(), modelMat);
     modelMesh.castShadow = true;
     scene.add(modelMesh);
 
-    // ── Geometry: hollow frustum ─────────────────────────────────────
-    // Axis along Y. rInBot/rOutBot = radii at y=-h/2, rInTop/rOutTop at y=+h/2
+    // Hollow circular frustum
+    // rInBot/rOutBot = radii at y=-h/2, rInTop/rOutTop at y=+h/2
     function makeHollowFrustum(rInBot, rOutBot, rInTop, rOutTop, height, seg) {
       const verts = [], norms = [];
       const hh = height / 2;
-
-      // Precompute normal tilt for outer and inner surfaces
-      // Outward normal for a frustum: (height, rBot-rTop) in (radial, Y) — see derivation
-      const outerDr   = rOutTop - rOutBot; // negative if narrowing
-      const outerNLen = Math.sqrt(height * height + outerDr * outerDr) || 1;
-      const outerNR   =  height    / outerNLen; // radial component (positive = outward)
-      const outerNY   = -outerDr   / outerNLen; // Y component
-
+      const outerDr   = rOutTop - rOutBot;
+      const outerNLen = Math.sqrt(height*height + outerDr*outerDr) || 1;
+      const outerNR   =  height / outerNLen;
+      const outerNY   = -outerDr / outerNLen;
       const innerDr   = rInTop - rInBot;
-      const innerNLen = Math.sqrt(height * height + innerDr * innerDr) || 1;
-      const innerNR   = -height    / innerNLen; // negative = inward
-      const innerNY   =  innerDr   / innerNLen;
+      const innerNLen = Math.sqrt(height*height + innerDr*innerDr) || 1;
+      const innerNR   = -height / innerNLen;
+      const innerNY   =  innerDr / innerNLen;
 
       for (let i = 0; i < seg; i++) {
-        const a0 = (i       / seg) * Math.PI * 2;
-        const a1 = ((i + 1) / seg) * Math.PI * 2;
-        const c0 = Math.cos(a0), s0 = Math.sin(a0);
-        const c1 = Math.cos(a1), s1 = Math.sin(a1);
-        // Face-centre direction for flat normals
-        const mc = Math.cos((a0 + a1) * 0.5);
-        const ms = Math.sin((a0 + a1) * 0.5);
+        const a0 = (i/seg)*Math.PI*2, a1 = ((i+1)/seg)*Math.PI*2;
+        const c0=Math.cos(a0),s0=Math.sin(a0),c1=Math.cos(a1),s1=Math.sin(a1);
+        const mc=Math.cos((a0+a1)*0.5), ms=Math.sin((a0+a1)*0.5);
 
-        // ── Outer wall (CCW from outside = outward normal) ──
         verts.push(
-          rOutBot*c0,-hh,rOutBot*s0,  rOutTop*c0,+hh,rOutTop*s0,  rOutTop*c1,+hh,rOutTop*s1,
-          rOutBot*c0,-hh,rOutBot*s0,  rOutTop*c1,+hh,rOutTop*s1,  rOutBot*c1,-hh,rOutBot*s1
+          rOutBot*c0,-hh,rOutBot*s0, rOutTop*c0,+hh,rOutTop*s0, rOutTop*c1,+hh,rOutTop*s1,
+          rOutBot*c0,-hh,rOutBot*s0, rOutTop*c1,+hh,rOutTop*s1, rOutBot*c1,-hh,rOutBot*s1
         );
-        for (let k = 0; k < 6; k++) norms.push(mc*outerNR, outerNY, ms*outerNR);
+        for (let k=0;k<6;k++) norms.push(mc*outerNR, outerNY, ms*outerNR);
 
-        // ── Inner wall (reversed winding = inward normal) ──
         verts.push(
-          rInBot*c1,-hh,rInBot*s1,  rInTop*c1,+hh,rInTop*s1,  rInTop*c0,+hh,rInTop*s0,
-          rInBot*c1,-hh,rInBot*s1,  rInTop*c0,+hh,rInTop*s0,  rInBot*c0,-hh,rInBot*s0
+          rInBot*c1,-hh,rInBot*s1, rInTop*c1,+hh,rInTop*s1, rInTop*c0,+hh,rInTop*s0,
+          rInBot*c1,-hh,rInBot*s1, rInTop*c0,+hh,rInTop*s0, rInBot*c0,-hh,rInBot*s0
         );
-        for (let k = 0; k < 6; k++) norms.push(mc*innerNR, innerNY, ms*innerNR);
+        for (let k=0;k<6;k++) norms.push(mc*innerNR, innerNY, ms*innerNR);
 
-        // ── Top cap (annular ring at y=+hh, normal +Y) ──
-        // Winding must give cross-product in +Y direction.
-        // Derivation: (outer-c0→inner-c0) × (outer-c0→inner-c1) yields +Y in Three.js's
-        // right-handed XYZ system where increasing XZ angle is CW from above.
+        // Top cap (+Y): winding derived so cross product gives +Y in Three.js right-handed XYZ
         verts.push(
-          rOutTop*c0,+hh,rOutTop*s0,  rInTop*c0,+hh,rInTop*s0,  rInTop*c1,+hh,rInTop*s1,
-          rOutTop*c0,+hh,rOutTop*s0,  rInTop*c1,+hh,rInTop*s1,  rOutTop*c1,+hh,rOutTop*s1
+          rOutTop*c0,+hh,rOutTop*s0, rInTop*c0,+hh,rInTop*s0, rInTop*c1,+hh,rInTop*s1,
+          rOutTop*c0,+hh,rOutTop*s0, rInTop*c1,+hh,rInTop*s1, rOutTop*c1,+hh,rOutTop*s1
         );
-        for (let k = 0; k < 6; k++) norms.push(0, 1, 0);
+        for (let k=0;k<6;k++) norms.push(0, 1, 0);
 
-        // ── Bottom cap (annular ring at y=-hh, normal -Y) ──
-        // Reverse of top cap winding to flip normal to -Y.
+        // Bottom cap (-Y): reverse of top cap winding
         verts.push(
-          rInBot*c0,-hh,rInBot*s0,  rOutBot*c0,-hh,rOutBot*s0,  rOutBot*c1,-hh,rOutBot*s1,
-          rInBot*c0,-hh,rInBot*s0,  rOutBot*c1,-hh,rOutBot*s1,  rInBot*c1,-hh,rInBot*s1
+          rInBot*c0,-hh,rInBot*s0, rOutBot*c0,-hh,rOutBot*s0, rOutBot*c1,-hh,rOutBot*s1,
+          rInBot*c0,-hh,rInBot*s0, rOutBot*c1,-hh,rOutBot*s1, rInBot*c1,-hh,rInBot*s1
         );
-        for (let k = 0; k < 6; k++) norms.push(0, -1, 0);
+        for (let k=0;k<6;k++) norms.push(0, -1, 0);
       }
 
       const geo = new THREE.BufferGeometry();
@@ -636,128 +411,232 @@
       return geo;
     }
 
-    // Simple geometry concatenation (no CSG needed — shapes are disjoint)
+    // Hollow square frustum
+    // hiBot/hoBot = inner/outer half-side at bottom; hiTop/hoTop at top
+    // Windings verified analytically: outer wall outward, inner wall inward, caps +/-Y
+    function makeSquareHollowFrustum(hiBot, hoBot, hiTop, hoTop, height) {
+      const verts = [], norms = [];
+      const hh = height / 2;
+
+      // corners 0=left-front, 1=right-front, 2=right-back, 3=left-back
+      const sq = (h, y) => [[-h,y,h],[h,y,h],[h,y,-h],[-h,y,-h]];
+
+      const oBot=sq(hoBot,-hh), oTop=sq(hoTop,+hh);
+      const iBot=sq(hiBot,-hh), iTop=sq(hiTop,+hh);
+
+      function addQuad(a, b, c, d) {
+        verts.push(...a,...b,...c,...a,...c,...d);
+        const ux=b[0]-a[0],uy=b[1]-a[1],uz=b[2]-a[2];
+        const vx=c[0]-a[0],vy=c[1]-a[1],vz=c[2]-a[2];
+        const nx=uy*vz-uz*vy, ny=uz*vx-ux*vz, nz=ux*vy-uy*vx;
+        const len=Math.sqrt(nx*nx+ny*ny+nz*nz)||1;
+        for (let k=0;k<6;k++) norms.push(nx/len,ny/len,nz/len);
+      }
+
+      for (let i=0;i<4;i++) {
+        const j=(i+1)%4;
+        addQuad(oBot[i],oBot[j],oTop[j],oTop[i]); // outer wall (outward normal)
+        addQuad(iTop[i],iTop[j],iBot[j],iBot[i]); // inner wall (inward normal)
+        addQuad(iTop[i],oTop[i],oTop[j],iTop[j]); // top cap (+Y)
+        addQuad(oBot[i],iBot[i],iBot[j],oBot[j]); // bottom cap (-Y)
+      }
+
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(verts), 3));
+      geo.setAttribute('normal',   new THREE.Float32BufferAttribute(new Float32Array(norms), 3));
+      return geo;
+    }
+
+    // Helix curve for TubeGeometry
+    class HelixCurve extends THREE.Curve {
+      constructor(R, H, turns) { super(); this._R=R; this._H=H; this._N=turns; }
+      getPoint(t, out) {
+        const a = t * this._N * Math.PI * 2;
+        return (out||new THREE.Vector3()).set(this._R*Math.cos(a), t*this._H, this._R*Math.sin(a));
+      }
+    }
+
     function mergeGeos(geos) {
       let total = 0;
       for (const g of geos) total += g.getAttribute('position').array.length;
-      const pos  = new Float32Array(total);
-      const norm = new Float32Array(total);
-      let off = 0;
+      const pos=new Float32Array(total), norm=new Float32Array(total);
+      let off=0;
       for (const g of geos) {
-        const pa = g.getAttribute('position').array;
-        const na = g.getAttribute('normal').array;
-        pos.set(pa, off);
-        norm.set(na, off);
-        off += pa.length;
+        const pa=g.getAttribute('position').array, na=g.getAttribute('normal').array;
+        pos.set(pa,off); norm.set(na,off); off+=pa.length;
       }
-      const out = new THREE.BufferGeometry();
-      out.setAttribute('position', new THREE.Float32BufferAttribute(pos,  3));
-      out.setAttribute('normal',   new THREE.Float32BufferAttribute(norm, 3));
+      const out=new THREE.BufferGeometry();
+      out.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));
+      out.setAttribute('normal',  new THREE.Float32BufferAttribute(norm,3));
       return out;
     }
 
-    // ── Volume (analytical) ──────────────────────────────────────────
-    // Returns volume in mm³ using frustum and cylinder formulas.
-    function computeVolume(p) {
-      const foR  = Math.max(3, p.flangeOuterD / 2);
-      const fiR  = Math.max(2, Math.min(p.flangeInnerD / 2, foR - 1));
-      const fH   = Math.max(1, p.flangeH);
-      const bH   = Math.max(3, p.bodyH);
-      const cR   = Math.max(0.5, p.cordD / 2);
-      const wall = Math.max(0.4, Math.min(p.wallT, fiR - 0.5, cR - 0.1));
-
-      const boBot = fiR, biBot = fiR - wall;
-      const boTop = cR + wall, biTop = cR;
-
-      // Hollow cylinder (flange): π·h·(R²−r²)
-      const vFlange = Math.PI * fH * (foR*foR - fiR*fiR);
-
-      // Hollow frustum (body): outer frustum − inner frustum
-      // V_frustum = (π·h/3)·(R1²+R1·R2+R2²)
-      const vOuter = (Math.PI * bH / 3) * (boBot*boBot + boBot*boTop + boTop*boTop);
-      const vInner = (Math.PI * bH / 3) * (biBot*biBot + biBot*biTop + biTop*biTop);
-
-      return vFlange + (vOuter - vInner); // mm³
+    function clampParams(p) {
+      const foR  = Math.max(3,  p.flangeOuterD/2);
+      const fiR  = Math.max(2,  Math.min(p.flangeInnerD/2, foR-1));
+      const fH   = Math.max(1,  p.flangeH);
+      const bH   = Math.max(3,  p.bodyH);
+      const cR   = Math.max(0.5,p.cordD/2);
+      const wall = Math.max(0.4,Math.min(p.wallT, fiR-0.5, cR-0.1));
+      return { foR, fiR, fH, bH, cR, wall };
     }
 
-    // ── Build the grommet geometry ───────────────────────────────────
+    function computeVolume(p) {
+      if (p.profile === 'helix') {
+        const coilD = Math.max(10, p.flangeOuterD);
+        const tubeR = Math.max(0.5, Math.min(p.cordD/2, coilD/4));
+        const R     = Math.max(tubeR+0.5, coilD/2 - tubeR);
+        const turns = Math.max(2, Math.min(Math.round(p.turns||5), 30));
+        const bH    = Math.max(5, p.bodyH);
+        const L = Math.sqrt(Math.pow(2*Math.PI*R*turns,2) + bH*bH);
+        return Math.PI * tubeR*tubeR * L;
+      }
+      const {foR,fiR,fH,bH,cR,wall} = clampParams(p);
+      const boBot=fiR, biBot=fiR-wall, boTop=cR+wall, biTop=cR;
+      if (p.profile === 'round') {
+        const vFlange = Math.PI*fH*(foR*foR-fiR*fiR);
+        const vOuter  = (Math.PI*bH/3)*(boBot*boBot+boBot*boTop+boTop*boTop);
+        const vInner  = (Math.PI*bH/3)*(biBot*biBot+biBot*biTop+biTop*biTop);
+        return vFlange+vOuter-vInner;
+      }
+      // square: same formula without pi, sides = 2*half-side
+      const vFlange = fH*4*(foR*foR-fiR*fiR);
+      const vOuter  = (4*bH/3)*(boBot*boBot+boBot*boTop+boTop*boTop);
+      const vInner  = (4*bH/3)*(biBot*biBot+biBot*biTop+biTop*biTop);
+      return vFlange+vOuter-vInner;
+    }
+
     function buildGeometry(p) {
       const SEG = 64;
 
-      // Clamp to physically valid ranges
-      const foR  = Math.max(3, p.flangeOuterD / 2);
-      const fiR  = Math.max(2, Math.min(p.flangeInnerD / 2, foR - 1));
-      const fH   = Math.max(1, p.flangeH);
-      const bH   = Math.max(3, p.bodyH);
-      const cR   = Math.max(0.5, p.cordD / 2);
-      const wall = Math.max(0.4, Math.min(p.wallT, fiR - 0.5, cR - 0.1));
+      if (p.profile === 'helix') {
+        const coilD = Math.max(10, p.flangeOuterD);
+        const tubeR = Math.max(0.5, Math.min(p.cordD/2, coilD/4));
+        const R     = Math.max(tubeR+0.5, coilD/2-tubeR);
+        const turns = Math.max(2, Math.min(Math.round(p.turns||5), 30));
+        const bH    = Math.max(5, p.bodyH);
+        const pts   = turns*32;
+        return new THREE.TubeGeometry(new HelixCurve(R,bH,turns), pts, tubeR, 16, false).toNonIndexed();
+      }
 
-      // Body outer: base at fiR (where cone meets flange), tip at cR+wall
-      // Body inner: base at fiR-wall, tip at cR
-      const boBot = fiR;
-      const biBot = fiR - wall;
-      const boTop = cR + wall;
-      const biTop = cR;
+      const {foR,fiR,fH,bH,cR,wall} = clampParams(p);
+      const boBot=fiR, biBot=fiR-wall, boTop=cR+wall, biTop=cR;
 
-      // Flat base ring: y centered at fH/2, so spans y=0..fH
-      const flangeGeo = makeHollowFrustum(fiR, foR, fiR, foR, fH, SEG);
-      flangeGeo.translate(0, fH / 2, 0);
+      if (p.profile === 'round') {
+        const flangeGeo = makeHollowFrustum(fiR,foR,fiR,foR,fH,SEG);
+        flangeGeo.translate(0,fH/2,0);
+        const bodyGeo = makeHollowFrustum(biBot,boBot,biTop,boTop,bH,SEG);
+        bodyGeo.translate(0,fH+bH/2,0);
+        return mergeGeos([flangeGeo,bodyGeo]);
+      }
 
-      // Tapered body: spans y=fH..fH+bH → center at fH+bH/2
-      const bodyGeo = makeHollowFrustum(biBot, boBot, biTop, boTop, bH, SEG);
-      bodyGeo.translate(0, fH + bH / 2, 0);
-
-      return mergeGeos([flangeGeo, bodyGeo]);
+      // square
+      const flangeGeo = makeSquareHollowFrustum(fiR,foR,fiR,foR,fH);
+      flangeGeo.translate(0,fH/2,0);
+      const bodyGeo = makeSquareHollowFrustum(biBot,boBot,biTop,boTop,bH);
+      bodyGeo.translate(0,fH+bH/2,0);
+      return mergeGeos([flangeGeo,bodyGeo]);
     }
 
-    // ── STL export (binary) ──────────────────────────────────────────
     function toBinarySTL(geo) {
-      const pos   = geo.getAttribute('position');
-      const norm  = geo.getAttribute('normal');
-      const count = pos.count / 3;
-      const buf   = new ArrayBuffer(80 + 4 + count * 50);
-      const view  = new DataView(buf);
-      const hdr   = 'StrainRelief-Parametric by JulianStoller';
-      for (let i = 0; i < Math.min(hdr.length, 80); i++) view.setUint8(i, hdr.charCodeAt(i));
-      view.setUint32(80, count, true);
-      for (let t = 0; t < count; t++) {
-        const b  = 84 + t * 50;
-        const vi = t * 3;
-        view.setFloat32(b +  0, norm.getX(vi), true);
-        view.setFloat32(b +  4, norm.getY(vi), true);
-        view.setFloat32(b +  8, norm.getZ(vi), true);
-        for (let j = 0; j < 3; j++) {
-          const idx = vi + j;
-          view.setFloat32(b + 12 + j*12 + 0, pos.getX(idx), true);
-          view.setFloat32(b + 12 + j*12 + 4, pos.getY(idx), true);
-          view.setFloat32(b + 12 + j*12 + 8, pos.getZ(idx), true);
+      const g    = geo.index ? geo.toNonIndexed() : geo;
+      const pos  = g.getAttribute('position');
+      const norm = g.getAttribute('normal');
+      const count = pos.count/3;
+      const buf  = new ArrayBuffer(80+4+count*50);
+      const view = new DataView(buf);
+      const hdr  = 'StrainRelief-Parametric by JulianStoller';
+      for (let i=0;i<Math.min(hdr.length,80);i++) view.setUint8(i,hdr.charCodeAt(i));
+      view.setUint32(80,count,true);
+      for (let t=0;t<count;t++) {
+        const b=84+t*50, vi=t*3;
+        view.setFloat32(b+0,norm.getX(vi),true);
+        view.setFloat32(b+4,norm.getY(vi),true);
+        view.setFloat32(b+8,norm.getZ(vi),true);
+        for (let j=0;j<3;j++) {
+          const idx=vi+j;
+          view.setFloat32(b+12+j*12+0,pos.getX(idx),true);
+          view.setFloat32(b+12+j*12+4,pos.getY(idx),true);
+          view.setFloat32(b+12+j*12+8,pos.getZ(idx),true);
         }
-        view.setUint16(b + 48, 0, true);
+        view.setUint16(b+48,0,true);
       }
       return buf;
     }
 
-    // ── UI ───────────────────────────────────────────────────────────
+    const LABELS = {
+      round: {
+        stat0:'Base Outer Diam', stat1:'Base Inner Diam', stat3:'Cord Hole Diam',
+        flangeOuter:'Outer Diameter', flangeInner:'Inner Diameter',
+        cordD:'Cord Hole Diameter', descCordD:'Opening at the tip of the cone, size to your cable.',
+        bodyH:'Body Height', descBodyH:'Height of the tapered conical section.',
+        bodySec:'Flared Body',
+      },
+      square: {
+        stat0:'Base Outer Side', stat1:'Base Inner Side', stat3:'Cord Opening',
+        flangeOuter:'Outer Side Length', flangeInner:'Inner Side Length',
+        cordD:'Cord Opening Side', descCordD:'Side length of the square opening at the tip.',
+        bodyH:'Body Height', descBodyH:'Height of the tapered square section.',
+        bodySec:'Flared Body',
+      },
+      helix: {
+        stat0:'Coil Diameter', stat1:'Tube Diameter', stat3:'Turns',
+        flangeOuter:'Coil Diameter', flangeInner:'',
+        cordD:'Tube Diameter', descCordD:'Diameter of each coil tube.',
+        bodyH:'Total Length', descBodyH:'Overall length of the helical section.',
+        bodySec:'Coil Settings',
+      },
+    };
+
+    function applyProfileVisibility() {
+      document.querySelectorAll('[data-show-for]').forEach(el => {
+        el.style.display = el.dataset.showFor.split(' ').includes(state.profile) ? '' : 'none';
+      });
+    }
+
     function rebuildModel() {
       const geo = buildGeometry(state);
       modelMesh.geometry.dispose();
       modelMesh.geometry = geo;
-      // Centre camera target on mid-height of model
-      const totalH = state.flangeH + state.bodyH;
-      controls.target.set(0, totalH / 2, 0);
+      const camH = state.profile==='helix' ? state.bodyH : state.flangeH+state.bodyH;
+      controls.target.set(0, camH/2, 0);
       updateUI();
     }
 
     function updateUI() {
-      const totalH = state.flangeH + state.bodyH;
       const u = state.unit;
+      const L = LABELS[state.profile];
+      const totalH = state.profile==='helix' ? state.bodyH : state.flangeH+state.bodyH;
 
-      // Stats
+      // Dynamic labels
+      document.getElementById('stat-label-0').textContent   = L.stat0;
+      document.getElementById('stat-label-1').textContent   = L.stat1;
+      document.getElementById('stat-label-3').textContent   = L.stat3;
+      document.getElementById('label-flangeOuter').textContent = L.flangeOuter;
+      document.getElementById('label-flangeInner').textContent = L.flangeInner;
+      document.getElementById('label-cordD').textContent    = L.cordD;
+      document.getElementById('desc-cordD').textContent     = L.descCordD;
+      document.getElementById('label-bodyH').textContent    = L.bodyH;
+      document.getElementById('desc-bodyH').textContent     = L.descBodyH;
+      document.getElementById('sec-body-title').textContent = L.bodySec;
+
+      // Stat values
       document.getElementById('stat-flangeOuter').textContent = fmt(state.flangeOuterD);
-      document.getElementById('stat-flangeInner').textContent = fmt(state.flangeInnerD);
       document.getElementById('stat-totalH').textContent      = fmt(totalH);
-      document.getElementById('stat-cordD').textContent       = fmt(state.cordD);
-      ['su0','su1','su2','su3'].forEach(id => document.getElementById(id).textContent = ' ' + u);
+      document.getElementById('su0').textContent = ' '+u;
+      document.getElementById('su2').textContent = ' '+u;
+
+      if (state.profile === 'helix') {
+        document.getElementById('stat-flangeInner').textContent = fmt(state.cordD);
+        document.getElementById('stat-cordD').textContent       = String(Math.round(state.turns||5));
+        document.getElementById('su1').textContent = ' '+u;
+        document.getElementById('su3').textContent = '';
+      } else {
+        document.getElementById('stat-flangeInner').textContent = fmt(state.flangeInnerD);
+        document.getElementById('stat-cordD').textContent       = fmt(state.cordD);
+        document.getElementById('su1').textContent = ' '+u;
+        document.getElementById('su3').textContent = ' '+u;
+      }
 
       // Slider value labels
       document.getElementById('val-flangeOuter').textContent = fmt(state.flangeOuterD);
@@ -766,122 +645,127 @@
       document.getElementById('val-bodyH').textContent       = fmt(state.bodyH);
       document.getElementById('val-cordD').textContent       = fmt(state.cordD);
       document.getElementById('val-wallT').textContent       = fmt(state.wallT);
+      document.getElementById('val-turns').textContent       = String(Math.round(state.turns||5));
 
       // Volume
       const volMm3 = computeVolume(state);
-      const volCm3 = volMm3 / 1000;
+      const volCm3 = volMm3/1000;
       document.getElementById('stat-vol').textContent =
-        volCm3 >= 1 ? volCm3.toFixed(2) + ' cm³' : volMm3.toFixed(0) + ' mm³';
-      // PLA density ≈ 1.24 g/cm³
-      document.getElementById('stat-vol-g').textContent = (volCm3 * 1.24).toFixed(1);
+        volCm3>=1 ? volCm3.toFixed(2)+' cm3' : volMm3.toFixed(0)+' mm3';
+      document.getElementById('stat-vol-g').textContent = (volCm3*1.24).toFixed(1);
 
-      // Status bar (always mm)
-      document.getElementById('sb-flangeOuter').textContent = state.flangeOuterD.toFixed(2);
-      document.getElementById('sb-flangeInner').textContent = state.flangeInnerD.toFixed(2);
-      document.getElementById('sb-totalH').textContent      = totalH.toFixed(2);
-      document.getElementById('sb-cordD').textContent       = state.cordD.toFixed(2);
-      document.getElementById('sb-wallT').textContent       = state.wallT.toFixed(2);
+      // Status bar
+      const sb = document.getElementById('sr-status-bar');
+      if (state.profile === 'helix') {
+        sb.innerHTML =
+          `<span>Coil <b>${state.flangeOuterD.toFixed(2)}</b>mm</span>` +
+          `<span>Tube <b>${state.cordD.toFixed(2)}</b>mm</span>` +
+          `<span>H <b>${state.bodyH.toFixed(2)}</b>mm</span>` +
+          `<span>Turns <b>${Math.round(state.turns||5)}</b></span>`;
+      } else {
+        const s = state.profile==='square' ? ' side' : ' diam';
+        sb.innerHTML =
+          `<span>Base${s} <b>${state.flangeOuterD.toFixed(2)}</b>mm</span>` +
+          `<span>Inner${s} <b>${state.flangeInnerD.toFixed(2)}</b>mm</span>` +
+          `<span>H <b>${totalH.toFixed(2)}</b>mm</span>` +
+          `<span>Cord <b>${state.cordD.toFixed(2)}</b>mm</span>` +
+          `<span>Wall <b>${state.wallT.toFixed(2)}</b>mm</span>`;
+      }
 
       // Slider gradient fills
-      const sliders = [
-        ['sl-flangeOuter', state.flangeOuterD],
-        ['sl-flangeInner', state.flangeInnerD],
-        ['sl-flangeH',     state.flangeH],
-        ['sl-bodyH',       state.bodyH],
-        ['sl-cordD',       state.cordD],
-        ['sl-wallT',       state.wallT],
-      ];
-      sliders.forEach(([id, val]) => setSliderFill(document.getElementById(id), val));
+      [['sl-flangeOuter',state.flangeOuterD],['sl-flangeInner',state.flangeInnerD],
+       ['sl-flangeH',state.flangeH],['sl-bodyH',state.bodyH],
+       ['sl-cordD',state.cordD],['sl-wallT',state.wallT],['sl-turns',state.turns||5]]
+        .forEach(([id,val]) => { const el=document.getElementById(id); if(el) setSliderFill(el,val); });
+
+      applyProfileVisibility();
     }
 
     function setSliderFill(el, val) {
-      const pct = ((val - +el.min) / (+el.max - +el.min)) * 100;
-      el.style.setProperty('--pct', pct + '%');
+      el.style.setProperty('--pct', ((val - +el.min)/(+el.max - +el.min)*100)+'%');
     }
 
-    // ── Camera presets ───────────────────────────────────────────────
     function animateTo(preset) {
-      const h = (state.flangeH + state.bodyH) / 2;
-      const D = Math.max(80, state.flangeOuterD * 2.5 + state.bodyH);
+      const h = state.profile==='helix' ? state.bodyH/2 : (state.flangeH+state.bodyH)/2;
+      const D = Math.max(80, state.flangeOuterD*2.5+state.bodyH);
       const targets = {
-        top:   new THREE.Vector3(0, D * 1.8, 0.001),
-        front: new THREE.Vector3(0, h, D),
-        iso:   new THREE.Vector3(D * 0.7, h + D * 0.5, D * 0.7),
-        side:  new THREE.Vector3(D, h, 0),
+        top:   new THREE.Vector3(0,D*1.8,0.001),
+        front: new THREE.Vector3(0,h,D),
+        iso:   new THREE.Vector3(D*0.7,h+D*0.5,D*0.7),
+        side:  new THREE.Vector3(D,h,0),
       };
-      const end = targets[preset] || targets.iso;
-      const start = camera.position.clone();
-      let t = 0;
+      const end=targets[preset]||targets.iso, start=camera.position.clone();
+      let t=0;
       (function tick() {
-        t += 0.055;
-        camera.position.lerpVectors(start, end, t < 1 ? t*t*(3-2*t) : 1);
+        t+=0.055;
+        camera.position.lerpVectors(start,end,t<1?t*t*(3-2*t):1);
         controls.update();
-        if (t < 1) requestAnimationFrame(tick);
+        if(t<1) requestAnimationFrame(tick);
       })();
     }
 
-    // ── Resize ───────────────────────────────────────────────────────
     function onResize() {
-      const w = viewport.clientWidth, h = viewport.clientHeight;
-      if (!w || !h) return;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
+      const w=viewport.clientWidth, h=viewport.clientHeight;
+      if(!w||!h) return;
+      camera.aspect=w/h; camera.updateProjectionMatrix(); renderer.setSize(w,h);
     }
     new ResizeObserver(onResize).observe(viewport);
     onResize();
 
-    // ── Render loop ──────────────────────────────────────────────────
-    (function loop() { requestAnimationFrame(loop); controls.update(); renderer.render(scene, camera); })();
+    (function loop(){ requestAnimationFrame(loop); controls.update(); renderer.render(scene,camera); })();
 
-    // ── Wire controls ────────────────────────────────────────────────
-    function wire(id, key, parse = parseFloat) {
-      const el = document.getElementById(id);
-      el.addEventListener('input', () => { state[key] = parse(el.value); rebuildModel(); });
+    function wire(id, key, parse=parseFloat) {
+      const el=document.getElementById(id);
+      el.addEventListener('input',()=>{ state[key]=parse(el.value); rebuildModel(); });
     }
-    wire('sl-flangeOuter', 'flangeOuterD');
-    wire('sl-flangeInner', 'flangeInnerD');
-    wire('sl-flangeH',     'flangeH');
-    wire('sl-bodyH',       'bodyH');
-    wire('sl-cordD',       'cordD');
-    wire('sl-wallT',       'wallT');
+    wire('sl-flangeOuter','flangeOuterD');
+    wire('sl-flangeInner','flangeInnerD');
+    wire('sl-flangeH','flangeH');
+    wire('sl-bodyH','bodyH');
+    wire('sl-cordD','cordD');
+    wire('sl-wallT','wallT');
+    wire('sl-turns','turns');
 
-    document.querySelectorAll('.sr-unit').forEach(btn =>
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.sr-unit').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        state.unit = btn.dataset.unit;
-        updateUI();
+    document.querySelectorAll('.sr-unit').forEach(btn=>
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('.sr-unit').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active'); state.unit=btn.dataset.unit; updateUI();
       })
     );
 
-    document.querySelectorAll('.sr-section-header').forEach(hdr =>
-      hdr.addEventListener('click', () => {
-        const body  = document.getElementById(hdr.dataset.target);
-        const arrow = hdr.querySelector('.sr-arrow');
-        if (!body) return;
-        const hidden = body.classList.toggle('hidden');
-        if (arrow) arrow.textContent = hidden ? '▼' : '▲';
+    document.querySelectorAll('.sr-profile-btn').forEach(btn=>
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('.sr-profile-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active'); state.profile=btn.dataset.profile; rebuildModel();
       })
     );
 
-    document.querySelectorAll('.sr-view-btn').forEach(btn =>
-      btn.addEventListener('click', () => animateTo(btn.dataset.view))
+    document.querySelectorAll('.sr-section-header').forEach(hdr=>
+      hdr.addEventListener('click',()=>{
+        const body=document.getElementById(hdr.dataset.target);
+        const arrow=hdr.querySelector('.sr-arrow');
+        if(!body) return;
+        const hidden=body.classList.toggle('hidden');
+        if(arrow) arrow.textContent=hidden?'▼':'▲';
+      })
     );
 
-    document.getElementById('btn-download').addEventListener('click', () => {
-      const buf  = toBinarySTL(modelMesh.geometry);
-      const blob = new Blob([buf], { type: 'application/octet-stream' });
-      const url  = URL.createObjectURL(blob);
-      const a    = Object.assign(document.createElement('a'), {
-        href:     url,
-        download: `strain-relief_base${state.flangeOuterD}mm_cord${state.cordD}mm_H${state.flangeH + state.bodyH}mm.stl`,
-      });
-      a.click();
+    document.querySelectorAll('.sr-view-btn').forEach(btn=>
+      btn.addEventListener('click',()=>animateTo(btn.dataset.view))
+    );
+
+    document.getElementById('btn-download').addEventListener('click',()=>{
+      const buf=toBinarySTL(modelMesh.geometry);
+      const blob=new Blob([buf],{type:'application/octet-stream'});
+      const url=URL.createObjectURL(blob);
+      const totalH=state.profile==='helix'?state.bodyH:state.flangeH+state.bodyH;
+      const name=state.profile==='helix'
+        ?`strain-relief_helix_coil${state.flangeOuterD}mm_tube${state.cordD}mm_${Math.round(state.turns||5)}turns.stl`
+        :`strain-relief_${state.profile}_base${state.flangeOuterD}mm_cord${state.cordD}mm_H${totalH}mm.stl`;
+      Object.assign(document.createElement('a'),{href:url,download:name}).click();
       URL.revokeObjectURL(url);
     });
 
-    // ── Init ─────────────────────────────────────────────────────────
     rebuildModel();
   </script>
 </body>
