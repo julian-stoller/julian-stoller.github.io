@@ -348,6 +348,11 @@
                 <div class="sr-stat-value"><span id="stat-cordD">8.00</span><small id="su3"> mm</small></div>
               </div>
             </div>
+            <div style="padding:10px 16px 11px; border-bottom:1px solid #eee; background:#f7f9f4; display:flex; align-items:baseline; gap:8px;">
+              <span style="font-size:0.65rem;font-weight:700;color:#999;letter-spacing:0.06em;text-transform:uppercase;">Volume</span>
+              <span id="stat-vol" style="font-size:1.1rem;font-weight:700;color:#3a7a3a;">—</span>
+              <span style="font-size:0.72rem;color:#888;">≈ <span id="stat-vol-g">—</span> g PLA</span>
+            </div>
 
             <!-- Base -->
             <div class="sr-section">
@@ -607,16 +612,20 @@
         for (let k = 0; k < 6; k++) norms.push(mc*innerNR, innerNY, ms*innerNR);
 
         // ── Top cap (annular ring at y=+hh, normal +Y) ──
+        // Winding must give cross-product in +Y direction.
+        // Derivation: (outer-c0→inner-c0) × (outer-c0→inner-c1) yields +Y in Three.js's
+        // right-handed XYZ system where increasing XZ angle is CW from above.
         verts.push(
-          rInTop*c0,+hh,rInTop*s0,  rOutTop*c0,+hh,rOutTop*s0,  rOutTop*c1,+hh,rOutTop*s1,
-          rInTop*c0,+hh,rInTop*s0,  rOutTop*c1,+hh,rOutTop*s1,  rInTop*c1,+hh,rInTop*s1
+          rOutTop*c0,+hh,rOutTop*s0,  rInTop*c0,+hh,rInTop*s0,  rInTop*c1,+hh,rInTop*s1,
+          rOutTop*c0,+hh,rOutTop*s0,  rInTop*c1,+hh,rInTop*s1,  rOutTop*c1,+hh,rOutTop*s1
         );
         for (let k = 0; k < 6; k++) norms.push(0, 1, 0);
 
         // ── Bottom cap (annular ring at y=-hh, normal -Y) ──
+        // Reverse of top cap winding to flip normal to -Y.
         verts.push(
-          rOutBot*c0,-hh,rOutBot*s0,  rInBot*c0,-hh,rInBot*s0,  rInBot*c1,-hh,rInBot*s1,
-          rOutBot*c0,-hh,rOutBot*s0,  rInBot*c1,-hh,rInBot*s1,  rOutBot*c1,-hh,rOutBot*s1
+          rInBot*c0,-hh,rInBot*s0,  rOutBot*c0,-hh,rOutBot*s0,  rOutBot*c1,-hh,rOutBot*s1,
+          rInBot*c0,-hh,rInBot*s0,  rOutBot*c1,-hh,rOutBot*s1,  rInBot*c1,-hh,rInBot*s1
         );
         for (let k = 0; k < 6; k++) norms.push(0, -1, 0);
       }
@@ -645,6 +654,30 @@
       out.setAttribute('position', new THREE.Float32BufferAttribute(pos,  3));
       out.setAttribute('normal',   new THREE.Float32BufferAttribute(norm, 3));
       return out;
+    }
+
+    // ── Volume (analytical) ──────────────────────────────────────────
+    // Returns volume in mm³ using frustum and cylinder formulas.
+    function computeVolume(p) {
+      const foR  = Math.max(3, p.flangeOuterD / 2);
+      const fiR  = Math.max(2, Math.min(p.flangeInnerD / 2, foR - 1));
+      const fH   = Math.max(1, p.flangeH);
+      const bH   = Math.max(3, p.bodyH);
+      const cR   = Math.max(0.5, p.cordD / 2);
+      const wall = Math.max(0.4, Math.min(p.wallT, fiR - 0.5, cR - 0.1));
+
+      const boBot = fiR, biBot = fiR - wall;
+      const boTop = cR + wall, biTop = cR;
+
+      // Hollow cylinder (flange): π·h·(R²−r²)
+      const vFlange = Math.PI * fH * (foR*foR - fiR*fiR);
+
+      // Hollow frustum (body): outer frustum − inner frustum
+      // V_frustum = (π·h/3)·(R1²+R1·R2+R2²)
+      const vOuter = (Math.PI * bH / 3) * (boBot*boBot + boBot*boTop + boTop*boTop);
+      const vInner = (Math.PI * bH / 3) * (biBot*biBot + biBot*biTop + biTop*biTop);
+
+      return vFlange + (vOuter - vInner); // mm³
     }
 
     // ── Build the grommet geometry ───────────────────────────────────
@@ -733,6 +766,14 @@
       document.getElementById('val-bodyH').textContent       = fmt(state.bodyH);
       document.getElementById('val-cordD').textContent       = fmt(state.cordD);
       document.getElementById('val-wallT').textContent       = fmt(state.wallT);
+
+      // Volume
+      const volMm3 = computeVolume(state);
+      const volCm3 = volMm3 / 1000;
+      document.getElementById('stat-vol').textContent =
+        volCm3 >= 1 ? volCm3.toFixed(2) + ' cm³' : volMm3.toFixed(0) + ' mm³';
+      // PLA density ≈ 1.24 g/cm³
+      document.getElementById('stat-vol-g').textContent = (volCm3 * 1.24).toFixed(1);
 
       // Status bar (always mm)
       document.getElementById('sb-flangeOuter').textContent = state.flangeOuterD.toFixed(2);
