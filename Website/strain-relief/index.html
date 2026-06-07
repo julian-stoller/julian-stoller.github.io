@@ -295,6 +295,39 @@
               </div>
             </div>
 
+            <!-- Helix Top Collar: helix only -->
+            <div class="sr-section" id="sr-section-helixtop" data-show-for="helix" style="display:none">
+              <div class="sr-section-header" data-target="sec-helixtop">
+                Top Collar <span class="sr-arrow" id="arrow-helixtop">&#x25B2;</span>
+              </div>
+              <div class="sr-section-body" id="sec-helixtop">
+                <div class="sr-param">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Outer Diameter</span>
+                    <span class="sr-param-value" id="val-helixTopOD">20.00</span>
+                  </div>
+                  <p class="sr-param-desc">Outer diameter of the top collar where the cord exits.</p>
+                  <input type="range" class="sr-slider" id="sl-helixTopOD" min="5" max="80" step="0.5" value="20">
+                </div>
+                <div class="sr-param">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Inner Diameter</span>
+                    <span class="sr-param-value" id="val-helixTopID">10.00</span>
+                  </div>
+                  <p class="sr-param-desc">Diameter of the cord passage through the top collar.</p>
+                  <input type="range" class="sr-slider" id="sl-helixTopID" min="1" max="60" step="0.5" value="10">
+                </div>
+                <div class="sr-param">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Top Height</span>
+                    <span class="sr-param-value" id="val-helixTopH">8.00</span>
+                  </div>
+                  <p class="sr-param-desc">Height of the top collar section.</p>
+                  <input type="range" class="sr-slider" id="sl-helixTopH" min="1" max="30" step="0.5" value="8">
+                </div>
+              </div>
+            </div>
+
           </div><!-- /.sr-panel -->
 
           <div class="sr-viewport">
@@ -330,7 +363,7 @@
           <li><strong>Wall thickness:</strong> 2-3 mm is typical. Go thinner for cables under 6 mm OD; thicker for cables over 15 mm OD or rough installation environments.</li>
         </ul>
         <h3>How the Geometry Is Generated</h3>
-        <p>Circular and square profiles are analytic triangle meshes built directly in Three.js without CSG or mesh booleans. Each face's outward normals are derived analytically from the frustum's slant angle, giving correct shading on tapered surfaces. The helical profile sweeps a rectangular cross-section along a parametric helix curve using a stable radial/vertical frame (no Frenet twist). All three profiles export as binary STL written directly from the geometry buffer in JavaScript, with no server round-trip.</p>
+        <p>Circular and square profiles are analytic triangle meshes built directly in Three.js without CSG or mesh booleans. Each face's outward normals are derived analytically from the frustum's slant angle, giving correct shading on tapered surfaces. The helical profile sweeps a rectangular cross-section along a parametric helix using a stable radial/vertical frame (no Frenet twist), then merges base and top collars. All three profiles export as binary STL with no server round-trip.</p>
       </div>
 
       <footer><p>Parametric Strain Relief · Julian B. Stoller</p></footer>
@@ -367,6 +400,9 @@
       helixBaseID:  10,
       helixBaseH:   8,
       tubeRectH:    4,
+      helixTopOD:   20,
+      helixTopID:   10,
+      helixTopH:    8,
     };
 
     const unitScale = { mm: 1, cm: 0.1, in: 1/25.4 };
@@ -426,7 +462,6 @@
     scene.add(modelMesh);
 
     // Hollow circular frustum
-    // rInBot/rOutBot = radii at y=-h/2, rInTop/rOutTop at y=+h/2
     function makeHollowFrustum(rInBot, rOutBot, rInTop, rOutTop, height, seg) {
       const verts = [], norms = [];
       const hh = height / 2;
@@ -456,14 +491,12 @@
         );
         for (let k=0;k<6;k++) norms.push(mc*innerNR, innerNY, ms*innerNR);
 
-        // Top cap (+Y): winding derived so cross product gives +Y in Three.js right-handed XYZ
         verts.push(
           rOutTop*c0,+hh,rOutTop*s0, rInTop*c0,+hh,rInTop*s0, rInTop*c1,+hh,rInTop*s1,
           rOutTop*c0,+hh,rOutTop*s0, rInTop*c1,+hh,rInTop*s1, rOutTop*c1,+hh,rOutTop*s1
         );
         for (let k=0;k<6;k++) norms.push(0, 1, 0);
 
-        // Bottom cap (-Y): reverse of top cap winding
         verts.push(
           rInBot*c0,-hh,rInBot*s0, rOutBot*c0,-hh,rOutBot*s0, rOutBot*c1,-hh,rOutBot*s1,
           rInBot*c0,-hh,rInBot*s0, rOutBot*c1,-hh,rOutBot*s1, rInBot*c1,-hh,rInBot*s1
@@ -478,15 +511,10 @@
     }
 
     // Hollow square frustum
-    // hiBot/hoBot = inner/outer half-side at bottom; hiTop/hoTop at top
-    // Windings verified analytically: outer wall outward, inner wall inward, caps +/-Y
     function makeSquareHollowFrustum(hiBot, hoBot, hiTop, hoTop, height) {
       const verts = [], norms = [];
       const hh = height / 2;
-
-      // corners 0=left-front, 1=right-front, 2=right-back, 3=left-back
       const sq = (h, y) => [[-h,y,h],[h,y,h],[h,y,-h],[-h,y,-h]];
-
       const oBot=sq(hoBot,-hh), oTop=sq(hoTop,+hh);
       const iBot=sq(hiBot,-hh), iTop=sq(hiTop,+hh);
 
@@ -501,10 +529,10 @@
 
       for (let i=0;i<4;i++) {
         const j=(i+1)%4;
-        addQuad(oBot[i],oBot[j],oTop[j],oTop[i]); // outer wall (outward normal)
-        addQuad(iTop[i],iTop[j],iBot[j],iBot[i]); // inner wall (inward normal)
-        addQuad(iTop[i],oTop[i],oTop[j],iTop[j]); // top cap (+Y)
-        addQuad(oBot[i],iBot[i],iBot[j],oBot[j]); // bottom cap (-Y)
+        addQuad(oBot[i],oBot[j],oTop[j],oTop[i]);
+        addQuad(iTop[i],iTop[j],iBot[j],iBot[i]);
+        addQuad(iTop[i],oTop[i],oTop[j],iTop[j]);
+        addQuad(oBot[i],iBot[i],iBot[j],oBot[j]);
       }
 
       const geo = new THREE.BufferGeometry();
@@ -523,14 +551,11 @@
       }
     }
 
-    // Sweep a rectangle along a helix using a STABLE frame to avoid Frenet twist:
-    //   N = radial-outward from the Y axis   (width direction)
-    //   B = (0,1,0) vertical                 (height direction)
-    // Corner order: 0=BL(inner-bot), 1=BR(outer-bot), 2=TR(outer-top), 3=TL(inner-top)
-    // All four side windings and both cap windings verified analytically.
+    // Sweep a rectangle along a helix using a stable frame (no Frenet twist):
+    //   N = radial-outward from Y axis, B = (0,1,0) vertical
+    // Corners: 0=BL(inner-bot), 1=BR(outer-bot), 2=TR(outer-top), 3=TL(inner-top)
     function buildHelixRectTube(curve, segments, halfW, halfH) {
       const pos = [], nrm = [];
-
       const corners = [], radials = [];
       for (let i = 0; i <= segments; i++) {
         const p = curve.getPoint(i / segments);
@@ -538,10 +563,10 @@
         const Nx = p.x/rl, Nz = p.z/rl;
         radials.push([Nx, Nz]);
         corners.push([
-          new THREE.Vector3(p.x - halfW*Nx, p.y - halfH, p.z - halfW*Nz), // BL inner-bot
-          new THREE.Vector3(p.x + halfW*Nx, p.y - halfH, p.z + halfW*Nz), // BR outer-bot
-          new THREE.Vector3(p.x + halfW*Nx, p.y + halfH, p.z + halfW*Nz), // TR outer-top
-          new THREE.Vector3(p.x - halfW*Nx, p.y + halfH, p.z - halfW*Nz), // TL inner-top
+          new THREE.Vector3(p.x - halfW*Nx, p.y - halfH, p.z - halfW*Nz),
+          new THREE.Vector3(p.x + halfW*Nx, p.y - halfH, p.z + halfW*Nz),
+          new THREE.Vector3(p.x + halfW*Nx, p.y + halfH, p.z + halfW*Nz),
+          new THREE.Vector3(p.x - halfW*Nx, p.y + halfH, p.z - halfW*Nz),
         ]);
       }
 
@@ -554,27 +579,20 @@
         const c0=corners[i], c1=corners[i+1];
         let Rmx=(radials[i][0]+radials[i+1][0])/2, Rmz=(radials[i][1]+radials[i+1][1])/2;
         const rl=Math.sqrt(Rmx*Rmx+Rmz*Rmz)||1; Rmx/=rl; Rmz/=rl;
-        // Bottom  (0->1->next1->next0): normal (0,-1,0)
         addTri(c0[0],c0[1],c1[1], 0,-1,0); addTri(c0[0],c1[1],c1[0], 0,-1,0);
-        // Outer   (1->2->next2->next1): normal +radial
         addTri(c0[1],c0[2],c1[2], Rmx,0,Rmz); addTri(c0[1],c1[2],c1[1], Rmx,0,Rmz);
-        // Top     (2->3->next3->next2): normal (0,+1,0)
         addTri(c0[2],c0[3],c1[3], 0,1,0); addTri(c0[2],c1[3],c1[2], 0,1,0);
-        // Inner   (3->0->next0->next3): normal -radial
         addTri(c0[3],c0[0],c1[0], -Rmx,0,-Rmz); addTri(c0[3],c1[0],c1[3], -Rmx,0,-Rmz);
       }
 
-      // End caps via finite-difference tangent
       function getTangent(t) {
         const e=1e-4, a=curve.getPoint(Math.max(0,t-e)), b=curve.getPoint(Math.min(1,t+e));
         const dx=b.x-a.x,dy=b.y-a.y,dz=b.z-a.z,l=Math.sqrt(dx*dx+dy*dy+dz*dz)||1;
         return [dx/l,dy/l,dz/l];
       }
       const [tsx,tsy,tsz]=getTangent(0), [tex,tey,tez]=getTangent(1);
-      // Start cap: normal = -T  (BL,TL,TR + BL,TR,BR)
       { const [BL,BR,TR,TL]=corners[0];
         addTri(BL,TL,TR,-tsx,-tsy,-tsz); addTri(BL,TR,BR,-tsx,-tsy,-tsz); }
-      // End cap:   normal = +T  (BL,BR,TR + BL,TR,TL)
       { const [BL,BR,TR,TL]=corners[segments];
         addTri(BL,BR,TR,tex,tey,tez); addTri(BL,TR,TL,tex,tey,tez); }
 
@@ -609,6 +627,16 @@
       return { foR, fiR, fH, bH, cR, wall };
     }
 
+    function helixCollars(p) {
+      const baseH  = Math.max(1, p.helixBaseH);
+      const baseOR = Math.max(p.helixBottomD/2+1, p.helixBaseOD/2);
+      const baseIR = Math.max(0.5, Math.min(p.helixBaseID/2, baseOR-1));
+      const topH   = Math.max(1, p.helixTopH);
+      const topOR  = Math.max(2, p.helixTopOD/2);
+      const topIR  = Math.max(0.5, Math.min(p.helixTopID/2, topOR-1));
+      return { baseH, baseOR, baseIR, topH, topOR, topIR };
+    }
+
     function computeVolume(p) {
       if (p.profile === 'helix') {
         const tubeW  = Math.max(0.5, p.cordD);
@@ -618,11 +646,11 @@
         const Rmid   = (Rbot + Rtop) / 2;
         const turns  = Math.max(2, Math.min(Math.round(p.turns||5), 30));
         const bH     = Math.max(5, p.bodyH);
-        const baseH  = Math.max(1, p.helixBaseH);
-        const baseOR = Math.max(p.helixBottomD/2+1, p.helixBaseOD/2);
-        const baseIR = Math.max(0.5, Math.min(p.helixBaseID/2, baseOR-1));
+        const {baseH,baseOR,baseIR,topH,topOR,topIR} = helixCollars(p);
         const L = Math.sqrt(Math.pow(2*Math.PI*Rmid*turns,2) + bH*bH);
-        return tubeW * tubeH2 * L + Math.PI * baseH * (baseOR*baseOR - baseIR*baseIR);
+        return tubeW*tubeH2*L
+          + Math.PI*baseH*(baseOR*baseOR - baseIR*baseIR)
+          + Math.PI*topH*(topOR*topOR   - topIR*topIR);
       }
       const {foR,fiR,fH,bH,cR,wall} = clampParams(p);
       const boBot=fiR, biBot=fiR-wall, boTop=cR+wall, biTop=cR;
@@ -632,7 +660,6 @@
         const vInner  = (Math.PI*bH/3)*(biBot*biBot+biBot*biTop+biTop*biTop);
         return vFlange+vOuter-vInner;
       }
-      // square: same formula without pi, sides = 2*half-side
       const vFlange = fH*4*(foR*foR-fiR*fiR);
       const vOuter  = (4*bH/3)*(boBot*boBot+boBot*boTop+boTop*boTop);
       const vInner  = (4*bH/3)*(biBot*biBot+biBot*biTop+biTop*biTop);
@@ -649,14 +676,18 @@
         const Rtop   = Math.max(tubeW/2+1, p.helixTopD/2   - tubeW/2);
         const turns  = Math.max(2, Math.min(Math.round(p.turns||5), 30));
         const bH     = Math.max(5, p.bodyH);
-        const baseH  = Math.max(1, p.helixBaseH);
-        const baseOR = Math.max(p.helixBottomD/2+1, p.helixBaseOD/2);
-        const baseIR = Math.max(0.5, Math.min(p.helixBaseID/2, baseOR-1));
+        const {baseH,baseOR,baseIR,topH,topOR,topIR} = helixCollars(p);
+
         const helixGeo = buildHelixRectTube(new HelixCurve(Rbot,Rtop,bH,turns), turns*32, tubeW/2, tubeH2/2);
         helixGeo.translate(0, baseH, 0);
+
         const baseGeo = makeHollowFrustum(baseIR, baseOR, baseIR, baseOR, baseH, SEG);
         baseGeo.translate(0, baseH/2, 0);
-        return mergeGeos([baseGeo, helixGeo]);
+
+        const topGeo = makeHollowFrustum(topIR, topOR, topIR, topOR, topH, SEG);
+        topGeo.translate(0, baseH + bH + topH/2, 0);
+
+        return mergeGeos([baseGeo, helixGeo, topGeo]);
       }
 
       const {foR,fiR,fH,bH,cR,wall} = clampParams(p);
@@ -670,7 +701,6 @@
         return mergeGeos([flangeGeo,bodyGeo]);
       }
 
-      // square
       const flangeGeo = makeSquareHollowFrustum(fiR,foR,fiR,foR,fH);
       flangeGeo.translate(0,fH/2,0);
       const bodyGeo = makeSquareHollowFrustum(biBot,boBot,biTop,boTop,bH);
@@ -738,7 +768,9 @@
       const geo = buildGeometry(state);
       modelMesh.geometry.dispose();
       modelMesh.geometry = geo;
-      const camH = state.profile==='helix' ? state.bodyH+state.helixBaseH : state.flangeH+state.bodyH;
+      const camH = state.profile==='helix'
+        ? state.bodyH + state.helixBaseH + state.helixTopH
+        : state.flangeH + state.bodyH;
       controls.target.set(0, camH/2, 0);
       updateUI();
     }
@@ -746,9 +778,10 @@
     function updateUI() {
       const u = state.unit;
       const L = LABELS[state.profile];
-      const totalH = state.profile==='helix' ? state.bodyH+state.helixBaseH : state.flangeH+state.bodyH;
+      const totalH = state.profile==='helix'
+        ? state.bodyH + state.helixBaseH + state.helixTopH
+        : state.flangeH + state.bodyH;
 
-      // Dynamic labels
       document.getElementById('stat-label-0').textContent   = L.stat0;
       document.getElementById('stat-label-1').textContent   = L.stat1;
       document.getElementById('stat-label-3').textContent   = L.stat3;
@@ -760,7 +793,6 @@
       document.getElementById('desc-bodyH').textContent     = L.descBodyH;
       document.getElementById('sec-body-title').textContent = L.bodySec;
 
-      // Stat values
       document.getElementById('stat-flangeOuter').textContent = fmt(state.flangeOuterD);
       document.getElementById('stat-totalH').textContent      = fmt(totalH);
       document.getElementById('su0').textContent = ' '+u;
@@ -780,7 +812,6 @@
         document.getElementById('su3').textContent = ' '+u;
       }
 
-      // Slider value labels
       document.getElementById('val-flangeOuter').textContent    = fmt(state.flangeOuterD);
       document.getElementById('val-flangeInner').textContent    = fmt(state.flangeInnerD);
       document.getElementById('val-flangeH').textContent        = fmt(state.flangeH);
@@ -794,22 +825,23 @@
       document.getElementById('val-helixBaseOD').textContent    = fmt(state.helixBaseOD);
       document.getElementById('val-helixBaseID').textContent    = fmt(state.helixBaseID);
       document.getElementById('val-helixBaseH').textContent     = fmt(state.helixBaseH);
+      document.getElementById('val-helixTopOD').textContent     = fmt(state.helixTopOD);
+      document.getElementById('val-helixTopID').textContent     = fmt(state.helixTopID);
+      document.getElementById('val-helixTopH').textContent      = fmt(state.helixTopH);
 
-      // Volume
       const volMm3 = computeVolume(state);
       const volCm3 = volMm3/1000;
       document.getElementById('stat-vol').textContent =
         volCm3>=1 ? volCm3.toFixed(2)+' cm3' : volMm3.toFixed(0)+' mm3';
       document.getElementById('stat-vol-g').textContent = (volCm3*1.24).toFixed(1);
 
-      // Status bar
       const sb = document.getElementById('sr-status-bar');
       if (state.profile === 'helix') {
         sb.innerHTML =
           `<span>Bot <b>${state.helixBottomD.toFixed(2)}</b>mm</span>` +
           `<span>Top <b>${state.helixTopD.toFixed(2)}</b>mm</span>` +
           `<span>Tube <b>${state.cordD.toFixed(2)}</b>mm</span>` +
-          `<span>H <b>${state.bodyH.toFixed(2)}</b>mm</span>` +
+          `<span>H <b>${totalH.toFixed(2)}</b>mm</span>` +
           `<span>Turns <b>${Math.round(state.turns||5)}</b></span>`;
       } else {
         const s = state.profile==='square' ? ' side' : ' diam';
@@ -821,13 +853,13 @@
           `<span>Wall <b>${state.wallT.toFixed(2)}</b>mm</span>`;
       }
 
-      // Slider gradient fills
       [['sl-flangeOuter',state.flangeOuterD],['sl-flangeInner',state.flangeInnerD],
        ['sl-flangeH',state.flangeH],['sl-bodyH',state.bodyH],
        ['sl-cordD',state.cordD],['sl-wallT',state.wallT],['sl-turns',state.turns||5],
        ['sl-tubeRectH',state.tubeRectH],
        ['sl-helixBottomD',state.helixBottomD],['sl-helixTopD',state.helixTopD],
-       ['sl-helixBaseOD',state.helixBaseOD],['sl-helixBaseID',state.helixBaseID],['sl-helixBaseH',state.helixBaseH]]
+       ['sl-helixBaseOD',state.helixBaseOD],['sl-helixBaseID',state.helixBaseID],['sl-helixBaseH',state.helixBaseH],
+       ['sl-helixTopOD',state.helixTopOD],['sl-helixTopID',state.helixTopID],['sl-helixTopH',state.helixTopH]]
         .forEach(([id,val]) => { const el=document.getElementById(id); if(el) setSliderFill(el,val); });
 
       applyProfileVisibility();
@@ -883,6 +915,9 @@
     wire('sl-helixBaseOD','helixBaseOD');
     wire('sl-helixBaseID','helixBaseID');
     wire('sl-helixBaseH','helixBaseH');
+    wire('sl-helixTopOD','helixTopOD');
+    wire('sl-helixTopID','helixTopID');
+    wire('sl-helixTopH','helixTopH');
 
     document.querySelectorAll('.sr-unit').forEach(btn=>
       btn.addEventListener('click',()=>{
@@ -916,9 +951,11 @@
       const buf=toBinarySTL(modelMesh.geometry);
       const blob=new Blob([buf],{type:'application/octet-stream'});
       const url=URL.createObjectURL(blob);
-      const totalH=state.profile==='helix'?state.bodyH:state.flangeH+state.bodyH;
+      const totalH=state.profile==='helix'
+        ? state.bodyH+state.helixBaseH+state.helixTopH
+        : state.flangeH+state.bodyH;
       const name=state.profile==='helix'
-        ?`strain-relief_helix_coil${state.flangeOuterD}mm_tube${state.cordD}mm_${Math.round(state.turns||5)}turns.stl`
+        ?`strain-relief_helix_bot${state.helixBottomD}mm_top${state.helixTopD}mm_${Math.round(state.turns||5)}turns.stl`
         :`strain-relief_${state.profile}_base${state.flangeOuterD}mm_cord${state.cordD}mm_H${totalH}mm.stl`;
       Object.assign(document.createElement('a'),{href:url,download:name}).click();
       URL.revokeObjectURL(url);
