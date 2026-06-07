@@ -764,7 +764,34 @@
       });
     }
 
+    function applyHelixConstraints() {
+      if (state.profile !== 'helix') return;
+
+      // Tube width must be < min(bottomD, topD)/2 so the tube never crosses the axis.
+      // Equivalently, inner edge radius = coilCenterlineR - halfTubeW > 0.
+      const minCoilD  = Math.min(state.helixBottomD, state.helixTopD);
+      const maxTubeW  = Math.max(1, minCoilD / 2 - 1);
+      const slCord    = document.getElementById('sl-cordD');
+      if (slCord) slCord.max = maxTubeW;
+      if (state.cordD > maxTubeW) {
+        state.cordD = maxTubeW;
+        if (slCord) slCord.value = maxTubeW;
+      }
+
+      // Tube height must be < vertical pitch so coil layers don't overlap.
+      const turns     = Math.max(2, Math.round(state.turns || 5));
+      const pitch     = Math.max(1, state.bodyH) / turns;
+      const maxTubeH  = Math.max(0.5, pitch - 0.5);
+      const slTubeH   = document.getElementById('sl-tubeRectH');
+      if (slTubeH) slTubeH.max = maxTubeH.toFixed(2);
+      if (state.tubeRectH > maxTubeH) {
+        state.tubeRectH = maxTubeH;
+        if (slTubeH) slTubeH.value = maxTubeH;
+      }
+    }
+
     function rebuildModel() {
+      applyHelixConstraints();
       const geo = buildGeometry(state);
       modelMesh.geometry.dispose();
       modelMesh.geometry = geo;
