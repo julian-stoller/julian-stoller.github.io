@@ -15,11 +15,7 @@
       background: #f9f9f9;
     }
 
-    .page-container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 40px 20px 60px;
-    }
+    .page-container { max-width: 960px; margin: 0 auto; padding: 40px 20px 60px; }
 
     .back-link {
       display: inline-block;
@@ -49,17 +45,15 @@
     }
     .prose-section p + p { margin-top: 12px; }
 
-    /* ── Widget shell ───────────────────────────────── */
+    /* ── Widget ─────────────────────────────────────────────────── */
     .sr-widget {
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 4px 20px rgba(0,0,0,0.14);
       margin-bottom: 32px;
       background: #f2ede4;
-      font-family: system-ui, -apple-system, sans-serif;
     }
 
-    /* top bar */
     .sr-topbar {
       display: flex;
       align-items: center;
@@ -68,8 +62,9 @@
       height: 54px;
       background: #f2ede4;
       border-bottom: 1px solid #ddd8ce;
+      flex-wrap: wrap;
+      gap: 8px;
     }
-    .sr-topbar-left { display: flex; align-items: center; gap: 14px; }
     .sr-title { font-size: 1.15rem; font-weight: 700; color: #1a1a1a; letter-spacing: -0.01em; }
     .sr-title span { font-weight: 400; color: #888; }
     .sr-topbar-right { display: flex; align-items: center; gap: 10px; }
@@ -108,21 +103,14 @@
       cursor: pointer;
       transition: background 0.1s, color 0.1s;
     }
-    .sr-unit.active {
-      background: #b8b0e8;
-      color: #1a1a1a;
-    }
+    .sr-unit.active { background: #b8b0e8; color: #1a1a1a; }
 
-    /* main layout */
-    .sr-main {
-      display: flex;
-      height: 600px;
-    }
+    .sr-main { display: flex; height: 600px; }
 
-    /* left control panel */
+    /* Left panel */
     .sr-panel {
-      width: 300px;
-      min-width: 300px;
+      width: 290px;
+      min-width: 290px;
       background: #fff;
       border-right: 1px solid #e8e4dc;
       overflow-y: auto;
@@ -133,12 +121,11 @@
     .sr-stats {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0;
       border-bottom: 1px solid #eee;
       padding: 14px 16px;
       background: #fafaf8;
+      gap: 8px 0;
     }
-    .sr-stat { padding: 2px 0; }
     .sr-stat-label {
       font-size: 0.65rem;
       font-weight: 700;
@@ -152,16 +139,9 @@
       color: #1a1a1a;
       line-height: 1.2;
     }
-    .sr-stat-value small {
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: #888;
-      margin-left: 2px;
-    }
+    .sr-stat-value small { font-size: 0.72rem; font-weight: 500; color: #888; margin-left: 2px; }
 
-    /* sections */
     .sr-section { border-bottom: 1px solid #eeebe4; }
-
     .sr-section-header {
       display: flex;
       align-items: center;
@@ -174,57 +154,11 @@
       color: #333;
     }
     .sr-section-header:hover { background: #faf8f4; }
-    .sr-section-header .sr-arrow { font-size: 0.7rem; color: #4a9a4a; }
-    .sr-section-header .sr-badge {
-      font-size: 0.62rem;
-      font-weight: 700;
-      background: #e8f5e9;
-      color: #388e3c;
-      border: 1px solid #c8e6c9;
-      border-radius: 4px;
-      padding: 1px 5px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
+    .sr-arrow { font-size: 0.7rem; color: #4a9a4a; }
 
-    .sr-section-body {
-      padding: 6px 16px 14px;
-    }
+    .sr-section-body { padding: 6px 16px 14px; }
     .sr-section-body.hidden { display: none; }
 
-    .sr-desc {
-      font-size: 0.8rem;
-      color: #888;
-      line-height: 1.5;
-      margin-bottom: 10px;
-    }
-
-    /* mount type toggle */
-    .sr-mount-toggle {
-      display: flex;
-      border: 1.5px solid #ccc;
-      border-radius: 8px;
-      overflow: hidden;
-      background: #f5f5f5;
-      margin-top: 4px;
-    }
-    .sr-mount-btn {
-      flex: 1;
-      background: none;
-      border: none;
-      padding: 9px 0;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: #888;
-      cursor: pointer;
-      transition: background 0.12s, color 0.12s;
-    }
-    .sr-mount-btn.active {
-      background: #1a1a1a;
-      color: #fff;
-    }
-
-    /* slider params */
     .sr-param { margin-bottom: 14px; }
     .sr-param:last-child { margin-bottom: 0; }
     .sr-param-header {
@@ -233,22 +167,9 @@
       align-items: baseline;
       margin-bottom: 2px;
     }
-    .sr-param-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #444;
-    }
-    .sr-param-value {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #4a9a4a;
-    }
-    .sr-param-desc {
-      font-size: 0.73rem;
-      color: #aaa;
-      margin-bottom: 5px;
-      line-height: 1.4;
-    }
+    .sr-param-label { font-size: 0.8rem; font-weight: 600; color: #444; }
+    .sr-param-value { font-size: 0.85rem; font-weight: 700; color: #4a9a4a; }
+    .sr-param-desc { font-size: 0.73rem; color: #aaa; margin-bottom: 5px; line-height: 1.4; }
 
     .sr-slider {
       -webkit-appearance: none;
@@ -278,19 +199,9 @@
       cursor: pointer;
     }
 
-    /* right viewport */
-    .sr-viewport {
-      flex: 1;
-      position: relative;
-      background: #e8e4dc;
-      overflow: hidden;
-    }
-
-    #sr-canvas {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
+    /* Right viewport */
+    .sr-viewport { flex: 1; position: relative; background: #3a3d5c; overflow: hidden; }
+    #sr-canvas { display: block; width: 100%; height: 100%; }
 
     .sr-view-buttons {
       position: absolute;
@@ -304,18 +215,27 @@
       width: 34px;
       height: 34px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.85);
-      border: 1.5px solid #ccc;
+      background: rgba(255,255,255,0.18);
+      border: 1.5px solid rgba(255,255,255,0.35);
       font-size: 0.75rem;
       font-weight: 700;
-      color: #444;
+      color: #fff;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: background 0.1s;
     }
-    .sr-view-btn:hover { background: #fff; }
+    .sr-view-btn:hover { background: rgba(255,255,255,0.3); }
+
+    .sr-viewport-label {
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      pointer-events: none;
+    }
 
     .sr-status-bar {
       position: absolute;
@@ -323,29 +243,18 @@
       left: 0;
       right: 0;
       height: 38px;
-      background: rgba(245,241,234,0.92);
-      border-top: 1px solid #ddd8ce;
+      background: rgba(30,32,50,0.85);
+      border-top: 1px solid rgba(255,255,255,0.1);
       display: flex;
       align-items: center;
       gap: 18px;
       padding: 0 16px;
       font-size: 0.78rem;
-      color: #555;
+      color: rgba(255,255,255,0.55);
     }
-    .sr-status-bar span { white-space: nowrap; }
-    .sr-status-bar b { color: #1a1a1a; }
+    .sr-status-bar b { color: rgba(255,255,255,0.9); }
 
-    /* viewport label */
-    .sr-viewport-label {
-      position: absolute;
-      top: 12px;
-      left: 16px;
-      font-size: 0.78rem;
-      color: #aaa;
-      pointer-events: none;
-    }
-
-    /* technical notes below widget */
+    /* Notes section */
     .tech-section {
       background: white;
       border-radius: 8px;
@@ -365,19 +274,12 @@
     .tech-section ul { margin-left: 20px; }
     .tech-section li { font-size: 0.93rem; color: #444; margin-bottom: 6px; line-height: 1.6; }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #888;
-      font-size: 0.85rem;
-      margin-top: 20px;
-    }
+    footer { text-align: center; padding: 20px; color: #888; font-size: 0.85rem; margin-top: 20px; }
 
     @media (max-width: 680px) {
       .sr-main { flex-direction: column; height: auto; }
-      .sr-panel { width: 100%; min-width: unset; height: auto; border-right: none; border-bottom: 1px solid #e8e4dc; }
+      .sr-panel { width: 100%; min-width: unset; border-right: none; border-bottom: 1px solid #e8e4dc; }
       .sr-viewport { height: 380px; }
-      .sr-topbar { flex-wrap: wrap; height: auto; padding: 10px 14px; gap: 8px; }
     }
   </style>
 </head>
@@ -404,17 +306,15 @@
       </div>
 
       <div class="prose-section">
-        <p>A parametric strain relief (also called a cable grommet) is a simple but surprisingly useful part: it grips a cable where it passes through a panel or enclosure, preventing tension from reaching a solder joint or connector inside. This design is fully parametric — drag the sliders to size it for any cable and panel thickness, then download a print-ready STL.</p>
-        <p>Two mounting styles are supported. <strong>Panel-Mount</strong> adds a wide flange that rests on the outer face of the panel; the body passes through a drilled hole. <strong>Inline</strong> removes the flange for use as a pure grip sleeve or where the hole edges provide retention. Longitudinal fins around the body improve hand-grip when installing and increase radial friction against the hole wall.</p>
+        <p>A parametric strain relief (cable grommet) sized to any cable and panel. It consists of a flat base ring that sits on the outer face of an enclosure, and a flared conical body that passes through the panel hole and grips the cable with a tight cord opening at the tip. Tune every dimension with the sliders and download a print-ready STL.</p>
+        <p>Size the <strong>cord hole</strong> to your cable's outer diameter for a firm grip, or add 0.5 mm for a softer press fit. The <strong>base inner diameter</strong> should match your panel hole. <strong>Wall thickness</strong> controls stiffness — thinner walls flex more and grip better; thicker walls are more rigid and durable.</p>
       </div>
 
-      <!-- ═══════════════════════════════════════════ WIDGET ═══════ -->
+      <!-- ══════════════════════════ WIDGET ══════════════════════════ -->
       <div class="sr-widget">
 
         <div class="sr-topbar">
-          <div class="sr-topbar-left">
-            <div class="sr-title">StrainRelief <span>· Parametric</span></div>
-          </div>
+          <div class="sr-title">StrainRelief <span>· Parametric</span></div>
           <div class="sr-topbar-right">
             <button class="sr-btn" id="btn-download">⬇ Download STL</button>
             <div class="sr-units">
@@ -427,140 +327,97 @@
 
         <div class="sr-main">
 
-          <!-- ── Left panel ─────────────────────────────── -->
+          <!-- Left panel -->
           <div class="sr-panel">
 
-            <!-- Stats -->
             <div class="sr-stats">
               <div class="sr-stat">
-                <div class="sr-stat-label">Hole Dia</div>
-                <div class="sr-stat-value"><span id="stat-hole">6.00</span><small id="stat-unit-0"> mm</small></div>
+                <div class="sr-stat-label">Base Outer Ø</div>
+                <div class="sr-stat-value"><span id="stat-flangeOuter">40.00</span><small id="su0"> mm</small></div>
               </div>
               <div class="sr-stat">
-                <div class="sr-stat-label">Body Dia</div>
-                <div class="sr-stat-value"><span id="stat-body">18.00</span><small id="stat-unit-1"> mm</small></div>
+                <div class="sr-stat-label">Base Inner Ø</div>
+                <div class="sr-stat-value"><span id="stat-flangeInner">24.00</span><small id="su1"> mm</small></div>
               </div>
               <div class="sr-stat">
-                <div class="sr-stat-label">Length</div>
-                <div class="sr-stat-value"><span id="stat-length">40.00</span><small id="stat-unit-2"> mm</small></div>
+                <div class="sr-stat-label">Total Height</div>
+                <div class="sr-stat-value"><span id="stat-totalH">39.00</span><small id="su2"> mm</small></div>
               </div>
-              <div class="sr-stat" id="stat-flange-group">
-                <div class="sr-stat-label">Flange Dia</div>
-                <div class="sr-stat-value"><span id="stat-flange">28.00</span><small id="stat-unit-3"> mm</small></div>
+              <div class="sr-stat">
+                <div class="sr-stat-label">Cord Hole Ø</div>
+                <div class="sr-stat-value"><span id="stat-cordD">8.00</span><small id="su3"> mm</small></div>
               </div>
             </div>
 
-            <!-- Mount Type -->
+            <!-- Base -->
             <div class="sr-section">
-              <div class="sr-section-header" data-target="sec-mount">
-                Mount Type <span class="sr-arrow" id="arrow-mount">▲</span>
+              <div class="sr-section-header" data-target="sec-base">
+                Base Ring <span class="sr-arrow" id="arrow-base">▲</span>
               </div>
-              <div class="sr-section-body" id="sec-mount">
-                <p class="sr-desc">Panel-Mount adds a flange that rests on the enclosure face. Inline is a grip sleeve with no flange.</p>
-                <div class="sr-mount-toggle">
-                  <button class="sr-mount-btn active" data-mount="panel">Panel-Mount</button>
-                  <button class="sr-mount-btn" data-mount="inline">Inline</button>
+              <div class="sr-section-body" id="sec-base">
+
+                <div class="sr-param">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Outer Diameter</span>
+                    <span class="sr-param-value" id="val-flangeOuter">40.00</span>
+                  </div>
+                  <p class="sr-param-desc">Overall width of the flat base flange.</p>
+                  <input type="range" class="sr-slider" id="sl-flangeOuter" min="10" max="80" step="0.5" value="40">
                 </div>
+
+                <div class="sr-param">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Inner Diameter</span>
+                    <span class="sr-param-value" id="val-flangeInner">24.00</span>
+                  </div>
+                  <p class="sr-param-desc">Hole in the base — match to your panel hole diameter.</p>
+                  <input type="range" class="sr-slider" id="sl-flangeInner" min="4" max="70" step="0.5" value="24">
+                </div>
+
+                <div class="sr-param">
+                  <div class="sr-param-header">
+                    <span class="sr-param-label">Base Height</span>
+                    <span class="sr-param-value" id="val-flangeH">4.00</span>
+                  </div>
+                  <p class="sr-param-desc">Thickness of the flat base ring.</p>
+                  <input type="range" class="sr-slider" id="sl-flangeH" min="1" max="15" step="0.5" value="4">
+                </div>
+
               </div>
             </div>
 
-            <!-- Body Shape -->
+            <!-- Flared body -->
             <div class="sr-section">
               <div class="sr-section-header" data-target="sec-body">
-                Body Shape <span class="sr-arrow" id="arrow-body">▲</span>
+                Flared Body <span class="sr-arrow" id="arrow-body">▲</span>
               </div>
               <div class="sr-section-body" id="sec-body">
 
                 <div class="sr-param">
                   <div class="sr-param-header">
-                    <span class="sr-param-label">Cable Hole Diameter</span>
-                    <span class="sr-param-value" id="val-hole">6.00</span>
+                    <span class="sr-param-label">Body Height</span>
+                    <span class="sr-param-value" id="val-bodyH">35.00</span>
                   </div>
-                  <p class="sr-param-desc">Inner through-hole — size to your cable's outer diameter.</p>
-                  <input type="range" class="sr-slider" id="sl-hole" min="1" max="30" step="0.5" value="6">
+                  <p class="sr-param-desc">Height of the tapered conical section.</p>
+                  <input type="range" class="sr-slider" id="sl-bodyH" min="5" max="100" step="1" value="35">
                 </div>
 
                 <div class="sr-param">
                   <div class="sr-param-header">
-                    <span class="sr-param-label">Body Outer Diameter</span>
-                    <span class="sr-param-value" id="val-body">18.00</span>
+                    <span class="sr-param-label">Cord Hole Diameter</span>
+                    <span class="sr-param-value" id="val-cordD">8.00</span>
                   </div>
-                  <p class="sr-param-desc">Outer diameter of the main body cylinder.</p>
-                  <input type="range" class="sr-slider" id="sl-body" min="6" max="60" step="0.5" value="18">
+                  <p class="sr-param-desc">Opening at the tip of the cone — size to your cable.</p>
+                  <input type="range" class="sr-slider" id="sl-cordD" min="1" max="40" step="0.5" value="8">
                 </div>
 
                 <div class="sr-param">
                   <div class="sr-param-header">
-                    <span class="sr-param-label">Body Length</span>
-                    <span class="sr-param-value" id="val-length">40.00</span>
+                    <span class="sr-param-label">Wall Thickness</span>
+                    <span class="sr-param-value" id="val-wallT">2.50</span>
                   </div>
-                  <p class="sr-param-desc">Total axial length of the grip body.</p>
-                  <input type="range" class="sr-slider" id="sl-length" min="8" max="100" step="1" value="40">
-                </div>
-
-              </div>
-            </div>
-
-            <!-- Fins -->
-            <div class="sr-section">
-              <div class="sr-section-header" data-target="sec-fins">
-                Fins <span class="sr-arrow" id="arrow-fins">▲</span>
-              </div>
-              <div class="sr-section-body" id="sec-fins">
-
-                <div class="sr-param">
-                  <div class="sr-param-header">
-                    <span class="sr-param-label">Number of Fins</span>
-                    <span class="sr-param-value" id="val-numfins">6</span>
-                  </div>
-                  <p class="sr-param-desc">Longitudinal fins running along the body for grip and retention.</p>
-                  <input type="range" class="sr-slider" id="sl-numfins" min="0" max="12" step="1" value="6">
-                </div>
-
-                <div class="sr-param">
-                  <div class="sr-param-header">
-                    <span class="sr-param-label">Fin Height</span>
-                    <span class="sr-param-value" id="val-finh">3.00</span>
-                  </div>
-                  <p class="sr-param-desc">How far each fin protrudes radially from the body surface.</p>
-                  <input type="range" class="sr-slider" id="sl-finh" min="0" max="10" step="0.5" value="3">
-                </div>
-
-                <div class="sr-param">
-                  <div class="sr-param-header">
-                    <span class="sr-param-label">Fin Width</span>
-                    <span class="sr-param-value" id="val-finw">3.00</span>
-                  </div>
-                  <p class="sr-param-desc">Tangential thickness of each fin.</p>
-                  <input type="range" class="sr-slider" id="sl-finw" min="1" max="8" step="0.5" value="3">
-                </div>
-
-              </div>
-            </div>
-
-            <!-- Flange (panel mode only) -->
-            <div class="sr-section" id="sec-flange-container">
-              <div class="sr-section-header" data-target="sec-flange">
-                Flange <span class="sr-badge">PANEL ONLY</span> <span class="sr-arrow" id="arrow-flange">▲</span>
-              </div>
-              <div class="sr-section-body" id="sec-flange">
-
-                <div class="sr-param">
-                  <div class="sr-param-header">
-                    <span class="sr-param-label">Flange Diameter</span>
-                    <span class="sr-param-value" id="val-flanged">28.00</span>
-                  </div>
-                  <p class="sr-param-desc">Outer diameter of the retaining flange.</p>
-                  <input type="range" class="sr-slider" id="sl-flanged" min="10" max="80" step="0.5" value="28">
-                </div>
-
-                <div class="sr-param">
-                  <div class="sr-param-header">
-                    <span class="sr-param-label">Flange Thickness</span>
-                    <span class="sr-param-value" id="val-flanget">4.00</span>
-                  </div>
-                  <p class="sr-param-desc">Axial height of the flange disk.</p>
-                  <input type="range" class="sr-slider" id="sl-flanget" min="1" max="12" step="0.5" value="4">
+                  <p class="sr-param-desc">Thickness of the cone wall. Thinner = more flexible grip.</p>
+                  <input type="range" class="sr-slider" id="sl-wallT" min="0.5" max="10" step="0.25" value="2.5">
                 </div>
 
               </div>
@@ -568,55 +425,54 @@
 
           </div><!-- /.sr-panel -->
 
-          <!-- ── Right viewport ─────────────────────────── -->
+          <!-- Right viewport -->
           <div class="sr-viewport">
             <canvas id="sr-canvas"></canvas>
             <div class="sr-viewport-label">StrainRelief · Parametric</div>
 
             <div class="sr-view-buttons">
-              <button class="sr-view-btn" data-view="top" title="Top view">T</button>
+              <button class="sr-view-btn" data-view="top"   title="Top view">T</button>
               <button class="sr-view-btn" data-view="front" title="Front view">F</button>
-              <button class="sr-view-btn" data-view="iso" title="Isometric view">I</button>
-              <button class="sr-view-btn" data-view="side" title="Side view">S</button>
+              <button class="sr-view-btn" data-view="iso"   title="Isometric view">I</button>
+              <button class="sr-view-btn" data-view="side"  title="Side view">S</button>
             </div>
 
             <div class="sr-status-bar">
-              <span>Hole Ø <b id="sb-hole">6.00</b>mm</span>
-              <span>Body Ø <b id="sb-body">18.00</b>mm</span>
-              <span>L <b id="sb-length">40.00</b>mm</span>
-              <span id="sb-flange-group">Flange Ø <b id="sb-flange">28.00</b>mm</span>
+              <span>Base Ø <b id="sb-flangeOuter">40.00</b>mm</span>
+              <span>Inner Ø <b id="sb-flangeInner">24.00</b>mm</span>
+              <span>H <b id="sb-totalH">39.00</b>mm</span>
+              <span>Cord Ø <b id="sb-cordD">8.00</b>mm</span>
+              <span>Wall <b id="sb-wallT">2.50</b>mm</span>
             </div>
           </div>
 
         </div><!-- /.sr-main -->
       </div><!-- /.sr-widget -->
-      <!-- ══════════════════════════════════════════════════════════ -->
+      <!-- ════════════════════════════════════════════════════════════ -->
 
       <div class="tech-section">
         <h2>Design Notes</h2>
 
         <h3>Print Settings</h3>
-        <p>Print with 3–4 perimeters and 30–40% infill in PETG or ABS for good flex-resistance. The flange face benefits from a brim to prevent warping on heated-bed printers. No supports are needed for most orientations — print with the flat flange face down.</p>
+        <p>Print with the flat base face down, no supports needed. Use 3–4 perimeters and 20–40% infill. PETG is ideal — it has enough flex to grip the cable without cracking. ABS works for heat-exposed installations. PLA is fine for light-duty indoor use.</p>
 
         <h3>Sizing Guide</h3>
         <ul>
-          <li><strong>Hole diameter:</strong> match to your cable OD, or add 0.3–0.5 mm for a press fit, or add 1–1.5 mm for a slip fit you can tighten with a zip tie.</li>
-          <li><strong>Body diameter:</strong> should be 2–4 mm larger than the panel hole for the fins to bite. Scale fins down if clearance is tight.</li>
-          <li><strong>Flange diameter:</strong> at least 4 mm larger than the panel hole on each side so the flange catches cleanly.</li>
-          <li><strong>Body length:</strong> should exceed panel thickness by at least 10 mm to provide enough grip length for the cable.</li>
+          <li><strong>Cord hole:</strong> match to your cable OD for a firm grip, or add 0.5 mm for a press fit, or add 1–2 mm if you plan to seal with a zip tie or silicone.</li>
+          <li><strong>Base inner diameter:</strong> should equal your panel hole diameter exactly (or +0.2 mm for a slip fit).</li>
+          <li><strong>Base outer diameter:</strong> needs to be large enough to catch the panel face — at least 5 mm larger than the panel hole on each side.</li>
+          <li><strong>Wall thickness:</strong> 2–3 mm is typical. Go thinner for cables under 6 mm OD; thicker for cables over 15 mm OD or rough installation environments.</li>
         </ul>
 
-        <h3>Parametric Design Approach</h3>
-        <p>The geometry is generated live in the browser using Three.js BufferGeometry. Each slider update rebuilds the mesh from scratch using analytic geometry — no CSG library is needed because the hollow-cylinder and fin shapes are generated directly as indexed triangle meshes. The STL export writes a binary STL file entirely in JavaScript without any server round-trip.</p>
+        <h3>How the Geometry Is Generated</h3>
+        <p>The shape is a hollow frustum (truncated cone) sitting on a flat ring, both generated as analytic triangle meshes directly in Three.js — no CSG, no mesh booleans. Each face's outward normals are computed from the frustum's slant angle, giving correct shading on the tapered surface. The binary STL download writes directly from the GPU-ready buffer without any conversion step.</p>
       </div>
 
-      <footer>
-        <p>Parametric Strain Relief · Julian B. Stoller</p>
-      </footer>
+      <footer><p>Parametric Strain Relief · Julian B. Stoller</p></footer>
     </div>
   </main>
 
-  <!-- importmap lets the browser resolve bare 'three' specifiers used inside OrbitControls -->
+  <!-- importmap: lets the browser resolve bare 'three' specifiers inside OrbitControls -->
   <script type="importmap">
   {
     "imports": {
@@ -626,161 +482,141 @@
   }
   </script>
 
-  <!-- ═══════════════════════════════════════ THREE.JS WIDGET SCRIPT ══ -->
   <script type="module">
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-    // Inline geometry merge — avoids importing BufferGeometryUtils (saves one CDN hop)
-    function mergeGeometries(geos) {
-      let totalVerts = 0;
-      for (const g of geos) totalVerts += g.getAttribute('position').count;
-      const pos  = new Float32Array(totalVerts * 3);
-      const norm = new Float32Array(totalVerts * 3);
-      let offset = 0;
-      for (const g of geos) {
-        const p = g.getAttribute('position').array;
-        const n = g.getAttribute('normal').array;
-        pos.set(p, offset);
-        norm.set(n, offset);
-        offset += p.length;
-      }
-      const merged = new THREE.BufferGeometry();
-      merged.setAttribute('position', new THREE.Float32BufferAttribute(pos,  3));
-      merged.setAttribute('normal',   new THREE.Float32BufferAttribute(norm, 3));
-      return merged;
-    }
-
-    // ── State ─────────────────────────────────────────────────────────
+    // ── State ────────────────────────────────────────────────────────
     const state = {
-      unit: 'mm',
-      mountType: 'panel',
-      holeD:   6,
-      bodyD:   18,
-      bodyL:   40,
-      numFins: 6,
-      finH:    3,
-      finW:    3,
-      flangeD: 28,
-      flangeT: 4,
+      unit:         'mm',
+      flangeOuterD: 40,
+      flangeInnerD: 24,
+      flangeH:      4,
+      bodyH:        35,
+      cordD:        8,
+      wallT:        2.5,
     };
 
-    const unitScale = { mm: 1, cm: 0.1, in: 1/25.4 };
-    const unitPrec  = { mm: 2, cm: 3, in: 3 };
+    const unitScale = { mm: 1, cm: 0.1, in: 1 / 25.4 };
+    const unitPrec  = { mm: 2, cm: 3,   in: 3 };
+    const fmt = v => (v * unitScale[state.unit]).toFixed(unitPrec[state.unit]);
 
-    function displayVal(mmVal) {
-      const s = unitScale[state.unit];
-      const p = unitPrec[state.unit];
-      return (mmVal * s).toFixed(p);
-    }
+    // ── Three.js setup ───────────────────────────────────────────────
+    const canvas   = document.getElementById('sr-canvas');
+    const viewport = canvas.parentElement;
 
-    // ── Three.js scene setup ──────────────────────────────────────────
-    const canvas     = document.getElementById('sr-canvas');
-    const viewport   = canvas.parentElement;
-    const renderer   = new THREE.WebGLRenderer({ canvas, antialias: true });
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type    = THREE.PCFSoftShadowMap;
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xe8e4dc);
+    scene.background = new THREE.Color(0x3a3d5c);
 
     const camera = new THREE.PerspectiveCamera(42, 1, 0.5, 2000);
-    camera.position.set(90, 70, 90);
+    camera.position.set(70, 60, 90);
 
     const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping  = true;
-    controls.dampingFactor  = 0.06;
-    controls.minDistance    = 20;
-    controls.maxDistance    = 500;
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.06;
+    controls.minDistance   = 15;
+    controls.maxDistance   = 500;
     controls.target.set(0, 20, 0);
     controls.update();
 
-    // Lighting
-    const ambient = new THREE.AmbientLight(0xfff8f0, 0.55);
-    scene.add(ambient);
+    // Lighting — warm key + soft fill + subtle rim
+    scene.add(new THREE.AmbientLight(0xd0d8ff, 0.45));
 
-    const sun = new THREE.DirectionalLight(0xffffff, 1.3);
-    sun.position.set(60, 120, 80);
-    sun.castShadow = true;
-    sun.shadow.mapSize.set(1024, 1024);
-    sun.shadow.camera.near = 1;
-    sun.shadow.camera.far  = 400;
-    sun.shadow.camera.left = sun.shadow.camera.bottom = -80;
-    sun.shadow.camera.right = sun.shadow.camera.top   =  80;
-    scene.add(sun);
+    const key = new THREE.DirectionalLight(0xfff4e0, 1.4);
+    key.position.set(50, 100, 70);
+    key.castShadow = true;
+    key.shadow.mapSize.set(1024, 1024);
+    key.shadow.camera.near = 1;
+    key.shadow.camera.far  = 300;
+    [-60, 60].forEach(v => { key.shadow.camera.left = key.shadow.camera.bottom = v; });
+    key.shadow.camera.right = key.shadow.camera.top = 60;
+    scene.add(key);
 
-    const fill = new THREE.DirectionalLight(0xfff4e0, 0.4);
-    fill.position.set(-40, 20, -60);
+    const fill = new THREE.DirectionalLight(0xb0c8ff, 0.5);
+    fill.position.set(-40, 20, -50);
     scene.add(fill);
 
-    const rim = new THREE.DirectionalLight(0xe8f4ff, 0.25);
-    rim.position.set(0, -30, 80);
-    scene.add(rim);
-
     // Grid
-    const grid = new THREE.GridHelper(300, 30, 0xc8c4bc, 0xd4d0c8);
-    grid.receiveShadow = true;
+    const grid = new THREE.GridHelper(200, 20, 0x555870, 0x484b66);
     scene.add(grid);
 
-    // Shadow plane
+    // Shadow catcher
     const shadowPlane = new THREE.Mesh(
-      new THREE.PlaneGeometry(300, 300),
-      new THREE.ShadowMaterial({ opacity: 0.08 })
+      new THREE.PlaneGeometry(200, 200),
+      new THREE.ShadowMaterial({ opacity: 0.25 })
     );
     shadowPlane.rotation.x = -Math.PI / 2;
     shadowPlane.receiveShadow = true;
     scene.add(shadowPlane);
 
-    // Model mesh
+    // Model
     const modelMat = new THREE.MeshPhongMaterial({
-      color: 0xc8814a,
-      specular: 0x553322,
-      shininess: 28,
+      color:     0xb0b4c8,
+      specular:  0x404060,
+      shininess: 55,
+      side: THREE.FrontSide,
     });
     let modelMesh = new THREE.Mesh(new THREE.BufferGeometry(), modelMat);
     modelMesh.castShadow = true;
     scene.add(modelMesh);
 
-    // ── Geometry builders ─────────────────────────────────────────────
-
-    // Hollow cylinder, axis along Y, centered at origin
-    function makeHollowCylinder(innerR, outerR, height, segments) {
+    // ── Geometry: hollow frustum ─────────────────────────────────────
+    // Axis along Y. rInBot/rOutBot = radii at y=-h/2, rInTop/rOutTop at y=+h/2
+    function makeHollowFrustum(rInBot, rOutBot, rInTop, rOutTop, height, seg) {
       const verts = [], norms = [];
       const hh = height / 2;
 
-      for (let i = 0; i < segments; i++) {
-        const a0 = (i       / segments) * Math.PI * 2;
-        const a1 = ((i + 1) / segments) * Math.PI * 2;
+      // Precompute normal tilt for outer and inner surfaces
+      // Outward normal for a frustum: (height, rBot-rTop) in (radial, Y) — see derivation
+      const outerDr   = rOutTop - rOutBot; // negative if narrowing
+      const outerNLen = Math.sqrt(height * height + outerDr * outerDr) || 1;
+      const outerNR   =  height    / outerNLen; // radial component (positive = outward)
+      const outerNY   = -outerDr   / outerNLen; // Y component
+
+      const innerDr   = rInTop - rInBot;
+      const innerNLen = Math.sqrt(height * height + innerDr * innerDr) || 1;
+      const innerNR   = -height    / innerNLen; // negative = inward
+      const innerNY   =  innerDr   / innerNLen;
+
+      for (let i = 0; i < seg; i++) {
+        const a0 = (i       / seg) * Math.PI * 2;
+        const a1 = ((i + 1) / seg) * Math.PI * 2;
         const c0 = Math.cos(a0), s0 = Math.sin(a0);
         const c1 = Math.cos(a1), s1 = Math.sin(a1);
-        const mc = Math.cos((a0 + a1) / 2), ms = Math.sin((a0 + a1) / 2);
+        // Face-centre direction for flat normals
+        const mc = Math.cos((a0 + a1) * 0.5);
+        const ms = Math.sin((a0 + a1) * 0.5);
 
-        // Outer wall — normal points outward (+XZ)
+        // ── Outer wall (CCW from outside = outward normal) ──
         verts.push(
-          outerR*c0, -hh, outerR*s0,   outerR*c0, +hh, outerR*s0,   outerR*c1, +hh, outerR*s1,
-          outerR*c0, -hh, outerR*s0,   outerR*c1, +hh, outerR*s1,   outerR*c1, -hh, outerR*s1
+          rOutBot*c0,-hh,rOutBot*s0,  rOutTop*c0,+hh,rOutTop*s0,  rOutTop*c1,+hh,rOutTop*s1,
+          rOutBot*c0,-hh,rOutBot*s0,  rOutTop*c1,+hh,rOutTop*s1,  rOutBot*c1,-hh,rOutBot*s1
         );
-        for (let k = 0; k < 6; k++) norms.push(mc, 0, ms);
+        for (let k = 0; k < 6; k++) norms.push(mc*outerNR, outerNY, ms*outerNR);
 
-        // Inner wall — normal points inward (-XZ), reversed winding
+        // ── Inner wall (reversed winding = inward normal) ──
         verts.push(
-          innerR*c1, -hh, innerR*s1,   innerR*c1, +hh, innerR*s1,   innerR*c0, +hh, innerR*s0,
-          innerR*c1, -hh, innerR*s1,   innerR*c0, +hh, innerR*s0,   innerR*c0, -hh, innerR*s0
+          rInBot*c1,-hh,rInBot*s1,  rInTop*c1,+hh,rInTop*s1,  rInTop*c0,+hh,rInTop*s0,
+          rInBot*c1,-hh,rInBot*s1,  rInTop*c0,+hh,rInTop*s0,  rInBot*c0,-hh,rInBot*s0
         );
-        for (let k = 0; k < 6; k++) norms.push(-mc, 0, -ms);
+        for (let k = 0; k < 6; k++) norms.push(mc*innerNR, innerNY, ms*innerNR);
 
-        // Top cap (y = +hh, normal = +Y)
+        // ── Top cap (annular ring at y=+hh, normal +Y) ──
         verts.push(
-          innerR*c0, +hh, innerR*s0,   outerR*c0, +hh, outerR*s0,   outerR*c1, +hh, outerR*s1,
-          innerR*c0, +hh, innerR*s0,   outerR*c1, +hh, outerR*s1,   innerR*c1, +hh, innerR*s1
+          rInTop*c0,+hh,rInTop*s0,  rOutTop*c0,+hh,rOutTop*s0,  rOutTop*c1,+hh,rOutTop*s1,
+          rInTop*c0,+hh,rInTop*s0,  rOutTop*c1,+hh,rOutTop*s1,  rInTop*c1,+hh,rInTop*s1
         );
         for (let k = 0; k < 6; k++) norms.push(0, 1, 0);
 
-        // Bottom cap (y = -hh, normal = -Y)
+        // ── Bottom cap (annular ring at y=-hh, normal -Y) ──
         verts.push(
-          outerR*c0, -hh, outerR*s0,   innerR*c0, -hh, innerR*s0,   innerR*c1, -hh, innerR*s1,
-          outerR*c0, -hh, outerR*s0,   innerR*c1, -hh, innerR*s1,   outerR*c1, -hh, outerR*s1
+          rOutBot*c0,-hh,rOutBot*s0,  rInBot*c0,-hh,rInBot*s0,  rInBot*c1,-hh,rInBot*s1,
+          rOutBot*c0,-hh,rOutBot*s0,  rInBot*c1,-hh,rInBot*s1,  rOutBot*c1,-hh,rOutBot*s1
         );
         for (let k = 0; k < 6; k++) norms.push(0, -1, 0);
       }
@@ -791,219 +627,162 @@
       return geo;
     }
 
-    // Solid cylinder cap (for fin tops, etc.) — axis along Y
-    function makeSolidCylinder(r, height, segments) {
-      return makeHollowCylinder(0.001, r, height, segments);
+    // Simple geometry concatenation (no CSG needed — shapes are disjoint)
+    function mergeGeos(geos) {
+      let total = 0;
+      for (const g of geos) total += g.getAttribute('position').array.length;
+      const pos  = new Float32Array(total);
+      const norm = new Float32Array(total);
+      let off = 0;
+      for (const g of geos) {
+        const pa = g.getAttribute('position').array;
+        const na = g.getAttribute('normal').array;
+        pos.set(pa, off);
+        norm.set(na, off);
+        off += pa.length;
+      }
+      const out = new THREE.BufferGeometry();
+      out.setAttribute('position', new THREE.Float32BufferAttribute(pos,  3));
+      out.setAttribute('normal',   new THREE.Float32BufferAttribute(norm, 3));
+      return out;
     }
 
-    // Single fin geometry positioned at angle `angle` around body of radius `bodyR`
-    function makeFinGeo(bodyR, finH, finW, finDepth, angle) {
-      // Box: X = radial (finH), Y = axial (finDepth), Z = tangential (finW)
-      const geo = new THREE.BoxGeometry(finH, finDepth, finW);
-      // Center the box so its inner face aligns with bodyR:
-      // inner face is at x = -finH/2 from center, outer at +finH/2
-      // We want inner face at bodyR, so center at bodyR + finH/2
-      const T = new THREE.Matrix4().makeTranslation(bodyR + finH / 2, 0, 0);
-      const R = new THREE.Matrix4().makeRotationY(angle);
-      geo.applyMatrix4(R.multiply(T));
-      return geo;
-    }
-
+    // ── Build the grommet geometry ───────────────────────────────────
     function buildGeometry(p) {
-      const innerR  = Math.max(0.5, p.holeD  / 2);
-      const outerR  = Math.max(innerR + 1, p.bodyD  / 2);
-      const flangeR = Math.max(outerR + 1, p.flangeD / 2);
-      const SEG     = 48;
+      const SEG = 64;
 
-      const geos = [];
+      // Clamp to physically valid ranges
+      const foR  = Math.max(3, p.flangeOuterD / 2);
+      const fiR  = Math.max(2, Math.min(p.flangeInnerD / 2, foR - 1));
+      const fH   = Math.max(1, p.flangeH);
+      const bH   = Math.max(3, p.bodyH);
+      const cR   = Math.max(0.5, p.cordD / 2);
+      const wall = Math.max(0.4, Math.min(p.wallT, fiR - 0.5, cR - 0.1));
 
-      // Main hollow body
-      geos.push(makeHollowCylinder(innerR, outerR, p.bodyL, SEG));
+      // Body outer: base at fiR (where cone meets flange), tip at cR+wall
+      // Body inner: base at fiR-wall, tip at cR
+      const boBot = fiR;
+      const biBot = fiR - wall;
+      const boTop = cR + wall;
+      const biTop = cR;
 
-      // Fins
-      if (p.numFins > 0 && p.finH > 0.1 && p.finW > 0.1) {
-        const finDepth = p.bodyL * 0.85;
-        for (let i = 0; i < p.numFins; i++) {
-          const angle = (i / p.numFins) * Math.PI * 2;
-          geos.push(makeFinGeo(outerR, p.finH, p.finW, finDepth, angle));
-        }
-      }
+      // Flat base ring: y centered at fH/2, so spans y=0..fH
+      const flangeGeo = makeHollowFrustum(fiR, foR, fiR, foR, fH, SEG);
+      flangeGeo.translate(0, fH / 2, 0);
 
-      // Flange (panel-mount mode)
-      if (p.mountType === 'panel') {
-        const flangeGeo = makeHollowCylinder(innerR, flangeR, p.flangeT, SEG);
-        // Place directly below the body
-        flangeGeo.translate(0, -(p.bodyL / 2 + p.flangeT / 2), 0);
-        geos.push(flangeGeo);
-      }
+      // Tapered body: spans y=fH..fH+bH → center at fH+bH/2
+      const bodyGeo = makeHollowFrustum(biBot, boBot, biTop, boTop, bH, SEG);
+      bodyGeo.translate(0, fH + bH / 2, 0);
 
-      const merged = mergeGeometries(geos);
-
-      // Shift so bottom sits on y = 0
-      merged.computeBoundingBox();
-      const minY = merged.boundingBox.min.y;
-      merged.translate(0, -minY, 0);
-
-      return merged;
+      return mergeGeos([flangeGeo, bodyGeo]);
     }
 
-    // ── STL export ────────────────────────────────────────────────────
-    function geometryToBinarySTL(geo) {
+    // ── STL export (binary) ──────────────────────────────────────────
+    function toBinarySTL(geo) {
       const pos   = geo.getAttribute('position');
-      const count = pos.count / 3; // triangles
-
-      const buf  = new ArrayBuffer(80 + 4 + count * 50);
-      const view = new DataView(buf);
-
-      // 80-byte header (ascii label)
-      const header = 'StrainRelief-Parametric by Julian B. Stoller';
-      for (let i = 0; i < Math.min(header.length, 80); i++) {
-        view.setUint8(i, header.charCodeAt(i));
-      }
+      const norm  = geo.getAttribute('normal');
+      const count = pos.count / 3;
+      const buf   = new ArrayBuffer(80 + 4 + count * 50);
+      const view  = new DataView(buf);
+      const hdr   = 'StrainRelief-Parametric by JulianStoller';
+      for (let i = 0; i < Math.min(hdr.length, 80); i++) view.setUint8(i, hdr.charCodeAt(i));
       view.setUint32(80, count, true);
-
-      const norm = geo.getAttribute('normal');
-
       for (let t = 0; t < count; t++) {
-        const base = 84 + t * 50;
-        const vi   = t * 3;
-
-        // Normal (from first vertex of triangle)
-        view.setFloat32(base +  0, norm.getX(vi), true);
-        view.setFloat32(base +  4, norm.getY(vi), true);
-        view.setFloat32(base +  8, norm.getZ(vi), true);
-
-        // 3 vertices
+        const b  = 84 + t * 50;
+        const vi = t * 3;
+        view.setFloat32(b +  0, norm.getX(vi), true);
+        view.setFloat32(b +  4, norm.getY(vi), true);
+        view.setFloat32(b +  8, norm.getZ(vi), true);
         for (let j = 0; j < 3; j++) {
           const idx = vi + j;
-          view.setFloat32(base + 12 + j * 12 + 0, pos.getX(idx), true);
-          view.setFloat32(base + 12 + j * 12 + 4, pos.getY(idx), true);
-          view.setFloat32(base + 12 + j * 12 + 8, pos.getZ(idx), true);
+          view.setFloat32(b + 12 + j*12 + 0, pos.getX(idx), true);
+          view.setFloat32(b + 12 + j*12 + 4, pos.getY(idx), true);
+          view.setFloat32(b + 12 + j*12 + 8, pos.getZ(idx), true);
         }
-
-        view.setUint16(base + 48, 0, true); // attribute byte count
+        view.setUint16(b + 48, 0, true);
       }
-
       return buf;
     }
 
-    // ── UI update ─────────────────────────────────────────────────────
-    function clampState() {
-      // Enforce logical constraints
-      state.holeD   = Math.max(1,  state.holeD);
-      state.bodyD   = Math.max(state.holeD + 2, state.bodyD);
-      state.flangeD = Math.max(state.bodyD + 4,  state.flangeD);
-    }
-
+    // ── UI ───────────────────────────────────────────────────────────
     function rebuildModel() {
-      clampState();
-
       const geo = buildGeometry(state);
       modelMesh.geometry.dispose();
       modelMesh.geometry = geo;
-
-      // Keep camera target centred on model height
-      geo.computeBoundingBox();
-      const cy = (geo.boundingBox.min.y + geo.boundingBox.max.y) / 2;
-      controls.target.set(0, cy, 0);
-
+      // Centre camera target on mid-height of model
+      const totalH = state.flangeH + state.bodyH;
+      controls.target.set(0, totalH / 2, 0);
       updateUI();
     }
 
     function updateUI() {
+      const totalH = state.flangeH + state.bodyH;
       const u = state.unit;
-      const s = unitScale[u];
-      const p = unitPrec[u];
-      const fmt = v => (v * s).toFixed(p);
 
       // Stats
-      document.getElementById('stat-hole').textContent   = fmt(state.holeD);
-      document.getElementById('stat-body').textContent   = fmt(state.bodyD);
-      document.getElementById('stat-length').textContent = fmt(state.bodyL);
-      document.getElementById('stat-flange').textContent = fmt(state.flangeD);
+      document.getElementById('stat-flangeOuter').textContent = fmt(state.flangeOuterD);
+      document.getElementById('stat-flangeInner').textContent = fmt(state.flangeInnerD);
+      document.getElementById('stat-totalH').textContent      = fmt(totalH);
+      document.getElementById('stat-cordD').textContent       = fmt(state.cordD);
+      ['su0','su1','su2','su3'].forEach(id => document.getElementById(id).textContent = ' ' + u);
 
-      // Param value labels
-      document.getElementById('val-hole').textContent    = fmt(state.holeD);
-      document.getElementById('val-body').textContent    = fmt(state.bodyD);
-      document.getElementById('val-length').textContent  = fmt(state.bodyL);
-      document.getElementById('val-numfins').textContent = state.numFins;
-      document.getElementById('val-finh').textContent    = fmt(state.finH);
-      document.getElementById('val-finw').textContent    = fmt(state.finW);
-      document.getElementById('val-flanged').textContent = fmt(state.flangeD);
-      document.getElementById('val-flanget').textContent = fmt(state.flangeT);
+      // Slider value labels
+      document.getElementById('val-flangeOuter').textContent = fmt(state.flangeOuterD);
+      document.getElementById('val-flangeInner').textContent = fmt(state.flangeInnerD);
+      document.getElementById('val-flangeH').textContent     = fmt(state.flangeH);
+      document.getElementById('val-bodyH').textContent       = fmt(state.bodyH);
+      document.getElementById('val-cordD').textContent       = fmt(state.cordD);
+      document.getElementById('val-wallT').textContent       = fmt(state.wallT);
 
-      // Unit labels in stats
-      ['stat-unit-0','stat-unit-1','stat-unit-2','stat-unit-3'].forEach(id => {
-        document.getElementById(id).textContent = ' ' + u;
-      });
+      // Status bar (always mm)
+      document.getElementById('sb-flangeOuter').textContent = state.flangeOuterD.toFixed(2);
+      document.getElementById('sb-flangeInner').textContent = state.flangeInnerD.toFixed(2);
+      document.getElementById('sb-totalH').textContent      = totalH.toFixed(2);
+      document.getElementById('sb-cordD').textContent       = state.cordD.toFixed(2);
+      document.getElementById('sb-wallT').textContent       = state.wallT.toFixed(2);
 
-      // Status bar (always mm for the raw numbers)
-      document.getElementById('sb-hole').textContent   = state.holeD.toFixed(2);
-      document.getElementById('sb-body').textContent   = state.bodyD.toFixed(2);
-      document.getElementById('sb-length').textContent = state.bodyL.toFixed(2);
-      document.getElementById('sb-flange').textContent = state.flangeD.toFixed(2);
-
-      // Show/hide flange section
-      const showFlange = state.mountType === 'panel';
-      document.getElementById('sec-flange-container').style.display = showFlange ? '' : 'none';
-      document.getElementById('stat-flange-group').style.display    = showFlange ? '' : 'none';
-      document.getElementById('sb-flange-group').style.display      = showFlange ? '' : 'none';
-
-      // Update slider gradient fills
-      updateSliderFill(document.getElementById('sl-hole'),    state.holeD);
-      updateSliderFill(document.getElementById('sl-body'),    state.bodyD);
-      updateSliderFill(document.getElementById('sl-length'),  state.bodyL);
-      updateSliderFill(document.getElementById('sl-numfins'), state.numFins);
-      updateSliderFill(document.getElementById('sl-finh'),    state.finH);
-      updateSliderFill(document.getElementById('sl-finw'),    state.finW);
-      updateSliderFill(document.getElementById('sl-flanged'), state.flangeD);
-      updateSliderFill(document.getElementById('sl-flanget'), state.flangeT);
+      // Slider gradient fills
+      const sliders = [
+        ['sl-flangeOuter', state.flangeOuterD],
+        ['sl-flangeInner', state.flangeInnerD],
+        ['sl-flangeH',     state.flangeH],
+        ['sl-bodyH',       state.bodyH],
+        ['sl-cordD',       state.cordD],
+        ['sl-wallT',       state.wallT],
+      ];
+      sliders.forEach(([id, val]) => setSliderFill(document.getElementById(id), val));
     }
 
-    function updateSliderFill(el, val) {
-      const pct = ((val - el.min) / (el.max - el.min)) * 100;
+    function setSliderFill(el, val) {
+      const pct = ((val - +el.min) / (+el.max - +el.min)) * 100;
       el.style.setProperty('--pct', pct + '%');
     }
 
-    // ── Camera presets ────────────────────────────────────────────────
-    const CAM_DIST = 110;
-
-    function animateCameraTo(target) {
-      geo_computedH(); // ensure controls.target is up-to-date
-      const tgt = controls.target.clone();
-      const endPos = {
-        top:   new THREE.Vector3(0,        CAM_DIST * 1.5, 0.001),
-        front: new THREE.Vector3(0,        tgt.y,          CAM_DIST),
-        iso:   new THREE.Vector3(CAM_DIST * 0.8,  CAM_DIST * 0.7, CAM_DIST * 0.8),
-        side:  new THREE.Vector3(CAM_DIST, tgt.y,          0),
-      }[target] || new THREE.Vector3(CAM_DIST * 0.8, CAM_DIST * 0.7, CAM_DIST * 0.8);
-
-      const startPos = camera.position.clone();
+    // ── Camera presets ───────────────────────────────────────────────
+    function animateTo(preset) {
+      const h = (state.flangeH + state.bodyH) / 2;
+      const D = Math.max(80, state.flangeOuterD * 2.5 + state.bodyH);
+      const targets = {
+        top:   new THREE.Vector3(0, D * 1.8, 0.001),
+        front: new THREE.Vector3(0, h, D),
+        iso:   new THREE.Vector3(D * 0.7, h + D * 0.5, D * 0.7),
+        side:  new THREE.Vector3(D, h, 0),
+      };
+      const end = targets[preset] || targets.iso;
+      const start = camera.position.clone();
       let t = 0;
-      function tick() {
-        t += 0.06;
-        if (t >= 1) {
-          camera.position.copy(endPos);
-          controls.update();
-          return;
-        }
-        camera.position.lerpVectors(startPos, endPos, easeInOut(t));
+      (function tick() {
+        t += 0.055;
+        camera.position.lerpVectors(start, end, t < 1 ? t*t*(3-2*t) : 1);
         controls.update();
-        requestAnimationFrame(tick);
-      }
-      tick();
+        if (t < 1) requestAnimationFrame(tick);
+      })();
     }
 
-    function easeInOut(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
-
-    function geo_computedH() {
-      // No-op — controls.target already updated in rebuildModel
-    }
-
-    // ── Resize ────────────────────────────────────────────────────────
+    // ── Resize ───────────────────────────────────────────────────────
     function onResize() {
-      const w = viewport.clientWidth;
-      const h = viewport.clientHeight;
+      const w = viewport.clientWidth, h = viewport.clientHeight;
+      if (!w || !h) return;
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
@@ -1011,86 +790,57 @@
     new ResizeObserver(onResize).observe(viewport);
     onResize();
 
-    // ── Render loop ───────────────────────────────────────────────────
-    (function animate() {
-      requestAnimationFrame(animate);
-      controls.update();
-      renderer.render(scene, camera);
-    })();
+    // ── Render loop ──────────────────────────────────────────────────
+    (function loop() { requestAnimationFrame(loop); controls.update(); renderer.render(scene, camera); })();
 
-    // ── Wire up controls ──────────────────────────────────────────────
-
-    // Slider helpers
-    function wireSlider(id, key, parse = parseFloat) {
+    // ── Wire controls ────────────────────────────────────────────────
+    function wire(id, key, parse = parseFloat) {
       const el = document.getElementById(id);
-      el.addEventListener('input', () => {
-        state[key] = parse(el.value);
-        rebuildModel();
-      });
+      el.addEventListener('input', () => { state[key] = parse(el.value); rebuildModel(); });
     }
+    wire('sl-flangeOuter', 'flangeOuterD');
+    wire('sl-flangeInner', 'flangeInnerD');
+    wire('sl-flangeH',     'flangeH');
+    wire('sl-bodyH',       'bodyH');
+    wire('sl-cordD',       'cordD');
+    wire('sl-wallT',       'wallT');
 
-    wireSlider('sl-hole',    'holeD');
-    wireSlider('sl-body',    'bodyD');
-    wireSlider('sl-length',  'bodyL');
-    wireSlider('sl-numfins', 'numFins', parseInt);
-    wireSlider('sl-finh',    'finH');
-    wireSlider('sl-finw',    'finW');
-    wireSlider('sl-flanged', 'flangeD');
-    wireSlider('sl-flanget', 'flangeT');
-
-    // Mount type
-    document.querySelectorAll('.sr-mount-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.sr-mount-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        state.mountType = btn.dataset.mount;
-        rebuildModel();
-      });
-    });
-
-    // Unit toggle
-    document.querySelectorAll('.sr-unit').forEach(btn => {
+    document.querySelectorAll('.sr-unit').forEach(btn =>
       btn.addEventListener('click', () => {
         document.querySelectorAll('.sr-unit').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         state.unit = btn.dataset.unit;
         updateUI();
-      });
-    });
+      })
+    );
 
-    // Section collapse
-    document.querySelectorAll('.sr-section-header').forEach(header => {
-      header.addEventListener('click', () => {
-        const target = header.dataset.target;
-        const body   = document.getElementById(target);
-        const arrow  = header.querySelector('.sr-arrow');
+    document.querySelectorAll('.sr-section-header').forEach(hdr =>
+      hdr.addEventListener('click', () => {
+        const body  = document.getElementById(hdr.dataset.target);
+        const arrow = hdr.querySelector('.sr-arrow');
         if (!body) return;
-        const collapsed = body.classList.toggle('hidden');
-        if (arrow) arrow.textContent = collapsed ? '▼' : '▲';
-      });
-    });
+        const hidden = body.classList.toggle('hidden');
+        if (arrow) arrow.textContent = hidden ? '▼' : '▲';
+      })
+    );
 
-    // View buttons
-    document.querySelectorAll('.sr-view-btn').forEach(btn => {
-      btn.addEventListener('click', () => animateCameraTo(btn.dataset.view));
-    });
+    document.querySelectorAll('.sr-view-btn').forEach(btn =>
+      btn.addEventListener('click', () => animateTo(btn.dataset.view))
+    );
 
-    // Download STL
     document.getElementById('btn-download').addEventListener('click', () => {
-      const geo = modelMesh.geometry;
-      if (!geo) return;
-      const buf  = geometryToBinarySTL(geo);
+      const buf  = toBinarySTL(modelMesh.geometry);
       const blob = new Blob([buf], { type: 'application/octet-stream' });
       const url  = URL.createObjectURL(blob);
-      const a    = document.createElement('a');
-      a.href     = url;
-      const dims = `hole${state.holeD}mm_body${state.bodyD}mm_L${state.bodyL}mm`;
-      a.download = `strain-relief_${dims}.stl`;
+      const a    = Object.assign(document.createElement('a'), {
+        href:     url,
+        download: `strain-relief_base${state.flangeOuterD}mm_cord${state.cordD}mm_H${state.flangeH + state.bodyH}mm.stl`,
+      });
       a.click();
       URL.revokeObjectURL(url);
     });
 
-    // ── Init ──────────────────────────────────────────────────────────
+    // ── Init ─────────────────────────────────────────────────────────
     rebuildModel();
   </script>
 </body>
