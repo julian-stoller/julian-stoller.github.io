@@ -616,11 +616,40 @@
     </div>
   </main>
 
+  <!-- importmap lets the browser resolve bare 'three' specifiers used inside OrbitControls -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
   <!-- ═══════════════════════════════════════ THREE.JS WIDGET SCRIPT ══ -->
   <script type="module">
-    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
-    import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js';
-    import { mergeGeometries } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/utils/BufferGeometryUtils.js';
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    // Inline geometry merge — avoids importing BufferGeometryUtils (saves one CDN hop)
+    function mergeGeometries(geos) {
+      let totalVerts = 0;
+      for (const g of geos) totalVerts += g.getAttribute('position').count;
+      const pos  = new Float32Array(totalVerts * 3);
+      const norm = new Float32Array(totalVerts * 3);
+      let offset = 0;
+      for (const g of geos) {
+        const p = g.getAttribute('position').array;
+        const n = g.getAttribute('normal').array;
+        pos.set(p, offset);
+        norm.set(n, offset);
+        offset += p.length;
+      }
+      const merged = new THREE.BufferGeometry();
+      merged.setAttribute('position', new THREE.Float32BufferAttribute(pos,  3));
+      merged.setAttribute('normal',   new THREE.Float32BufferAttribute(norm, 3));
+      return merged;
+    }
 
     // ── State ─────────────────────────────────────────────────────────
     const state = {
