@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Water Pump — Julian B. Stoller</title>
+  <title>Water Pump - Julian B. Stoller</title>
   <link rel="stylesheet" href="/assets/css/style.css">
   <style>
     * {
@@ -351,7 +351,7 @@
         <h1>Water Pump</h1>
         <p class="subtitle">Designed, analyzed, and machined a double-cylinder piston pump in aluminum as part of a team of six. Required to pump water 1 meter vertically at a minimum flow rate of 1 L/min.</p>
         <div class="meta-row">
-          <span class="meta-tag">MAE 2250 — Mechanical Synthesis</span>
+          <span class="meta-tag">MAE 2250 - Mechanical Synthesis</span>
           <span class="meta-tag">Team of 6</span>
           <span class="meta-tag">Cornell University</span>
         </div>
@@ -359,7 +359,7 @@
 
       <section>
         <h2>Project Requirements</h2>
-        <p>This was a structured design-build-test project from MAE 2250 (Mechanical Synthesis). The prompt was deliberately open-ended on implementation but firm on performance: the pump had to lift water 1 meter and sustain at least 1 L/min flow. Everything else — pump type, geometry, materials, sealing approach — was up to the team.</p>
+        <p>This was a structured design-build-test project from MAE 2250 (Mechanical Synthesis). The prompt was deliberately open-ended on implementation but firm on performance: the pump had to lift water 1 meter and sustain at least 1 L/min flow. Everything else - pump type, geometry, materials, sealing approach - was up to the team.</p>
 
         <div class="specs-grid">
           <div class="spec-card">
@@ -387,7 +387,7 @@
 
       <section>
         <h2>Design</h2>
-        <p>The team selected a double-cylinder reciprocating piston pump — two parallel aluminum cylinders with pistons driven by a shared threaded-rod actuator mechanism. The double-cylinder layout allows one cylinder to be on the intake stroke while the other is on the discharge stroke, producing more continuous flow than a single-cylinder design and reducing pulsation.</p>
+        <p>The team selected a double-cylinder reciprocating piston pump - two parallel aluminum cylinders with pistons driven by a shared threaded-rod actuator mechanism. The double-cylinder layout allows one cylinder to be on the intake stroke while the other is on the discharge stroke, producing more continuous flow than a single-cylinder design and reducing pulsation.</p>
 
         <div class="project-highlight">
           <strong>Double-cylinder reciprocating piston design</strong>
@@ -406,14 +406,14 @@
         </figure>
 
         <h3>CFD Analysis</h3>
-        <p>Computational fluid dynamics simulation in Fusion 360 was used to validate the flow path geometry through the end caps — checking that the port sizing and internal channel geometry would support the required flow rate without excessive pressure drop across the fittings.</p>
+        <p>Computational fluid dynamics simulation in Fusion 360 was used to validate the flow path geometry through the end caps - checking that the port sizing and internal channel geometry would support the required flow rate without excessive pressure drop across the fittings.</p>
 
         <h3>FEA</h3>
-        <p>Finite element analysis was run on the high-stress components of the assembly. The scotch yoke — which receives rotational input from the drive shaft and converts it to linear reciprocating motion — was a primary focus. Von Mises stress analysis confirmed the yoke would remain well within the material's yield strength under operating loads, with a peak stress of 2.819 MPa.</p>
+        <p>Finite element analysis was run on the high-stress components of the assembly. The scotch yoke - which receives rotational input from the drive shaft and converts it to linear reciprocating motion - was a primary focus. Von Mises stress analysis confirmed the yoke would remain well within the material's yield strength under operating loads, with a peak stress of 2.819 MPa.</p>
 
         <figure class="screenshot">
           <img src="/Website/water-pump/images/Screenshot%202026-04-05%20154004.png" alt="FEA Von Mises stress analysis of the scotch yoke mechanism">
-          <figcaption>Von Mises stress analysis of the scotch yoke. Peak stress of 2.819 MPa occurs at the central slot where the drive pin engages — well within the yield strength of the aluminum. The stress concentrates at the pin interface and dissipates rapidly through the body, confirming the geometry is adequately sized for the operating loads.</figcaption>
+          <figcaption>Von Mises stress analysis of the scotch yoke. Peak stress of 2.819 MPa occurs at the central slot where the drive pin engages - well within the yield strength of the aluminum. The stress concentrates at the pin interface and dissipates rapidly through the body, confirming the geometry is adequately sized for the operating loads.</figcaption>
         </figure>
       </section>
 
@@ -431,23 +431,23 @@
           <figcaption>All components before final assembly: the two machined end caps with O-ring grooves and bolt patterns, aluminum cylinder tubes, flat piston discs, threaded tie rods, O-rings, and hardware. The labeling on the end caps ("ASTM B2") indicates the aluminum stock specification.</figcaption>
         </figure>
 
-        <p>Assembly required careful sequencing — O-rings seated into the piston grooves, pistons inserted into the cylinders, end caps bolted down with the threaded rod tie structure to compress the assembly. Getting the preload on the tie rods right was important to keep the cylinders sealed at the end caps without distorting the bore geometry.</p>
+        <p>Assembly required careful sequencing - O-rings seated into the piston grooves, pistons inserted into the cylinders, end caps bolted down with the threaded rod tie structure to compress the assembly. Getting the preload on the tie rods right was important to keep the cylinders sealed at the end caps without distorting the bore geometry.</p>
 
         <div class="screenshot-pair">
           <figure>
             <img src="/Website/water-pump/images/assembled-pump.jpg" alt="Assembled pump being held, showing the full double-cylinder mechanism">
-            <figcaption>The fully assembled pump. The two aluminum cylinders are tied together by the threaded rod frame, with the central actuator bracket visible between them. The machined finish on the cylinder bodies is visible — these were turned to close tolerance on the lathe.</figcaption>
+            <figcaption>The fully assembled pump. The two aluminum cylinders are tied together by the threaded rod frame, with the central actuator bracket visible between them. The machined finish on the cylinder bodies is visible - these were turned to close tolerance on the lathe.</figcaption>
           </figure>
           <figure>
             <img src="/Website/water-pump/images/assembled-pump-wide.png" alt="Assembled pump on a bench, wider angle showing inlet/outlet fittings">
-            <figcaption>Wider view of the assembled pump showing the plastic inlet/outlet fittings installed in the end caps. The overall footprint is compact given the output requirements — the double-cylinder layout keeps the pump short while providing near-continuous flow.</figcaption>
+            <figcaption>Wider view of the assembled pump showing the plastic inlet/outlet fittings installed in the end caps. The overall footprint is compact given the output requirements - the double-cylinder layout keeps the pump short while providing near-continuous flow.</figcaption>
           </figure>
         </div>
       </section>
 
       <section>
         <h2>Testing & Results</h2>
-        <p>The pump was tested against the project requirements — pumping water through a 1-meter vertical rise at the specified flow rate. The video below shows the pump operating under test conditions.</p>
+        <p>The pump was tested against the project requirements - pumping water through a 1-meter vertical rise at the specified flow rate. The video below shows the pump operating under test conditions.</p>
 
         <figure class="video-container">
           <video controls preload="metadata">
@@ -460,7 +460,7 @@
 
       <section>
         <h2>Project Management</h2>
-        <p>With a team of six and a hard deadline for the live test, project management was a real part of the work — not just a checkbox. The project included:</p>
+        <p>With a team of six and a hard deadline for the live test, project management was a real part of the work - not just a checkbox. The project included:</p>
 
         <div class="feature-box">
           <h3>Deliverables beyond the hardware</h3>
@@ -486,7 +486,7 @@
       </section>
 
       <footer>
-        <p>Water Pump — MAE 2250 Project, Cornell University</p>
+        <p>Water Pump - MAE 2250 Project, Cornell University</p>
       </footer>
     </div>
   </main>

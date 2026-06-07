@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ATTiny85 Prototyping Board — Julian B. Stoller</title>
+  <title>ATTiny85 Prototyping Board - Julian B. Stoller</title>
   <link rel="stylesheet" href="/assets/css/style.css">
   <style>
     * {
@@ -290,24 +290,24 @@
       <header>
         <span class="status-pill">In Progress</span>
         <h1>ATTiny85 Prototyping Board</h1>
-        <p class="subtitle">A custom PCB designed and fabricated to provide a clean, reusable development platform for the ATTiny85 microcontroller — with I/O breakout headers, onboard LED, reset button, and proper decoupling.</p>
+        <p class="subtitle">A custom PCB designed and fabricated to provide a clean, reusable development platform for the ATTiny85 microcontroller - with I/O breakout headers, onboard LED, reset button, and proper decoupling.</p>
       </header>
 
       <section>
         <h2>Overview</h2>
-        <p>The ATTiny85 is a capable 8-pin AVR microcontroller — small, cheap, and well-suited for embedded projects that don't need the overhead of a full Arduino. The problem is that prototyping with it on a breadboard gets messy fast: the DIP-8 footprint is easy to displace, power rails are fragile, and there's no clean way to interface external peripherals without things turning into a tangle of jumper wires.</p>
+        <p>The ATTiny85 is a capable 8-pin AVR microcontroller - small, cheap, and well-suited for embedded projects that don't need the overhead of a full Arduino. The problem is that prototyping with it on a breadboard gets messy fast: the DIP-8 footprint is easy to displace, power rails are fragile, and there's no clean way to interface external peripherals without things turning into a tangle of jumper wires.</p>
 
         <p>This board solves that by giving the ATTiny85 a proper home. It's a simple but deliberate PCB: the chip plugs into a DIP-8 socket, power is decoupled with 100nF capacitors, I/O pins are broken out to female headers on both sides, and a pushbutton and LED are included onboard for basic interaction without any external components.</p>
 
         <div class="project-highlight">
-          <strong>V1 — Designed in KiCad</strong>
-          <p>The schematic and PCB layout were done in KiCad. The board was fabricated externally and hand-soldered. This is a first version — functional and intentionally minimal, with the goal of establishing a reliable base for ATTiny85 firmware development and iteration.</p>
+          <strong>V1 - Designed in KiCad</strong>
+          <p>The schematic and PCB layout were done in KiCad. The board was fabricated externally and hand-soldered. This is a first version - functional and intentionally minimal, with the goal of establishing a reliable base for ATTiny85 firmware development and iteration.</p>
         </div>
       </section>
 
       <section>
         <h2>Design & Schematic</h2>
-        <p>The circuit is deliberately simple. The ATTiny85 sits at the center with its 8 pins broken out through two 4-pin female headers — giving clean access to all I/O, power, and ground pins without needing a breadboard. A 100nF decoupling capacitor on each power supply pin keeps the supply stable during switching transients.</p>
+        <p>The circuit is deliberately simple. The ATTiny85 sits at the center with its 8 pins broken out through two 4-pin female headers - giving clean access to all I/O, power, and ground pins without needing a breadboard. A 100nF decoupling capacitor on each power supply pin keeps the supply stable during switching transients.</p>
 
         <p>The pushbutton is wired to the reset line, allowing the chip to be restarted without removing it from the socket. The onboard LED with a current-limiting resistor gives a useful indicator output that's immediately available in firmware without wiring anything externally.</p>
 
@@ -318,7 +318,7 @@
           </figure>
           <figure>
             <img src="/photos-from-attiny85-project/V1%20PCB%20Layout.png" alt="V1 PCB layout in KiCad">
-            <figcaption>V1 PCB layout. Through-hole components throughout — the DIP-8 socket for the chip, headers for I/O, and the passive components clustered cleanly around the edges.</figcaption>
+            <figcaption>V1 PCB layout. Through-hole components throughout - the DIP-8 socket for the chip, headers for I/O, and the passive components clustered cleanly around the edges.</figcaption>
           </figure>
         </div>
       </section>
@@ -329,12 +329,12 @@
         <div class="feature-box">
           <h3>What's on the board</h3>
           <ul>
-            <li><strong>DIP-8 socket</strong> — ATTiny85 plugs in and out without soldering; easy to swap chips during development</li>
-            <li><strong>Dual 4-pin I/O headers</strong> — all ATTiny85 pins broken out to female headers for clean peripheral attachment</li>
-            <li><strong>Onboard LED + resistor</strong> — immediately usable output pin for debugging, status indication, or just blinking</li>
-            <li><strong>Reset pushbutton</strong> — restart the chip without removing it or cycling power</li>
-            <li><strong>100nF decoupling caps</strong> — stable power supply during I/O switching; good practice for any AVR design</li>
-            <li><strong>+5V powered</strong> — compatible with USB power or standard bench supply</li>
+            <li><strong>DIP-8 socket</strong> - ATTiny85 plugs in and out without soldering; easy to swap chips during development</li>
+            <li><strong>Dual 4-pin I/O headers</strong> - all ATTiny85 pins broken out to female headers for clean peripheral attachment</li>
+            <li><strong>Onboard LED + resistor</strong> - immediately usable output pin for debugging, status indication, or just blinking</li>
+            <li><strong>Reset pushbutton</strong> - restart the chip without removing it or cycling power</li>
+            <li><strong>100nF decoupling caps</strong> - stable power supply during I/O switching; good practice for any AVR design</li>
+            <li><strong>+5V powered</strong> - compatible with USB power or standard bench supply</li>
           </ul>
         </div>
 
@@ -343,14 +343,14 @@
 
       <section>
         <h2>Fabrication & Assembly</h2>
-        <p>The board was sent out for fabrication and returned as bare PCBs. Components were hand-soldered — through-hole throughout, which keeps assembly straightforward and makes rework easy if a connection needs to be redone.</p>
+        <p>The board was sent out for fabrication and returned as bare PCBs. Components were hand-soldered - through-hole throughout, which keeps assembly straightforward and makes rework easy if a connection needs to be redone.</p>
 
         <figure class="screenshot">
           <img src="/photos-from-attiny85-project/Attiny85-Prototyping-Board-V1-RawPCB.jpg" alt="Bare V1 PCB fresh from the fab">
-          <figcaption>The bare PCB as it arrived from the fab — no components yet. The through-hole pads are clean and the silkscreen outlines each component's footprint. The board is compact, roughly the footprint of a postage stamp.</figcaption>
+          <figcaption>The bare PCB as it arrived from the fab - no components yet. The through-hole pads are clean and the silkscreen outlines each component's footprint. The board is compact, roughly the footprint of a postage stamp.</figcaption>
         </figure>
 
-        <p>Components were hand-soldered in assembly order: decoupling capacitors first, then the DIP-8 socket, I/O headers, LED, and resistor. The pushbutton footprint is on the board but not populated in V1 — the reset line is accessible via the breakout header instead.</p>
+        <p>Components were hand-soldered in assembly order: decoupling capacitors first, then the DIP-8 socket, I/O headers, LED, and resistor. The pushbutton footprint is on the board but not populated in V1 - the reset line is accessible via the breakout header instead.</p>
 
         <div class="screenshot-pair">
           <figure>
@@ -359,13 +359,13 @@
           </figure>
           <figure>
             <img src="/photos-from-attiny85-project/Attiny85-Prototyping-Board-V1-Assembled-NoButton-Side.jpg" alt="Assembled V1 board, angled side view showing male header pins and red LED">
-            <figcaption>Angled side view. The male header pins protrude from the bottom for plugging the board into a breadboard or socket. The red LED and current-limiting resistor are prominent on the right edge — immediately usable from firmware without any external wiring.</figcaption>
+            <figcaption>Angled side view. The male header pins protrude from the bottom for plugging the board into a breadboard or socket. The red LED and current-limiting resistor are prominent on the right edge - immediately usable from firmware without any external wiring.</figcaption>
           </figure>
         </div>
       </section>
 
       <footer>
-        <p>ATTiny85 Prototyping Board — Personal Project by Julian B. Stoller</p>
+        <p>ATTiny85 Prototyping Board - Personal Project by Julian B. Stoller</p>
       </footer>
     </div>
   </main>

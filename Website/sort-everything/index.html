@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sort Everything — Julian B. Stoller</title>
+  <title>Sort Everything - Julian B. Stoller</title>
   <link rel="stylesheet" href="/assets/css/style.css">
   <style>
     * {
@@ -309,7 +309,7 @@
         <div class="header-inner">
           <div class="header-text">
             <h1>Sort Everything</h1>
-            <p class="subtitle">A Python desktop application for Digital Asset Management (DAM) — organizing and analyzing large media collections of images, videos, and documents — with XMP metadata, AI classifiers, face recognition, and more. Runs entirely locally.</p>
+            <p class="subtitle">A Python desktop application for Digital Asset Management (DAM) - organizing and analyzing large media collections of images, videos, and documents - with XMP metadata, AI classifiers, face recognition, and more. Runs entirely locally.</p>
           </div>
           <img src="/photos-from-sort-everything-project/logo-icon.png" alt="Sort Everything logo" class="header-logo">
         </div>
@@ -319,24 +319,24 @@
         <h2>Overview</h2>
         <p>Sort Everything started as a personal tool for managing a large photo library and grew into something considerably more involved. The core idea is simple: tag files, filter by those tags, and keep everything organized. The implementation is not.</p>
 
-        <p>Under the hood it combines a SQLite database, XMP metadata written directly into file binaries, AI classifiers trained on user-tagged data, perceptual hashing for duplicate detection, face recognition via DeepFace, YOLOv8 pose estimation, background OCR, and a VLC-based in-app video player — all tied together in a Tkinter GUI and running entirely on the local machine.</p>
+        <p>Under the hood it combines a SQLite database, XMP metadata written directly into file binaries, AI classifiers trained on user-tagged data, perceptual hashing for duplicate detection, face recognition via DeepFace, YOLOv8 pose estimation, background OCR, and a VLC-based in-app video player - all tied together in a Tkinter GUI and running entirely on the local machine.</p>
 
         <div class="project-highlight">
           <strong>Everything stays local</strong>
-          <p>All processing — inference, training, OCR, face detection — runs on the local machine. Tags are embedded directly into files using XMP metadata, so they travel with the files and remain readable by tools like Adobe Lightroom and Photoshop even outside the app.</p>
+          <p>All processing - inference, training, OCR, face detection - runs on the local machine. Tags are embedded directly into files using XMP metadata, so they travel with the files and remain readable by tools like Adobe Lightroom and Photoshop even outside the app.</p>
         </div>
       </section>
 
       <section>
         <h2>Browsing & Tag Filtering</h2>
-        <p>The main view is a filterable file list. Filter expressions support arbitrary combinations of tags — AND, OR, exclusion — so drilling into any specific subset of a large collection is fast. Suggested tags appear based on what's already applied to the current filtered set.</p>
+        <p>The main view is a filterable file list. Filter expressions support arbitrary combinations of tags - AND, OR, exclusion - so drilling into any specific subset of a large collection is fast. Suggested tags appear based on what's already applied to the current filtered set.</p>
 
         <figure class="screenshot">
           <img src="/photos-from-sort-everything-project/Screenshot%202026-03-12%20021803.png" alt="Main tagging view showing files filtered by Painting tag with tag suggestions">
           <figcaption>143 files filtered by the "Painting" tag. Suggested tags appear at the top based on the current result set. The tab bar exposes the full feature surface: OCR, AI Auto-Tag, Binary Sorting, Similar Photos, Pose Estimation, and more.</figcaption>
         </figure>
 
-        <p>Compound filters work the same way — any number of inclusion and exclusion rules can be combined. The result count updates immediately, making it straightforward to explore a collection by multiple criteria at once.</p>
+        <p>Compound filters work the same way - any number of inclusion and exclusion rules can be combined. The result count updates immediately, making it straightforward to explore a collection by multiple criteria at once.</p>
 
         <figure class="screenshot">
           <img src="/photos-from-sort-everything-project/Screenshot%202026-03-12%20022014.png" alt="File list filtered by Photograph and Historical tags showing 57 results">
@@ -352,13 +352,13 @@
 
         <figure class="screenshot">
           <img src="/photos-from-sort-everything-project/Screenshot%202026-03-12%20021834.png" alt="Single file detail view showing image with face detection result and current tags">
-          <figcaption>Detail view for a single file. Current tags are shown alongside the DeepFace detection result — in this case a single detected face with a cropped thumbnail. File size, view count, perceptual hash, and bitrate are tracked in the database.</figcaption>
+          <figcaption>Detail view for a single file. Current tags are shown alongside the DeepFace detection result - in this case a single detected face with a cropped thumbnail. File size, view count, perceptual hash, and bitrate are tracked in the database.</figcaption>
         </figure>
       </section>
 
       <section>
         <h2>AI Image Classification</h2>
-        <p>Custom binary and multi-class image classifiers are trained directly from tagged files in the collection. The more a collection gets tagged, the more useful the classifiers become — without any external API calls or GPU requirements beyond what's available locally.</p>
+        <p>Custom binary and multi-class image classifiers are trained directly from tagged files in the collection. The more a collection gets tagged, the more useful the classifiers become - without any external API calls or GPU requirements beyond what's available locally.</p>
 
         <div class="feature-box">
           <h3>Training pipeline</h3>
@@ -370,7 +370,7 @@
           </ul>
         </div>
 
-        <p>The training charts below show two separate classifiers in progress — one multi-class model and one binary classifier, both trained entirely from locally tagged images.</p>
+        <p>The training charts below show two separate classifiers in progress - one multi-class model and one binary classifier, both trained entirely from locally tagged images.</p>
 
         <div class="screenshot-pair">
           <figure>
@@ -401,31 +401,31 @@
 
       <section>
         <h2>Where This Goes Next</h2>
-        <p>Sort Everything was built around media files — photos, videos, documents. The next frontier is expanding it into a full Digital Asset Management platform for engineering work, where the same problems exist but the file types are far more complex.</p>
+        <p>Sort Everything was built around media files - photos, videos, documents. The next frontier is expanding it into a full Digital Asset Management platform for engineering work, where the same problems exist but the file types are far more complex.</p>
 
         <div class="project-highlight">
           <strong>Expanding to CAD & Engineering Files</strong>
-          <p>The core DAM concept maps directly onto engineering workflows: a large project generates SOLIDWORKS assemblies, part files, STL exports, FEA results, simulation outputs, PDFs, and renders — all loosely related, version-controlled haphazardly, and scattered across folders. Sort Everything's tagging, database, and file-tracking architecture can be extended to make sense of this.</p>
+          <p>The core DAM concept maps directly onto engineering workflows: a large project generates SOLIDWORKS assemblies, part files, STL exports, FEA results, simulation outputs, PDFs, and renders - all loosely related, version-controlled haphazardly, and scattered across folders. Sort Everything's tagging, database, and file-tracking architecture can be extended to make sense of this.</p>
         </div>
 
         <h3>Vision: Local Version Control for Engineering Projects</h3>
-        <p>The goal is a tool that feels native to how engineers actually work — not a cloud sync service or a Git wrapper, but a local-first DAM that understands the relationships between files spanning multiple types:</p>
+        <p>The goal is a tool that feels native to how engineers actually work - not a cloud sync service or a Git wrapper, but a local-first DAM that understands the relationships between files spanning multiple types:</p>
         <ul>
-          <li>Visual diffs between CAD revisions — render thumbnails of each version and show what changed geometrically, not just in file metadata</li>
+          <li>Visual diffs between CAD revisions - render thumbnails of each version and show what changed geometrically, not just in file metadata</li>
           <li>Cross-file-type linking: associate a SLDPRT with its STL exports, FEA mesh, simulation results, and manufacturing drawings as a single logical asset</li>
-          <li>Tag-based filtering that works across file types — find everything tagged "final", "approved for fabrication", or "as-built" regardless of whether it's a CAD file, PDF, or photo</li>
+          <li>Tag-based filtering that works across file types - find everything tagged "final", "approved for fabrication", or "as-built" regardless of whether it's a CAD file, PDF, or photo</li>
           <li>Milestone snapshots: capture the state of an entire project tree at a point in time, with visual thumbnails, without requiring Git or any version control setup</li>
-          <li>Runs entirely on the local machine — no cloud, no accounts, no internet dependency</li>
+          <li>Runs entirely on the local machine - no cloud, no accounts, no internet dependency</li>
         </ul>
 
         <div class="feature-box">
           <h3>Why this matters for engineering teams</h3>
-          <p>Large engineering projects routinely span hundreds of interrelated files across multiple tools — CAD, simulation, documentation, imagery. Current version control options (Git, PDM systems) either don't handle binary files well or require significant IT infrastructure. A lightweight, visual, local-first DAM designed for this use case doesn't really exist yet.</p>
+          <p>Large engineering projects routinely span hundreds of interrelated files across multiple tools - CAD, simulation, documentation, imagery. Current version control options (Git, PDM systems) either don't handle binary files well or require significant IT infrastructure. A lightweight, visual, local-first DAM designed for this use case doesn't really exist yet.</p>
         </div>
       </section>
 
       <footer>
-        <p>Sort Everything — Personal Project by Julian B. Stoller</p>
+        <p>Sort Everything - Personal Project by Julian B. Stoller</p>
       </footer>
     </div>
   </main>
