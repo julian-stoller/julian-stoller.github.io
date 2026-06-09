@@ -541,13 +541,25 @@
       return geo;
     }
 
-    // Helix curve — radius tapers linearly from Rbot to Rtop
+    // Helix curve — radius tapers linearly from Rbot to Rtop.
+    // The first/last half-turn ramps below y=0 / above y=H by sinkB/sinkT,
+    // burying the coil's cut ends inside the base and top collars.
     class HelixCurve extends THREE.Curve {
-      constructor(Rbot, Rtop, H, turns) { super(); this._Rb=Rbot; this._Rt=Rtop; this._H=H; this._N=turns; }
+      constructor(Rbot, Rtop, H, turns, sinkB, sinkT) {
+        super();
+        this._Rb=Rbot; this._Rt=Rtop; this._H=H; this._N=turns;
+        this._sB=sinkB||0; this._sT=sinkT||0;
+      }
       getPoint(t, out) {
         const a = t * this._N * Math.PI * 2;
         const R = this._Rb + (this._Rt - this._Rb) * t;
-        return (out||new THREE.Vector3()).set(R*Math.cos(a), t*this._H, R*Math.sin(a));
+        const d = 0.5 / this._N;  // ramp spans half a turn at each end
+        const smooth = u => u*u*(3-2*u);
+        let y;
+        if (t < d)          y = -this._sB * smooth(1 - t/d);
+        else if (t > 1 - d) y = this._H + this._sT * smooth((t-(1-d))/d);
+        else                y = this._H * (t-d)/(1-2*d);
+        return (out||new THREE.Vector3()).set(R*Math.cos(a), y, R*Math.sin(a));
       }
     }
 
@@ -678,7 +690,12 @@
         const bH     = Math.max(5, p.bodyH);
         const {baseH,baseOR,baseIR,topH,topOR,topIR} = helixCollars(p);
 
-        const helixGeo = buildHelixRectTube(new HelixCurve(Rbot,Rtop,bH,turns), turns*32, tubeW/2, tubeH2/2);
+        // Sink the coil ends past the collar faces so the cut faces are hidden,
+        // clamped so the tube never pokes out the bottom of the base or top of the tip
+        const halfH = tubeH2/2;
+        const sinkB = Math.max(0, Math.min(halfH + 0.2, baseH - halfH));
+        const sinkT = Math.max(0, Math.min(halfH + 0.2, topH  - halfH));
+        const helixGeo = buildHelixRectTube(new HelixCurve(Rbot,Rtop,bH,turns,sinkB,sinkT), turns*32, tubeW/2, halfH);
         helixGeo.translate(0, baseH, 0);
 
         const baseGeo = makeHollowFrustum(baseIR, baseOR, baseIR, baseOR, baseH, SEG);
