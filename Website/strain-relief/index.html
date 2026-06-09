@@ -805,6 +805,25 @@
         state.tubeRectH = maxTubeH;
         if (slTubeH) slTubeH.value = maxTubeH;
       }
+
+      // Collar holes can't exceed the coil's inner channel at that end,
+      // or the coil's inner wall would cut across the cable passage
+      // instead of sitting flush with it.
+      const maxBaseID = Math.max(2, state.helixBottomD - 2*state.cordD);
+      const slBaseID  = document.getElementById('sl-helixBaseID');
+      if (slBaseID) slBaseID.max = maxBaseID;
+      if (state.helixBaseID > maxBaseID) {
+        state.helixBaseID = maxBaseID;
+        if (slBaseID) slBaseID.value = maxBaseID;
+      }
+
+      const maxTopID = Math.max(2, state.helixTopD - 2*state.cordD);
+      const slTopID  = document.getElementById('sl-helixTopID');
+      if (slTopID) slTopID.max = maxTopID;
+      if (state.helixTopID > maxTopID) {
+        state.helixTopID = maxTopID;
+        if (slTopID) slTopID.value = maxTopID;
+      }
     }
 
     function rebuildModel() {
