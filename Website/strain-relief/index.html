@@ -644,7 +644,7 @@
       const baseOR = Math.max(p.helixBottomD/2+1, p.helixBaseOD/2);
       const baseIR = Math.max(0.5, Math.min(p.helixBaseID/2, baseOR-1));
       const topH   = Math.max(1, p.helixTopH);
-      const topOR  = Math.max(2, p.helixTopOD/2);
+      const topOR  = Math.max(2, p.helixTopD/2, p.helixTopOD/2);
       const topIR  = Math.max(0.5, Math.min(p.helixTopID/2, topOR-1));
       return { baseH, baseOR, baseIR, topH, topOR, topIR };
     }
@@ -823,6 +823,30 @@
       if (state.helixTopID > maxTopID) {
         state.helixTopID = maxTopID;
         if (slTopID) slTopID.value = maxTopID;
+      }
+
+      // Collar ODs must contain the coil's outer edge at that end,
+      // or the coil would poke out past the collar wall.
+      const minBaseOD = state.helixBottomD + 2;
+      const slBaseOD  = document.getElementById('sl-helixBaseOD');
+      if (slBaseOD) {
+        slBaseOD.min = minBaseOD;
+        if (+slBaseOD.max < minBaseOD) slBaseOD.max = minBaseOD;
+      }
+      if (state.helixBaseOD < minBaseOD) {
+        state.helixBaseOD = minBaseOD;
+        if (slBaseOD) slBaseOD.value = minBaseOD;
+      }
+
+      const minTopOD = state.helixTopD;
+      const slTopOD  = document.getElementById('sl-helixTopOD');
+      if (slTopOD) {
+        slTopOD.min = minTopOD;
+        if (+slTopOD.max < minTopOD) slTopOD.max = minTopOD;
+      }
+      if (state.helixTopOD < minTopOD) {
+        state.helixTopOD = minTopOD;
+        if (slTopOD) slTopOD.value = minTopOD;
       }
     }
 
