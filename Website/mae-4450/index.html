@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lightweight EV Gear - Julian B. Stoller</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.7;
+      color: #1a1a1a;
+      background: #fafaf8;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 30px;
+    }
+
+    header {
+      margin-bottom: 60px;
+      padding: 40px 0;
+      border-bottom: 3px solid #2a2a2a;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+      color: #1a1a1a;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: #4a4a4a;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .meta-row {
+      display: flex;
+      gap: 24px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .meta-tag {
+      font-size: 0.9rem;
+      color: #6a6a6a;
+      background: #f0f0ee;
+      padding: 4px 12px;
+      border-radius: 4px;
+    }
+
+    section {
+      padding: 48px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      color: #1a1a1a;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    section p {
+      margin-bottom: 18px;
+      color: #3a3a3a;
+      font-size: 1.05rem;
+    }
+
+    section a {
+      color: #d97706;
+      text-decoration: none;
+      border-bottom: 2px solid #fbbf24;
+      transition: border-color 0.2s;
+    }
+
+    section a:hover {
+      border-bottom-color: #d97706;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 32px;
+      padding: 12px 20px;
+      background: #2a2a2a;
+      color: #fafaf8;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .back-link:hover {
+      background: #1a1a1a;
+    }
+
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 18px;
+      font-size: 1rem;
+    }
+
+    .results-table th,
+    .results-table td {
+      border: 1px solid #e0e0e0;
+      padding: 10px 14px;
+      text-align: left;
+      color: #3a3a3a;
+    }
+
+    .results-table th {
+      background: #f0f0ee;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .pdf-embed {
+      width: 100%;
+      height: 900px;
+      border: 2px solid #e0e0e0;
+      display: block;
+    }
+
+    .pdf-fallback {
+      margin-top: 16px;
+      font-size: 0.95rem;
+      color: #6a6a6a;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #6a6a6a;
+      font-size: 0.95rem;
+      margin-top: 60px;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    footer p {
+      margin-bottom: 8px;
+      color: #6a6a6a;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 40px 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      header {
+        padding: 30px 0;
+        margin-bottom: 40px;
+      }
+
+      section {
+        padding: 36px 0;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+      }
+
+      .pdf-embed {
+        height: 600px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">Julian B. Stoller</a>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/projects/" class="nav-link">Projects</a></li>
+        <li><a href="/awards/" class="nav-link">Awards</a></li>
+        <li><a href="/resume/" class="nav-link">Resume/CV</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <div class="container">
+      <a href="/projects/" class="back-link">← Back to projects</a>
+
+      <header>
+        <h1>High-Performance Lightweight Gear for Electric Vehicles</h1>
+        <div class="meta-row">
+          <span class="meta-tag">MAE 4450</span>
+          <span class="meta-tag">Cornell University</span>
+          <span class="meta-tag">Spring 2026</span>
+          <span class="meta-tag">Generative Design</span>
+          <span class="meta-tag">Topology Optimization</span>
+          <span class="meta-tag">FEA / Ansys</span>
+          <span class="meta-tag">Additive Manufacturing</span>
+          <span class="meta-tag">Coursework</span>
+        </div>
+      </header>
+
+      <section>
+        <h2>Overview</h2>
+        <p>For Project #2 in MAE 4450 (Process Physics, Materials, Properties, and Post Processing), I used Fusion 360 generative design to minimize the mass of a 12-tooth gear for an experimental electric vehicle while satisfying a set of explicit and implicit design constraints.</p>
+        <p>The gear had to withstand a 1000 N mid-stall load on a single tooth at a factor of safety of 1.2. To keep every tooth equally supported and to remove any dependence on mounting orientation, I set up the study with a fixed constraint on the bore, 12 equi-angular symmetry planes through the center axis, and a 13th mid-plane symmetry plane. The tooth contour and bore surface were preserved while the material between them was released for topology optimization.</p>
+        <p>The study was run as a proxy for powder bed fusion (PBF) with no manufacturing constraints, comparing two candidate materials: <strong>Aluminum AlSi10Mg</strong> and <strong>Titanium Ti-6Al-4V</strong>. The optimized meshes were then re-imported into Ansys for an independent stress check.</p>
+      </section>
+
+      <section>
+        <h2>Results</h2>
+        <p>Both converged geometries satisfied the 1.2 FOS requirement but presented meaningful trade-offs between mass, stiffness, and safety margin:</p>
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>Material</th>
+              <th>Mass</th>
+              <th>Max Displacement</th>
+              <th>Min FOS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Aluminum AlSi10Mg</td>
+              <td>0.093 kg</td>
+              <td>0.326 mm</td>
+              <td>2.288</td>
+            </tr>
+            <tr>
+              <td>Titanium Ti-6Al-4V</td>
+              <td>0.154 kg</td>
+              <td>0.206 mm</td>
+              <td>8.421</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>I recommended moving forward with the aluminum part for its lower mass, which improves vehicle range and reduces the energy needed to spin the gear at high speed, while noting that fatigue, backlash, and displacement limits would need to be watched during cycle testing. The Ansys re-analysis showed a stress singularity at a filleted corner, but the effective peak stresses (89.12 MPa aluminum, 88.51 MPa titanium) were consistent with the generative results. An addendum explored an alternative preserve geometry that traded a small mass increase (0.1 kg) for the lowest displacement of any generated design (0.144 mm).</p>
+      </section>
+
+      <section>
+        <h2>Report</h2>
+        <p>The full write-up, including the study setup, generative design results, material selection rationale, and Ansys torque-load analysis, is embedded below.</p>
+        <iframe
+          class="pdf-embed"
+          src="/Website/mae-4450/MAE4450-Project2-Portfolio.pdf"
+          title="High-Performance Lightweight Gear for Electric Vehicles - MAE 4450">
+        </iframe>
+        <p class="pdf-fallback">
+          If the PDF does not load, <a href="/Website/mae-4450/MAE4450-Project2-Portfolio.pdf">download it here</a>.
+        </p>
+      </section>
+
+      <footer>
+        <p>High-Performance Lightweight Gear for Electric Vehicles - MAE 4450, Cornell University</p>
+      </footer>
+    </div>
+  </main>
+</body>
+
+</html>
