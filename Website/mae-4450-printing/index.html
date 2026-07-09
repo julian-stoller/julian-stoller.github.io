@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FFF vs SLA Printing Report - Julian B. Stoller</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.7;
+      color: #1a1a1a;
+      background: #fafaf8;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 30px;
+    }
+
+    header {
+      margin-bottom: 60px;
+      padding: 40px 0;
+      border-bottom: 3px solid #2a2a2a;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+      color: #1a1a1a;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: #4a4a4a;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .meta-row {
+      display: flex;
+      gap: 24px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .meta-tag {
+      font-size: 0.9rem;
+      color: #6a6a6a;
+      background: #f0f0ee;
+      padding: 4px 12px;
+      border-radius: 4px;
+    }
+
+    section {
+      padding: 48px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      color: #1a1a1a;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    section p {
+      margin-bottom: 18px;
+      color: #3a3a3a;
+      font-size: 1.05rem;
+    }
+
+    section a {
+      color: #d97706;
+      text-decoration: none;
+      border-bottom: 2px solid #fbbf24;
+      transition: border-color 0.2s;
+    }
+
+    section a:hover {
+      border-bottom-color: #d97706;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 32px;
+      padding: 12px 20px;
+      background: #2a2a2a;
+      color: #fafaf8;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .back-link:hover {
+      background: #1a1a1a;
+    }
+
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 18px;
+      font-size: 1rem;
+    }
+
+    .results-table th,
+    .results-table td {
+      border: 1px solid #e0e0e0;
+      padding: 10px 14px;
+      text-align: left;
+      color: #3a3a3a;
+    }
+
+    .results-table th {
+      background: #f0f0ee;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .pdf-embed {
+      width: 100%;
+      height: 900px;
+      border: 2px solid #e0e0e0;
+      display: block;
+    }
+
+    .pdf-fallback {
+      margin-top: 16px;
+      font-size: 0.95rem;
+      color: #6a6a6a;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #6a6a6a;
+      font-size: 0.95rem;
+      margin-top: 60px;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    footer p {
+      margin-bottom: 8px;
+      color: #6a6a6a;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 40px 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      header {
+        padding: 30px 0;
+        margin-bottom: 40px;
+      }
+
+      section {
+        padding: 36px 0;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+      }
+
+      .pdf-embed {
+        height: 600px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">Julian B. Stoller</a>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Home</a></li>
+        <li><a href="/projects/" class="nav-link">Projects</a></li>
+        <li><a href="/awards/" class="nav-link">Awards</a></li>
+        <li><a href="/resume/" class="nav-link">Resume/CV</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <div class="container">
+      <a href="/projects/" class="back-link">← Back to projects</a>
+
+      <header>
+        <h1>FFF vs SLA Printing Study</h1>
+        <div class="meta-row">
+          <span class="meta-tag">MAE 4450</span>
+          <span class="meta-tag">Cornell University</span>
+          <span class="meta-tag">Spring 2026</span>
+          <span class="meta-tag">Additive Manufacturing</span>
+          <span class="meta-tag">FFF / FDM</span>
+          <span class="meta-tag">SLA Resin</span>
+          <span class="meta-tag">Metrology</span>
+          <span class="meta-tag">Coursework</span>
+          <span class="meta-tag">Team Project</span>
+        </div>
+      </header>
+
+      <section>
+        <h2>Overview</h2>
+        <p>For Project #1 in MAE 4450 (Additive Manufacturing Process Physics, Materials, Properties, and Post Processing), my team designed a gear-based snap-fit fidget toy and printed it with two additive manufacturing processes to compare their dimensional accuracy, surface finish, and assembly behavior.</p>
+        <p>The FFF parts were printed on a Bambu Lab X1C (0.4 mm nozzle, PLA, 0.20 mm layers, 15% infill, no supports; 47 min print). The SLA parts were printed on a Formlabs Form 3 (Grey Pro V1 resin, 0.050 mm layers, solid infill, fine-tip supports; 3 hr print). Five critical dimensions — gear tooth widths, the large gear track interior and exterior diameters, and the track carrier length — were measured five times each with digital calipers to quantify each process's repeatability and deviation from the CAD model.</p>
+        <p>This was a group project completed with Mattan Kelchner and Mae Sliwinski.</p>
+      </section>
+
+      <section>
+        <h2>Key Findings</h2>
+        <p>FFF produced a more forgiving snap-fit (its peg-hole behaved like a clearance fit) and required minimal post-processing, but it rounded the tooth corners and showed first-layer warping from poor bed adhesion. SLA produced sharper, better-defined teeth but shrank tighter-than-intended mating features, and support removal made its thin connecting arms brittle enough to break during assembly.</p>
+        <p>A file-scaling error (the SLA parts were printed at 70% scale) was caught after printing, so a parity-scaled comparison was used: once corrected, the two processes agreed to within 0.4–2.5% on most features, confirming that the large circular features were highly repeatable while the small tooth geometry was the most process-sensitive.</p>
+        <p>The report also develops a mathematical model for FFF print time as a function of layer height, fitting a representative per-layer time of 27.4 s via least-squares regression against slicer data and accounting for a constant ~16.8 min startup time.</p>
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>FFF (Bambu X1C, PLA)</th>
+              <th>SLA (Form 3, Grey Pro)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tooth definition</td>
+              <td>Rounded corners</td>
+              <td>Sharp, well-defined</td>
+            </tr>
+            <tr>
+              <td>Peg-hole fit</td>
+              <td>Clearance (rotates freely)</td>
+              <td>Interference (press fit)</td>
+            </tr>
+            <tr>
+              <td>Dimensional trend</td>
+              <td>Slightly oversized / expands</td>
+              <td>Slightly undersized / shrinks</td>
+            </tr>
+            <tr>
+              <td>Post-processing</td>
+              <td>Minimal (no supports)</td>
+              <td>Wash + support removal</td>
+            </tr>
+            <tr>
+              <td>Print time</td>
+              <td>47 min</td>
+              <td>3 hr</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>The team concluded that SLA is preferable when visual quality and fine feature definition matter most, while FFF is the more viable choice for a durable, repeatedly-handled consumer part.</p>
+      </section>
+
+      <section>
+        <h2>Report</h2>
+        <p>The full write-up, including the process setup, qualitative and quantitative analysis, metrology tables, and the print-time model, is embedded below.</p>
+        <iframe
+          class="pdf-embed"
+          src="/Website/mae-4450-printing/MAE4450-Project1-PrintingReport.pdf"
+          title="FFF vs SLA Printing Study - MAE 4450">
+        </iframe>
+        <p class="pdf-fallback">
+          If the PDF does not load, <a href="/Website/mae-4450-printing/MAE4450-Project1-PrintingReport.pdf">download it here</a>.
+        </p>
+      </section>
+
+      <footer>
+        <p>FFF vs SLA Printing Study - MAE 4450, Cornell University</p>
+      </footer>
+    </div>
+  </main>
+</body>
+
+</html>
