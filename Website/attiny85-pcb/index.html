@@ -47,6 +47,21 @@
       line-height: 1.5;
     }
 
+    .meta-row {
+      display: flex;
+      gap: 24px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .meta-tag {
+      font-size: 0.9rem;
+      color: #6a6a6a;
+      background: #f0f0ee;
+      padding: 4px 12px;
+      border-radius: 4px;
+    }
+
     section {
       padding: 48px 0;
       border-bottom: 1px solid #e0e0e0;
@@ -210,18 +225,6 @@
       line-height: 1.5;
     }
 
-    .status-pill {
-      display: inline-block;
-      background: #fef3c7;
-      color: #92400e;
-      font-size: 0.85rem;
-      font-weight: 600;
-      padding: 4px 12px;
-      border-radius: 999px;
-      margin-bottom: 20px;
-      letter-spacing: 0.02em;
-    }
-
     footer {
       text-align: center;
       padding: 40px 20px;
@@ -288,9 +291,14 @@
       <a href="/" class="back-link">← Back to home</a>
 
       <header>
-        <span class="status-pill">In Progress</span>
         <h1>ATTiny85 Prototyping Board</h1>
         <p class="subtitle">A custom PCB designed and fabricated to provide a clean, reusable development platform for the ATTiny85 microcontroller - with I/O breakout headers, onboard LED, reset button, and proper decoupling.</p>
+        <div class="meta-row">
+          <span class="meta-tag">KiCAD</span>
+          <span class="meta-tag">Microcontrollers</span>
+          <span class="meta-tag">Electronics</span>
+          <span class="meta-tag">Soldering</span>
+        </div>
       </header>
 
       <section>
