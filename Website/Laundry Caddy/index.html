@@ -127,6 +127,23 @@
       background: #1a1a1a;
     }
 
+    .report-link {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 10px 18px;
+      border: 2px solid #2a2a2a;
+      color: #2a2a2a;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .report-link:hover {
+      background: #2a2a2a;
+      color: #fafaf8;
+    }
+
     .project-highlight {
       background: #f0f7ff;
       border-left: 6px solid #3b82f6;
@@ -174,6 +191,10 @@
 
     .screenshot {
       margin: 32px 0;
+    }
+
+    .screenshot--medium {
+      max-width: 640px;
     }
 
     .screenshot img {
@@ -351,6 +372,7 @@
           <span class="meta-tag">Cornell University</span>
           <span class="meta-tag">Group Project - Team Solvo</span>
         </div>
+        <a href="/Website/Laundry%20Caddy/Senior%20Design%20Report.pdf" class="report-link" target="_blank">Read the full design report (PDF) →</a>
       </header>
 
       <!-- OVERVIEW -->
@@ -469,6 +491,35 @@
           <li>Students preferred two medium pockets plus one small pocket over higher pocket counts</li>
           <li>Magnetic and zipper closures scored nearly equally - magnetic was selected for its one-handed convenience</li>
         </ul>
+
+        <div class="screenshot">
+          <figure>
+            <img src="images/page16_img2.png" alt="Conjoint analysis - attribute importance chart">
+            <figcaption>Attribute importance (N = 30). Attachment to the bottle handle dominated at 33.3%, followed by pocket closures (26.5%) and pocket sizes (25.7%) - the number of pockets mattered least (14.6%).</figcaption>
+          </figure>
+        </div>
+
+        <div class="screenshot">
+          <figure>
+            <img src="images/page16_img1.png" alt="Conjoint analysis - part-worth utilities for number of pockets">
+            <figcaption>Part-worth utilities for pocket count. Respondents preferred 1-2 pockets (+7.7) and penalized higher counts - the finding that drove the pocket reduction after Prototype 1.</figcaption>
+          </figure>
+        </div>
+
+        <div class="screenshot">
+          <figure>
+            <img src="images/page15_img1.png" alt="Conjoint analysis - part-worth utilities for pocket sizes">
+            <figcaption>Part-worth utilities for pocket sizes. A mix of large and small pockets (+38.3) strongly outperformed all-small (-26.8) or all-large (-11.4) configurations.</figcaption>
+          </figure>
+        </div>
+
+        <div class="screenshot">
+          <figure>
+            <img src="images/page15_img2.png" alt="Conjoint analysis - part-worth utilities for pocket closures">
+            <figcaption>Part-worth utilities for pocket closures. Magnetic (+7.5) and zipper (+7.0) scored nearly equally while velcro was strongly disliked (-18.9); magnetic won for one-handed access.</figcaption>
+          </figure>
+        </div>
+
         <p>These results directly validated the elastic buckle, multi-pocket layout, and nylon material selection before any physical material was purchased.</p>
       </section>
 
@@ -525,13 +576,20 @@
         <h3>FEA - Load Case 1: Holding the Caddy</h3>
         <p>The first FEA load case simulated a user carrying the caddy without a bottle - applicable to pod users or during the drying cycle. Conservative item weights were summed: 10 detergent pods (0.507 lbf) + 5 dryer balls (0.66 lbf) + stain remover (1.56 lbf) = 2.73 lbf, rounded up to 3 lbf for conservatism. An additional 0.6 lbf load was applied at the quarter dispenser pocket.</p>
 
+        <div class="screenshot screenshot--medium">
+          <figure>
+            <img src="images/page21_img1-crop.png" alt="Ansys setup for holding load case - fixed support and applied forces">
+            <figcaption>Load case setup in Ansys - fixed support at the handle opening (A), 3 lbf of item weight on the inner base (B), and 0.6 lbf at the quarter dispenser pocket (C).</figcaption>
+          </figure>
+        </div>
+
         <div class="screenshot-pair">
           <figure>
-            <img src="images/page22_img1.png" alt="FEA von-Mises stress - holding load case">
+            <img src="images/page22_img1-crop.png" alt="FEA von-Mises stress - holding load case">
             <figcaption>Von-Mises stress - holding load case. Max stress 2,450 psi at the handle opening (least material). Yield strength of nylon 40D: 3,000 psi → factor of safety 1.22.</figcaption>
           </figure>
           <figure>
-            <img src="images/page22_img2.png" alt="FEA total deformation - holding load case">
+            <img src="images/page22_img2-crop.png" alt="FEA total deformation - holding load case">
             <figcaption>Total deformation - holding load case. Max deflection 0.62 in at the base, driven by the weight of contents sitting in the bottom of the caddy.</figcaption>
           </figure>
         </div>
@@ -539,9 +597,13 @@
         <h3>FEA - Load Case 2: Pouring Detergent</h3>
         <p>The second load case modeled the caddy attached to the bottle while the user tilts it to pour. The 3.95 lbf elastic strap tension was applied along with a 0.6 lbf quarter dispenser load and an estimated 2 lbf from items in the front pockets shifting as the bottle tilts.</p>
 
-        <div class="screenshot">
+        <div class="screenshot-pair">
           <figure>
-            <img src="images/page22_img3.png" alt="FEA von-Mises stress - pouring detergent load case">
+            <img src="images/page21_img2-crop.png" alt="Ansys setup for pouring detergent load case - supports and applied forces">
+            <figcaption>Load case setup in Ansys - compression-only support at the handle opening (A), fixed supports at the base and side (B, C), 3.95 lbf strap tension (D), 0.6 lbf quarter dispenser load (E), and 2 lbf of pocket contents (F).</figcaption>
+          </figure>
+          <figure>
+            <img src="images/page22_img3-crop.png" alt="FEA von-Mises stress - pouring detergent load case">
             <figcaption>Von-Mises stress - pouring load case. Max stress 1,531 psi at the seam where the elastic band meets the main caddy body (expected stress concentration). Factor of safety: 3,000 / 1,531 = 1.96.</figcaption>
           </figure>
         </div>
@@ -557,7 +619,7 @@
       <!-- MARKET ANALYSIS -->
       <section>
         <h2>Market &amp; Business Case</h2>
-        <p>The primary target demographic is first-year college students and their parents purchasing quality-of-life items before move-in. The U.S. college freshman market represents approximately 2.4 million potential customers annually, concentrated in the August-September back-to-school window (confirmed via Google Trends data for "shower caddy" and "bathroom caddy for college" searches).</p>
+        <p>The primary target demographic is first-year college students and their parents purchasing quality-of-life items before move-in. The U.S. college freshman market represents approximately 2.4 million potential customers annually, concentrated in the August-September back-to-school window - a window the team pinned down empirically with Google Trends and Amazon sales data, below.</p>
 
         <h3>Pricing &amp; Costs</h3>
         <div class="specs-grid">
@@ -583,7 +645,43 @@
           </div>
         </div>
 
-        <p>A Bass Model diffusion analysis (p = 0.012, q = 0.50) projected unit sales growing from ~38,000 in Year 1 to ~525,000 in Year 5. A parallel Amazon review-rate analysis of "bathroom caddy for college" listings estimated ~520,000 annual shower caddy sales on Amazon alone, supporting the Bass Model projections as reasonable.</p>
+        <p>A Bass Model diffusion analysis (p = 0.012, q = 0.50) projected unit sales growing from ~38,000 in Year 1 to ~525,000 in Year 5. Rather than take those projections on faith, the team validated them against real-world search and sales data.</p>
+
+        <h3>Demand Validation - Google Trends &amp; Amazon Sales Data</h3>
+        <p>To pin down when the target demographic actually shops, the team examined Google Trends for searches made almost exclusively by incoming freshmen. Both "what is a syllabus" and "free textbooks online" spike reliably between August 6 and September 10 every year - establishing the freshman shopping window during which TumbleTote sales would concentrate.</p>
+
+        <div class="screenshot-pair">
+          <figure>
+            <img src="images/page28_img2.png" alt="Google Trends - what is a syllabus search interest over 5 years">
+            <figcaption>Google Trends, "what is a syllabus" (US, 5 years). Annual spikes at the start of the fall semester mark when incoming freshmen are online and preparing for school.</figcaption>
+          </figure>
+          <figure>
+            <img src="images/page28_img1.png" alt="Google Trends - free textbooks online search interest over 5 years">
+            <figcaption>Google Trends, "free textbooks online" (US, 5 years). The same August-September spikes corroborate the freshman shopping window.</figcaption>
+          </figure>
+        </div>
+
+        <p>Searches for "shower caddy" peak sharply in exactly the same window - evidence that shower caddy buyers are disproportionately first-year students shopping for move-in. Because shower caddies serve the same demographic, price range, and organizational role as the TumbleTote, their sales were used as the closest available proxy for expected TumbleTote demand. Searches for "laundry pods," by contrast, grow steadily year-round - confirming sustained baseline demand for laundry products overall.</p>
+
+        <div class="screenshot-pair">
+          <figure>
+            <img src="images/page29_img1.png" alt="Google Trends - shower caddy search interest over 5 years">
+            <figcaption>Google Trends, "shower caddy" (US, 5 years). Interest nearly doubles in the August 6 - September 10 window every year, matching the freshman move-in season.</figcaption>
+          </figure>
+          <figure>
+            <img src="images/page29_img2.png" alt="Google Trends - laundry pods search interest over 5 years">
+            <figcaption>Google Trends, "laundry pods" (US, 5 years). Steady year-round growth without seasonal spikes - laundry demand itself is constant; the caddy purchase is what is seasonal.</figcaption>
+          </figure>
+        </div>
+
+        <p>To convert search interest into unit sales, an Amazon review-rate analysis was used: assuming ~2% of buyers leave a review, a listing's annual sales ≈ review count ÷ 0.02. The example listing below (417 reviews, $9.99) works out to ~20,850 sales and ~$208,000 revenue per year. Summing this estimate across all 52 first-page listings for "bathroom caddy for college" yields roughly 520,000 caddies sold per year on Amazon alone - independent support that the Bass Model's projected sales volumes are reasonable for this product category.</p>
+
+        <div class="screenshot">
+          <figure>
+            <img src="images/page30_img1.png" alt="Amazon shower caddy listing used in the review-rate sales estimate">
+            <figcaption>Example listing from the review-rate analysis: 417 reviews ÷ 2% review rate ≈ 20,850 sales/year (~$208,000 revenue at the $9.99 list price). Its "800+ bought in past month" - well below the ~1,740/month average - is consistent with the off-season dip seen in the Trends data.</figcaption>
+          </figure>
+        </div>
 
         <h3>Manufacturing Plan</h3>
         <p>The fabric body uses ripstop nylon, mesh, and foam cut by band-knife stack cutting and assembled on a progressive sewing line with QC checks between operations. The spring-loaded quarter dispenser body and cap are injection-molded for repeatable surface finish - critical for the bayonet-lock mechanism between the lid and barrel. Side-release buckles and elastic straps are purchased COTS and attached as the final assembly step.</p>
