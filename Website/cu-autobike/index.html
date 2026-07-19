@@ -101,55 +101,56 @@
         background: #e0e0e0;
       }
       
-      .note {
-        background: #fff3cd;
-        border-left: 4px solid #ffc107;
-        padding: 16px;
-        border-radius: 4px;
-        margin: 20px 0;
-      }
-
-      .note strong {
-        color: #856404;
-      }
-
       .project-photo {
         margin: 24px 0;
       }
 
-      .project-photo img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 6px;
+      .project-photo a,
+      .media-card a {
+        display: block;
+        overflow: hidden;
         border: 1px solid #e1e4e8;
+        border-radius: 6px;
+        background: #f3f4f6;
+      }
+
+      .project-photo img {
+        width: 100%;
+        height: auto;
         display: block;
       }
 
-      .project-photo figcaption {
-        margin-top: 8px;
-        font-size: 0.875rem;
-        color: #666;
-        line-height: 1.5;
+      .project-photo--portrait {
+        max-width: 420px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
-      .photo-pair {
+      .media-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px 16px;
         margin: 24px 0;
       }
 
-      .photo-pair figure img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 6px;
-        border: 1px solid #e1e4e8;
-        display: block;
-        object-fit: cover;
-        height: 220px;
+      .media-card {
+        min-width: 0;
+        margin: 0;
       }
 
-      .photo-pair figcaption {
+      .media-card img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: contain;
+        display: block;
+      }
+
+      .media-card--portrait img {
+        aspect-ratio: 3 / 4;
+      }
+
+      .project-photo figcaption,
+      .media-card figcaption {
         margin-top: 8px;
         font-size: 0.875rem;
         color: #666;
@@ -157,11 +158,8 @@
       }
 
       @media (max-width: 600px) {
-        .photo-pair {
+        .media-grid {
           grid-template-columns: 1fr;
-        }
-        .photo-pair figure img {
-          height: auto;
         }
       }
       
@@ -199,20 +197,23 @@
 
     <main class="page-content">
       <div class="container">
-        <a href="/" class="back-link">← Back to home</a>
+        <a href="/" class="back-link">&larr; Back to home</a>
       
       <header>
         <h1>Cornell Autonomous Bicycle</h1>
         <p class="subtitle">Mechanical Engineering Leadership & Design</p>
       </header>
 
-      <div class="note">
-        <strong>📝 Note:</strong> This page is still being populated with detailed documentation, design analysis, and project visuals. Check back soon for comprehensive information.
-      </div>
-
       <section>
         <h2>Overview</h2>
         <p>The Cornell Autonomous Bicycle project is a multi-disciplinary effort to design and build a self-balancing, autonomous bicycle. I've taken on leadership roles across mechanical design, team coordination, and technical implementation.</p>
+
+        <figure class="project-photo">
+          <a href="images/assembled-autobike.png">
+            <img src="images/assembled-autobike.png" alt="Red autonomous bicycle chassis with white side panels and a rear equipment rack">
+          </a>
+          <figcaption>The main bicycle chassis with its protective side-panel enclosure and rear equipment rack installed.</figcaption>
+        </figure>
 
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 24px;">
           <iframe
@@ -247,10 +248,49 @@
           <li><strong>Vibrational Mode Analysis & Informed Redesign:</strong> FEA and modal analysis to eliminate resonances and improve structural integrity</li>
         </ul>
 
-        <figure class="project-photo">
-          <img src="/photos-from-autobike-project/Screenshot%202022-07-18%20132120.png" alt="CAD render of adjustable camera mount assembly">
-          <figcaption>CAD render of the adjustable camera mount assembly. The mount allows the camera to be repositioned along multiple axes to support different control configurations - a key piece of hardware for the bike's vision system.</figcaption>
-        </figure>
+        <h3>Front Assembly: CAD to Integration</h3>
+        <div class="media-grid">
+          <figure class="media-card">
+            <a href="images/Screenshot%202022-07-18%20132120.png">
+              <img src="images/Screenshot%202022-07-18%20132120.png" alt="CAD render of the adjustable camera mount assembly" loading="lazy">
+            </a>
+            <figcaption>Adjustable camera-mount CAD developed to support multiple sensor and control configurations.</figcaption>
+          </figure>
+          <figure class="media-card">
+            <a href="images/front-assembly-cad.png">
+              <img src="images/front-assembly-cad.png" alt="CAD model of the bicycle front assembly and camera-mount linkage" loading="lazy">
+            </a>
+            <figcaption>Integrated front-assembly model showing the actuation hardware and camera linkage mounted to the frame.</figcaption>
+          </figure>
+          <figure class="media-card media-card--portrait">
+            <a href="images/main-bike-mechanical-assembly.png">
+              <img src="images/main-bike-mechanical-assembly.png" alt="Close-up of mechanical hardware installed above the autonomous bicycle's front frame" loading="lazy">
+            </a>
+            <figcaption>The fabricated mechanism installed on the bicycle during assembly and systems integration.</figcaption>
+          </figure>
+          <figure class="media-card media-card--portrait">
+            <a href="images/pulley-cad-cropped.png">
+              <img src="images/pulley-cad-cropped.png" alt="CAD render of a compact red wheel and black support assembly" loading="lazy">
+            </a>
+            <figcaption>A component-level CAD study, reframed to remove the original phone-interface padding.</figcaption>
+          </figure>
+        </div>
+
+        <h3>Component Prototyping & Design Iteration</h3>
+        <div class="media-grid">
+          <figure class="media-card media-card--portrait">
+            <a href="images/bearing-brackets.png">
+              <img src="images/bearing-brackets.png" alt="Two black 3D-printed linkage brackets fitted with bearings" loading="lazy">
+            </a>
+            <figcaption>3D-printed bearing brackets used to evaluate linkage geometry, fit, and manufacturability.</figcaption>
+          </figure>
+          <figure class="media-card">
+            <a href="images/bearing-bracket-failure-detail.png">
+              <img src="images/bearing-bracket-failure-detail.png" alt="Close-up of a crack beside the bearing in a 3D-printed bracket" loading="lazy">
+            </a>
+            <figcaption>Close inspection of a prototype failure point used to inform the next design iteration.</figcaption>
+          </figure>
+        </div>
       </section>
 
       <section>
@@ -261,14 +301,25 @@
           <li><strong>Potential Applications of a Finished Product:</strong> Explored commercialization and real-world use cases for an autonomous mini-bicycle</li>
         </ul>
 
-        <div class="photo-pair">
-          <figure>
-            <img src="/new%20autobike%20pictures/IMG_9434.PNG" alt="Mini-bike CAD model">
-            <figcaption>CAD model of the mini-bike design.</figcaption>
+        <figure class="project-photo project-photo--portrait">
+          <a href="images/IMG_7721.jpg">
+            <img src="images/IMG_7721.jpg" alt="Physical autonomous mini-bike prototype in the project workspace" loading="lazy">
+          </a>
+          <figcaption>The physical mini-bike prototype, including its steering actuator, drive wheel, and electronics platform.</figcaption>
+        </figure>
+
+        <div class="media-grid">
+          <figure class="media-card">
+            <a href="images/IMG_9434.PNG">
+              <img src="images/IMG_9434.PNG" alt="Mini-bike front-wheel and fork CAD detail" loading="lazy">
+            </a>
+            <figcaption>Front-wheel and fork geometry from the mini-bike CAD model.</figcaption>
           </figure>
-          <figure>
-            <img src="/new%20autobike%20pictures/IMG_9734.jpg" alt="Mini-bike CAD detail">
-            <figcaption>Detail view of the mini-bike CAD.</figcaption>
+          <figure class="media-card media-card--portrait">
+            <a href="images/IMG_9734.jpg">
+              <img src="images/IMG_9734.jpg" alt="Annotated mini-bike reference image in Fusion 360" loading="lazy">
+            </a>
+            <figcaption>Reverse-engineering reference identifying the steering, drive, control, and wheel systems.</figcaption>
           </figure>
         </div>
       </section>
