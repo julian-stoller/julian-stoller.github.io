@@ -268,6 +268,37 @@
       line-height: 1.5;
     }
 
+    .evolution-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 14px;
+      align-items: center;
+      margin: 36px 0 0;
+    }
+
+    .evolution-row figure img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border: 2px solid #e0e0e0;
+      display: block;
+    }
+
+    .evolution-row figcaption {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #6a6a6a;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .evolution-arrow {
+      font-size: 2.2rem;
+      color: #9a9a9a;
+      user-select: none;
+      padding-bottom: 40px;
+    }
+
     .specs-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -342,6 +373,16 @@
       .screenshot-trio,
       .specs-grid {
         grid-template-columns: 1fr;
+      }
+
+      .evolution-row {
+        grid-template-columns: 1fr;
+      }
+
+      .evolution-arrow {
+        transform: rotate(90deg);
+        justify-self: center;
+        padding-bottom: 0;
       }
     }
   </style>
@@ -557,6 +598,23 @@
 
         <h3>Final Prototype</h3>
         <p>The final version replaced 3D-printed prototype buckles with commercial 0.75" side-release plastic buckles and elastic latex fabric straps. All seam edges received trim for structural integrity and appearance. The quarter dispenser was finalized with a commercially sourced spring (k ≈ 0.183 lbf/in), and the nylon body was confirmed to be machine washable.</p>
+
+        <div class="evolution-row">
+          <figure>
+            <img src="images/page17_img1.png" alt="Prototype 1 - duct tape caddy on detergent bottle">
+            <figcaption>Prototype 1 - duct tape form study</figcaption>
+          </figure>
+          <div class="evolution-arrow" aria-hidden="true">→</div>
+          <figure>
+            <img src="images/page18_img1.png" alt="Prototype 2 - nylon and foam caddy on detergent bottle">
+            <figcaption>Prototype 2 - nylon &amp; foam</figcaption>
+          </figure>
+          <div class="evolution-arrow" aria-hidden="true">→</div>
+          <figure>
+            <img src="images/page8_img1.png" alt="Final prototype - sewn ripstop nylon caddy on detergent bottle">
+            <figcaption>Final - ripstop nylon, buckles &amp; trim</figcaption>
+          </figure>
+        </div>
       </section>
 
       <!-- MECHANICAL ANALYSIS -->
