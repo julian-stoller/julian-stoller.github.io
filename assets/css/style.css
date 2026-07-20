@@ -46,12 +46,15 @@ body {
   font-weight: 600;
   color: var(--primary-color);
   text-decoration: none;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .nav-menu {
   display: flex;
   list-style: none;
   gap: 30px;
+  flex-shrink: 0;
 }
 
 .nav-link {
@@ -334,6 +337,27 @@ body {
   .btn {
     width: 100%;
     text-align: center;
+  }
+}
+
+@media (max-width: 700px) {
+  .nav-container {
+    height: auto;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 16px 12px;
+  }
+
+  .nav-menu {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px clamp(12px, 4vw, 24px);
+  }
+
+  .nav-link {
+    display: block;
+    white-space: nowrap;
   }
 }
 
